@@ -9,3 +9,12 @@
 #collasible-nav-dropdown, .nav-link{
     color: ghostwhite!important;
 }
+
+.home__container{
+    background: url("./images/bg.jpg");
+    background-repeat: no-repeat;
+    background-color: #1c1e22;
+    background-position: center;
+    background-size: cover;
+    padding: 4rem 2rem
+}

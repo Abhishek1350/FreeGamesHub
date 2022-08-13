@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
     const [expanded, setExpanded] = useState(false);
-    const [searchinput, setSearchinput] = useState("")
+    const [searchInput, setSearchInput] = useState("")
 
     const searchGame = (e) => {
         e.preventDefault();
-        console.log(searchinput);
+        console.log(searchInput);
     }
 
     return (
@@ -42,8 +42,8 @@ const NavBar = () => {
                             placeholder="Search Free Games"
                             className="me-2"
                             aria-label="Search"
-                            value={searchinput}
-                            onChange={(e) => setSearchinput(e.target.value)}
+                            value={searchInput}
+                            onChange={(e) => setSearchInput(e.target.value)}
                         />
                         <Button variant="outline-success" type='submit'>Search</Button>
                     </Form>
