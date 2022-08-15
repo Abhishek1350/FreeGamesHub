@@ -1,19 +1,17 @@
-import React from 'react'
-import "./App.css"
-import 'bootstrap/dist/css/bootstrap.min.css'
-import NavBar from './components/NavBar'
-import Home from './components/Home'
-import { BrowserRouter as Router } from 'react-router-dom'
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NavBar from "./components/NavBar";
+import Home from "./components/Home";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const App = () => {
     return (
         <Router>
             <NavBar />
-            <Home/>
+            <Home />
         </Router>
+    );
+};
 
-
-    )
-}
-
-export default App
+export default App;
