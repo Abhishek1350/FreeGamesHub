@@ -38,17 +38,17 @@ const Home = () => {
         style={{ background: "#0d0e10" }}
         fluid
       >
-        <Container className="py-2 d-flex justify-content-evenly">
+        <Container className="py-0 d-flex justify-content-center">
           <Row>
-            <Col md="7">
-              <h3 className="fs-2 fw-bold text-secondary mb-3">
+            <Col md="7" className="home-recentaly-added">
+              <h3 className="fs-2 fw-bold text-secondary py-3 text-center">
                 Recently Added
               </h3>
               <RecentalyAdded />
             </Col>
 
-            <Col md='5'>
-              <h3 className="fs-2 fw-bold text-secondary mb-3">
+            <Col md='5' className="home-most-popular">
+              <h3 className="fs-2 fw-bold text-secondary py-3">
                 Most Popular
               </h3>
               <MostPopular />

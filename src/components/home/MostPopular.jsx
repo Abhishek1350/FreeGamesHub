@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Image, Spinner } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { AiFillWindows } from "react-icons/ai";
 import { FaFirefoxBrowser } from "react-icons/fa";
 import { Badge } from "react-bootstrap";
@@ -20,40 +20,38 @@ const MostPopular = () => {
                 }
             );
             const data = await res.json();
-            setGameData(data.slice(0, 6));
+            setGameData(data.slice(0, 7));
         };
         fetchData();
     }, []);
 
     if (gameData.length === 0) {
-        return <SpinneR message="Loading Plase Wait"/>
+        return <SpinneR message="Plase Wait" />
     }
 
     return gameData.map((game) => {
         const { thumbnail, genre, platform, id } = game;
         return (
-            <Link to="/" className="home-most-popular-game-card d-flex  align-items-center my-2" key={id}>
-                <div className="d-flex align-items-center">
-                    <figure>
+            <Link to="/" className="home-most-popular-game-card d-flex  align-items-center" key={id}>
+                <div className="d-flex align-items-center pt-2">
+                    <figure className="m-0">
                         <Image fluid src={thumbnail} />
-                        <figcaption className=" fw-bold">
-                            <div
-                                className="d-flex justify-content-around align-items-center position-relative"
-                                style={{ bottom: "32px" }}
-                            >
-                                <Badge bg="danger" pill>
-                                    {genre}
-                                </Badge>
-                                <Badge bg="success" pill>
-                                    Free
-                                </Badge>
-                                <p className="fs-4 my-0 py-0">
-                                    {
-                                        platform === "PC (Windows)" ? <AiFillWindows /> : <FaFirefoxBrowser />
-                                    }
-                                </p>
-                            </div>
-                        </figcaption>
+                        <div
+                            className="d-flex justify-content-around align-items-center position-relative fw-bold"
+                            style={{ bottom: "32px" }}
+                        >
+                            <Badge bg="danger" pill>
+                                {genre}
+                            </Badge>
+                            <Badge bg="success" pill>
+                                Free
+                            </Badge>
+                            <p className="fs-4 my-0 py-0">
+                                {
+                                    platform === "PC (Windows)" ? <AiFillWindows /> : <FaFirefoxBrowser />
+                                }
+                            </p>
+                        </div>
                     </figure>
                 </div>
             </Link>

@@ -7,7 +7,7 @@ const SpinneR = ({ message }) => {
             <div className="text-center justify-content-center">
                 <Spinner animation="border" variant="danger" />
             </div>
-            <p className="text-center text-primary fs-4 fw-bold">
+            <p className="text-center text-primary fs-5 fw-bold">
                 {message}
             </p>
         </Container>

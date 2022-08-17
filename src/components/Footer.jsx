@@ -20,6 +20,7 @@ const Footer = () => {
                             href="https://github.com/abhishek1350"
                             className="text-white"
                             target="_black"
+                            rel="noreferrer"
                         >
                             <AiFillGithub />
                         </a>
@@ -27,6 +28,7 @@ const Footer = () => {
                             href="https://twitter.com/abhishek1350"
                             className="text-info mx-5"
                             target="_black"
+                            rel="noreferrer"
                         >
                             <AiFillTwitterCircle />
                         </a>
@@ -34,6 +36,7 @@ const Footer = () => {
                             href="https://www.linkedin.com/in/abhishek-bhardwaj-76b9a721b"
                             className="text-primary"
                             target="_black"
+                            rel="noreferrer"
                         >
                             <AiFillLinkedin />
                         </a>
@@ -44,6 +47,7 @@ const Footer = () => {
                             href="https://www.freetogame.com/api-doc"
                             target="_blank"
                             className="text-primary"
+                            rel="noreferrer"
                         >
                             freetogame.com
                         </a> {" "} &
@@ -51,6 +55,7 @@ const Footer = () => {
                             href="https://rapidapi.com/digiwalls/api/free-to-play-games-database"
                             target="_blank"
                             className="text-primary"
+                            rel="noreferrer"
                         >
                             {" "} rapidapi.com
                         </a> {" "}
