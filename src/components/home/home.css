@@ -1,0 +1,57 @@
+.home__container{
+    background: url("../../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-color: #1c1e22;
+    background-position: center;
+    background-size: cover;
+    padding: 4rem 2rem;
+}
+
+.home-recentaly-added-game-card{
+    box-shadow: 0 1px 10px 0px #2403ffa4;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.home-recentaly-added-game-card img{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.home-recentaly-added-game-card:hover{
+    box-shadow: 0 2px 10px 2px #2403ffa4;
+    transform: scale(1.010);
+}
+
+.home-most-popular-game-card img{
+    box-shadow: 0 1px 10px 1px #ffffff84;
+    border-radius: 5px;
+    transition: 0.4s;
+}
+
+.home-most-popular-game-card img:hover{
+    box-shadow: 0 2px 10px 2px #ffffffb8;
+    transform: scale(1.007);
+}
+
+@media only screen and (max-width:700px){
+    .home-recentaly-added-game-card{
+        box-shadow: none;
+        transition:0;
+    }
+
+    .home-recentaly-added-game-card:hover{
+        box-shadow:none;
+        transform: scale(1);
+    }
+
+    .home-most-popular-game-card img{
+        box-shadow:none;
+    }
+    
+    .home-most-popular-game-card img:hover{
+        box-shadow:none;
+        transform: scale(1);
+    }
+    
+}

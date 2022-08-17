@@ -1,7 +1,7 @@
 import React from "react";
-import { Container, Button, Row, Col, Badge } from "react-bootstrap";
+import "./home.css"
+import { Container, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AiFillWindows } from "react-icons/ai";
 import RecentalyAdded from "./RecentalyAdded";
 import MostPopular from "./MostPopular";
 

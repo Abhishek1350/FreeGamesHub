@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
+import { Image, Spinner } from "react-bootstrap";
 import { AiFillWindows } from "react-icons/ai";
+import { FaFirefoxBrowser } from "react-icons/fa";
 import { Badge } from "react-bootstrap";
+import SpinneR from "../SpinneR";
 
 const MostPopular = () => {
     const [gameData, setGameData] = useState([]);
@@ -23,26 +25,32 @@ const MostPopular = () => {
         fetchData();
     }, []);
 
+    if (gameData.length === 0) {
+        return <SpinneR message="Loading Plase Wait"/>
+    }
+
     return gameData.map((game) => {
-        const { title, thumbnail, short_description, id } = game;
+        const { thumbnail, genre, platform, id } = game;
         return (
-            <Link to="/" className="game-card d-flex  align-items-center my-2" key={id}>
-                <div className="gamge-card-left d-flex align-items-center">
+            <Link to="/" className="home-most-popular-game-card d-flex  align-items-center my-2" key={id}>
+                <div className="d-flex align-items-center">
                     <figure>
-                    <Image fluid src={thumbnail} />
+                        <Image fluid src={thumbnail} />
                         <figcaption className=" fw-bold">
                             <div
                                 className="d-flex justify-content-around align-items-center position-relative"
                                 style={{ bottom: "32px" }}
                             >
                                 <Badge bg="danger" pill>
-                                    Category
+                                    {genre}
                                 </Badge>
                                 <Badge bg="success" pill>
                                     Free
                                 </Badge>
                                 <p className="fs-4 my-0 py-0">
-                                    <AiFillWindows />
+                                    {
+                                        platform === "PC (Windows)" ? <AiFillWindows /> : <FaFirefoxBrowser />
+                                    }
                                 </p>
                             </div>
                         </figcaption>
