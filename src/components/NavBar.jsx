@@ -34,10 +34,10 @@ const NavBar = () => {
                 <Navbar.Brand onClick={() => setExpanded(false)} as={NavLink} to="/">
                     <Image
                         src={logo}
-                        alt=""
+                        alt="logo"
                         width={50}
                         roundedCircle={true}
-                        style={{ border: "1px solid ghostwhite" }}
+                        style={{ border: "2px solid ghostwhite" }}
                     />
                     <span className="text-info fs-4 me-4 mx-3">Free Games Hub</span>
                 </Navbar.Brand>

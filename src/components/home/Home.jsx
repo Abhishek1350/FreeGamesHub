@@ -2,6 +2,9 @@ import React from "react";
 import "./home.css"
 import { Container, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AiFillWindows } from "react-icons/ai";
+import { FaFirefoxBrowser } from "react-icons/fa";
+import { IoGameController } from "react-icons/io5";
 import RecentalyAdded from "./RecentalyAdded";
 import MostPopular from "./MostPopular";
 
@@ -22,20 +25,19 @@ const Home = () => {
         </p>
         <Container className="d-flex justify-content-center gap-4">
           <Link to="/">
-            <Button variant="outline-info" className="fw-bold fs-4 my-2">
-              PC Games
+            <Button variant="outline-primary" size="lg" className="fw-bold fs-4 my-2">
+              <AiFillWindows /> Games
             </Button>
           </Link>
           <Link to="/">
-            <Button variant="outline-primary" className="fw-bold fs-4 my-2">
-              Web Games
+            <Button variant="outline-info" size="lg" className="fw-bold fs-4 my-2">
+              <FaFirefoxBrowser /> Games
             </Button>
           </Link>
         </Container>
       </Container>
       <Container
-        className="recent-added py-3"
-        style={{ background: "#0d0e10" }}
+        className="recent-added py-3 home__container-2"
         fluid
       >
         <Container className="py-0 d-flex justify-content-center">
@@ -55,6 +57,11 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
+        <p className="text-center">
+          <Link to="/games" className="btn btn-outline-secondary fs-5 fw-bold">
+            More Games <IoGameController />
+          </Link>
+        </p>
       </Container>
     </>
   );

@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
     return (
-        <Container fluid className='bg-dark py-2'>
+        <Container fluid className='bg-black py-2'>
             <footer>
                 <Container>
                     <h4
@@ -59,7 +59,7 @@ const Footer = () => {
                         >
                             {" "} rapidapi.com
                         </a> {" "}
-                        for providing API
+                        for providing awesome API
                     </p>
                 </Container>
             </footer>

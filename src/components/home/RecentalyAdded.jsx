@@ -20,7 +20,7 @@ const RecentalyAdded = () => {
                 }
             );
             const data = await res.json();
-            setGameData(data.slice(0, 10));
+            setGameData(data.slice(0, 7));
         };
         fetchData();
     }, []);
@@ -40,12 +40,12 @@ const RecentalyAdded = () => {
                 <div className="gamge-card-left d-flex align-items-center">
                     <Image
                         src={thumbnail}
-                        alt="title"
+                        alt={title}
                         height={140}
                         width={140}
-                        className="me-4"
+                        className="me-3"
                     />
-                    <div className="gamge-card-right">
+                    <div className="gamge-card-right pe-1">
                         <h3 className="fs-6 fw-bold text-secondary mt-2 mb-1">{title}</h3>
                         <p className="fs-6 text-secondary m-0 p-0">
                             {short_description.slice(0, 70)}...

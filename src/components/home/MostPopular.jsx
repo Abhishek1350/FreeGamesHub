@@ -20,7 +20,7 @@ const MostPopular = () => {
                 }
             );
             const data = await res.json();
-            setGameData(data.slice(0, 7));
+            setGameData(data.slice(0, 5));
         };
         fetchData();
     }, []);
@@ -30,20 +30,20 @@ const MostPopular = () => {
     }
 
     return gameData.map((game) => {
-        const { thumbnail, genre, platform, id } = game;
+        const { title,thumbnail, genre, platform, id } = game;
         return (
             <Link to="/" className="home-most-popular-game-card d-flex  align-items-center" key={id}>
                 <div className="d-flex align-items-center pt-2">
                     <figure className="m-0">
-                        <Image fluid src={thumbnail} />
+                        <Image fluid src={thumbnail} alt={title}/>
                         <div
                             className="d-flex justify-content-around align-items-center position-relative fw-bold"
-                            style={{ bottom: "32px" }}
+                            style={{ bottom: "33px" }}
                         >
-                            <Badge bg="danger" pill>
+                            <Badge bg="danger">
                                 {genre}
                             </Badge>
-                            <Badge bg="success" pill>
+                            <Badge bg="dark">
                                 Free
                             </Badge>
                             <p className="fs-4 my-0 py-0">
