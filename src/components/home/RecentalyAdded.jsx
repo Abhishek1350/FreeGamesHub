@@ -15,47 +15,12 @@ const RecentalyAdded = () => {
                 }
             })
             const data = await res.json()
-            setGameData(data)
-            console.log(gameData);
+            setGameData(data.slice(0,10));
         }
         fetchData()
     }, [])
 
     return (
-        // <Link to="/" className="game-card d-flex  align-items-center">
-        //     <div className="gamge-card-left d-flex align-items-center">
-        //         <Image
-        //             src="https://www.freetogame.com/g/517/thumbnail.jpg"
-        //             alt=""
-        //             height={140}
-        //             width={140}
-        //             className="me-4"
-        //         />
-        //         <div className="gamge-card-right">
-        //             <h3 className="fs-6 fw-bold text-secondary mt-2 mb-1">
-        //                 Lorem, ipsum dolor.
-        //             </h3>
-        //             <p className="fs-6 text-secondary m-0 p-0">
-        //                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt
-        //             </p>
-        //             <div className="game-card-badgnes d-flex align-items-center">
-        //                 <p className="fs-6  me-3 my-0 py-0">
-        //                     <Badge bg="danger">
-        //                         Category
-        //                     </Badge>
-        //                 </p>
-        //                 <p className="fs-6 me-3 my-0 py-0">
-        //                     <Badge bg="success">
-        //                         Free
-        //                     </Badge>
-        //                 </p>
-        //                 <p className="fs-2 my-0 py-0">
-        //                     <AiFillWindows />
-        //                 </p>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </Link>
         gameData.map((game) => {
             const { title, thumbnail, short_description, id } = game
             return (
