@@ -6,7 +6,7 @@
 }
 
 .home__container-2 {
-    background: linear-gradient(rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.96)), url("../../images/bg2.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.95)), url("../../images/bg2.jpg");
     background-position: center;
     background-size: cover;
 }

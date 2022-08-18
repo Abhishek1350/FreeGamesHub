@@ -32,7 +32,7 @@ const MostPopular = () => {
     return gameData.map((game) => {
         const { title,thumbnail, genre, platform, id } = game;
         return (
-            <Link to="/" className="home-most-popular-game-card d-flex  align-items-center" key={id}>
+            <Link to={`/games/id/${id}`} className="home-most-popular-game-card d-flex  align-items-center" key={id}>
                 <div className="d-flex align-items-center pt-2">
                     <figure className="m-0">
                         <Image fluid src={thumbnail} alt={title}/>

@@ -33,7 +33,7 @@ const RecentalyAdded = () => {
         const { title, thumbnail, short_description, genre, platform, id } = game;
         return (
             <Link
-                to="/"
+                to={`/games/id/${id}`}
                 className="home-recentaly-added-game-card d-flex  align-items-center my-3"
                 key={id}
             >
