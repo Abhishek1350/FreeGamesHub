@@ -3,7 +3,7 @@ import { Container, Spinner } from 'react-bootstrap';
 
 const SpinneR = ({ message }) => {
     return (
-        <Container>
+        <Container className="py-3">
             <div className="text-center justify-content-center">
                 <Spinner animation="border" variant="danger" />
             </div>

@@ -24,12 +24,12 @@ const Home = () => {
           free premium loot!
         </p>
         <Container className="d-flex justify-content-center gap-4">
-          <Link to="/">
+          <Link to="/games/pc">
             <Button variant="outline-primary" size="lg" className="fw-bold fs-4 my-2">
               <AiFillWindows /> Games
             </Button>
           </Link>
-          <Link to="/">
+          <Link to="/games/webbrowser">
             <Button variant="outline-info" size="lg" className="fw-bold fs-4 my-2">
               <FaFirefoxBrowser /> Games
             </Button>
@@ -50,7 +50,7 @@ const Home = () => {
             </Col>
 
             <Col md='5' className="home-most-popular">
-              <h3 className="fs-2 fw-bold text-secondary py-3">
+              <h3 className="fs-2 fw-bold text-secondary py-3 text-center">
                 Most Popular
               </h3>
               <MostPopular />

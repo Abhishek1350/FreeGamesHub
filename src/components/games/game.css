@@ -1,0 +1,13 @@
+.game-info {
+    padding: 0 200px;
+}
+
+.game-info p {
+    text-align: justify;
+}
+
+@media only screen and (max-width:1000px) {
+    .game-info {
+        padding: 0;
+    }
+}
