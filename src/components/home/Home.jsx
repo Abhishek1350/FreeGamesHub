@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./home.css"
 import { Container, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -9,6 +9,9 @@ import RecentalyAdded from "./RecentalyAdded";
 import MostPopular from "./MostPopular";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  })
   return (
     <>
       <Container
@@ -58,7 +61,7 @@ const Home = () => {
           </Row>
         </Container>
         <p className="text-center">
-          <Link to="/games" className="btn btn-outline-secondary fs-5 fw-bold">
+          <Link to="/games/all" className="btn btn-outline-secondary fs-5 fw-bold">
             More Games <IoGameController />
           </Link>
         </p>

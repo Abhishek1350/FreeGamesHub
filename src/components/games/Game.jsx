@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import "./game.css"
-import { Container, Image, Row, Col, Badge } from 'react-bootstrap';
-import { useParams } from 'react-router-dom'
-import SpinneR from "../SpinneR"
+import React, { useState, useEffect } from "react";
+import "./game.css";
+import { Container, Image, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import SpinneR from "../SpinneR";
 import { AiFillWindows } from "react-icons/ai";
 import { FaFirefoxBrowser } from "react-icons/fa";
-
 
 const Game = () => {
   const { gameId } = useParams();
   const [gameData, setGameData] = useState([]);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     const fetchData = async () => {
       const res = await fetch(
         `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${gameId}`,
@@ -27,19 +26,25 @@ const Game = () => {
       setGameData(data);
     };
     fetchData();
-  }, [gameId])
+  }, [gameId]);
 
   if (gameData.length === 0) {
-    return <SpinneR message="Fetching Data" />
+    return (
+      <Container fluid className="bg-black" style={{ height: "90vh" }}>
+        <SpinneR message="Fetching Data" fs="fs-1" />
+      </Container>
+    );
   }
 
   return (
-    <Container fluid className="game-container"
+    <Container
+      fluid
+      className="game-container"
       style={{
-        background: `linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.92)), url(${gameData.thumbnail})`,
+        background: `linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.90)), url(${gameData.thumbnail})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
-        backgroundRepeat: "no-repeat"
+        backgroundRepeat: "no-repeat",
       }}
     >
       <Container className="py-3 game-detail-container">
@@ -55,68 +60,156 @@ const Game = () => {
         />
 
         <div className="game-info text-white">
-          <div className="d-flex align-items-center justify-content-evenly flex-wrap my-1">
-            <p className="fs-4  me-3 my-2 py-0">
-              <Badge bg="danger">
-                {gameData.genre}
-              </Badge>
-            </p>
-            <p className="fs-4  me-3 my-2 py-0">
-              <Badge bg="secondary">
-                {gameData.release_date}
-              </Badge>
-            </p>
-            <p className="fs-4 me-3 my-2 py-0">
-              <Badge bg="info">
-                {gameData.publisher}
-              </Badge>
-            </p>
-            <p className="fs-4 me-3 my-2 py-0">
-              <Badge bg="success">
-                Free
-              </Badge>
-            </p>
-            <p className="fs-1 my-2 py-0">
-              {
-                gameData.platform === "PC (Windows)" ? <AiFillWindows /> : <FaFirefoxBrowser />
-              }
-            </p>
-          </div>
+          <h3 className="fs-3 pt-5 text-info fw-bold">Game Description</h3>
+          <p className="fs-6">{gameData.description}</p>
 
-          <p className="fs-5 py-3">
-            {
-              gameData.description
-            }
-          </p>
-
-          <h4 className="text-center fs-3 fw-bold text-info">
-            Screenshorts
-          </h4>
-
-          <Row>
-            {
-              gameData.screenshots.map((img) => {
-                return (
-                  <Col sm key={img.id} className="my-2">
-                    <a href={img.image}
-                      target="_black"
-                    >
-                      <Image
-                        src={img.image}
-                        fluid
-                        alt={img.id}
-                      />
-                    </a>
-                  </Col>
-                )
-              })
-            }
+          <Row className="my-4 fs-5">
+            <h3 className="fs-3 pb-1 text-info fw-bold">Game Details</h3>
+            <Col md="4 ">
+              <span className="text-muted fw-bold ">
+                Title
+                <br />
+              </span>{" "}
+              <p>{gameData?.title}</p>
+            </Col>
+            <Col md="4 ">
+              <span className="text-muted fw-bold ">
+                Developer
+                <br />
+              </span>{" "}
+              <p>{gameData?.developer}</p>
+            </Col>
+            <Col md="4 ">
+              <span className="text-muted fw-bold ">
+                Publisher
+                <br />
+              </span>{" "}
+              <p>{gameData?.publisher}</p>
+            </Col>
+            <Col md="4 ">
+              <span className="text-muted fw-bold ">
+                Release Date
+                <br />
+              </span>{" "}
+              <p>{gameData?.release_date}</p>
+            </Col>
+            <Col md="4 ">
+              <span className="text-muted fw-bold ">
+                Category
+                <br />
+              </span>{" "}
+              <p>{gameData?.genre}</p>
+            </Col>
+            <Col md="4 ">
+              <span className="text-muted fw-bold ">
+                Platform
+                <br />
+              </span>{" "}
+              {gameData.platform === "Windows" ? (
+                <span>
+                  {" "}
+                  Windows <AiFillWindows />
+                </span>
+              ) : (
+                <span>
+                  {" "}
+                  Web Browser <FaFirefoxBrowser />{" "}
+                </span>
+              )}
+            </Col>
           </Row>
 
+          <Row>
+            <h4 className="text-center fs-3 fw-bold text-info">Screenshorts</h4>
+            {gameData.screenshots.map((img) => {
+              return (
+                <Col sm key={img.id} className="my-3">
+                  <a href={img.image} target="_black">
+                    <Image src={img.image} fluid alt={img.id} />
+                  </a>
+                </Col>
+              );
+            })}
+          </Row>
+
+          {gameData.minimum_system_requirements ? (
+            <Row className="pt-3">
+              <h4 className="text-center fs-3 fw-bold text-info py-3">
+                Minimum System Requirements{" "}
+                <span className="text-primary">
+                  <AiFillWindows />
+                </span>
+              </h4>
+              <Col md="6" className="fs-5 fw-bold">
+                <span className="text-muted fw-bold">
+                  OS
+                  <br />
+                </span>{" "}
+                <p className="fw-normal">
+                  {" "}
+                  {gameData.minimum_system_requirements?.os}{" "}
+                </p>{" "}
+                <span className="text-muted fw-bold">
+                  Memory
+                  <br />
+                </span>{" "}
+                <p className="fw-normal">
+                  {" "}
+                  {gameData.minimum_system_requirements?.memory}{" "}
+                </p>{" "}
+                <span className="text-muted fw-bold">
+                  Storage
+                  <br />
+                </span>{" "}
+                <p className="fw-normal">
+                  {gameData.minimum_system_requirements?.storage}
+                </p>
+              </Col>
+
+              <Col md="6" className="fs-5 ">
+                <span className="text-muted fw-bold">
+                  Processor
+                  <br />
+                </span>
+                <p className="fw-normal">
+                  {gameData.minimum_system_requirements?.processor}
+                </p>
+                <span className="text-muted fw-bold">
+                  Graphics
+                  <br />
+                </span>
+                <p className="fw-normal">
+                  {gameData.minimum_system_requirements?.graphics}
+                </p>
+              </Col>
+            </Row>
+          ) : (
+            ""
+          )}
+          <Container className="d-flex justify-content-center py-4">
+            <a
+              href={gameData.game_url}
+              target="_blank"
+              className="btn btn-outline-primary btn-lg fs-1 fw-bold"
+              rel="noreferrer"
+            >
+              {gameData.platform === "Windows" ? (
+                <span>
+                  {" "}
+                  Get Now <AiFillWindows />
+                </span>
+              ) : (
+                <span>
+                  {" "}
+                  Play Now <FaFirefoxBrowser />{" "}
+                </span>
+              )}
+            </a>
+          </Container>
         </div>
       </Container>
     </Container>
-  )
-}
+  );
+};
 
-export default Game
+export default Game;

@@ -26,30 +26,32 @@ const MostPopular = () => {
     }, []);
 
     if (gameData.length === 0) {
-        return <SpinneR message="Plase Wait" />
+        return <SpinneR message="Plase Wait" />;
     }
 
     return gameData.map((game) => {
-        const { title,thumbnail, genre, platform, id } = game;
+        const { title, thumbnail, genre, platform, id } = game;
         return (
-            <Link to={`/games/id/${id}`} className="home-most-popular-game-card d-flex  align-items-center" key={id}>
+            <Link
+                to={`/games/id/${id}`}
+                className="home-most-popular-game-card d-flex  align-items-center"
+                key={id}
+            >
                 <div className="d-flex align-items-center pt-2">
                     <figure className="m-0">
-                        <Image fluid src={thumbnail} alt={title}/>
+                        <Image fluid src={thumbnail} alt={title} />
                         <div
                             className="d-flex justify-content-around align-items-center position-relative fw-bold"
                             style={{ bottom: "33px" }}
                         >
-                            <Badge bg="danger">
-                                {genre}
-                            </Badge>
-                            <Badge bg="dark">
-                                Free
-                            </Badge>
+                            <Badge bg="danger">{genre}</Badge>
+                            <Badge bg="dark">Free</Badge>
                             <p className="fs-4 my-0 py-0">
-                                {
-                                    platform === "PC (Windows)" ? <AiFillWindows /> : <FaFirefoxBrowser />
-                                }
+                                {platform === "PC (Windows)" ? (
+                                    <AiFillWindows />
+                                ) : (
+                                    <FaFirefoxBrowser />
+                                )}
                             </p>
                         </div>
                     </figure>

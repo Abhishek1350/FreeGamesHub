@@ -1,20 +1,17 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
+import React from "react";
+import { Container } from "react-bootstrap";
 import {
     AiFillGithub,
     AiFillTwitterCircle,
-    AiFillLinkedin
+    AiFillLinkedin,
 } from "react-icons/ai";
 
 const Footer = () => {
     return (
-        <Container fluid className='bg-black py-2'>
+        <Container fluid className="bg-black py-2">
             <footer>
                 <Container>
-                    <h4
-                        className="fw-bold fs-2 text-warning text-center">
-                        Follow
-                    </h4>
+                    <h4 className="fw-bold fs-2 text-warning text-center">Follow</h4>
                     <div className="social-icons fs-1 d-flex justify-content-center my-3">
                         <a
                             href="https://github.com/abhishek1350"
@@ -42,7 +39,7 @@ const Footer = () => {
                         </a>
                     </div>
                     <p className="text-center fs-6 text-secondary">
-                        Thanks to {" "}
+                        Thanks to{" "}
                         <a
                             href="https://www.freetogame.com/api-doc"
                             target="_blank"
@@ -50,21 +47,23 @@ const Footer = () => {
                             rel="noreferrer"
                         >
                             freetogame.com
-                        </a> {" "} &
+                        </a>{" "}
+                        &
                         <a
                             href="https://rapidapi.com/digiwalls/api/free-to-play-games-database"
                             target="_blank"
                             className="text-primary"
                             rel="noreferrer"
                         >
-                            {" "} rapidapi.com
-                        </a> {" "}
+                            {" "}
+                            rapidapi.com
+                        </a>{" "}
                         for providing awesome API
                     </p>
                 </Container>
             </footer>
         </Container>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

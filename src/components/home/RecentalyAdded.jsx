@@ -26,7 +26,7 @@ const RecentalyAdded = () => {
     }, []);
 
     if (gameData.length === 0) {
-        return <SpinneR message="Loading" />
+        return <SpinneR message="Loading" />;
     }
 
     return gameData.map((game) => {
@@ -52,19 +52,17 @@ const RecentalyAdded = () => {
                         </p>
                         <div className="game-card-badgnes d-flex align-items-center">
                             <p className="fs-6  me-3 my-0 py-0">
-                                <Badge bg="danger">
-                                    {genre}
-                                </Badge>
+                                <Badge bg="danger">{genre}</Badge>
                             </p>
                             <p className="fs-6 me-3 my-0 py-0">
-                                <Badge bg="success">
-                                    Free
-                                </Badge>
+                                <Badge bg="success">Free</Badge>
                             </p>
                             <p className="fs-2 my-0 py-0">
-                                {
-                                    platform === "PC (Windows)" ? <AiFillWindows /> : <FaFirefoxBrowser />
-                                }
+                                {platform === "PC (Windows)" ? (
+                                    <AiFillWindows />
+                                ) : (
+                                    <FaFirefoxBrowser />
+                                )}
                             </p>
                         </div>
                     </div>

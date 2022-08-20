@@ -18,54 +18,54 @@ const NavBar = () => {
         {
             id: 1,
             name: "All",
-            slug: "/games/all"
+            slug: "/games/all",
         },
         {
             id: 2,
             name: "MMORPG",
-            slug: "/games/mmorpg"
+            slug: "/games/mmorpg",
         },
         {
             id: 3,
             name: "Racing",
-            slug: "/games/racing"
+            slug: "/games/racing",
         },
         {
             id: 4,
             name: "Shooter",
-            slug: "/games/shooter"
+            slug: "/games/shooter",
         },
         {
             id: 5,
             name: "Anime",
-            slug: "/games/anime"
+            slug: "/games/anime",
         },
         {
             id: 6,
             name: "Strategy",
-            slug: "/games/strategy"
+            slug: "/games/strategy",
         },
         {
             id: 7,
             name: "Fantasy",
-            slug: "/games/fantasy"
+            slug: "/games/fantasy",
         },
         {
             id: 8,
             name: "Sci-Fi",
-            slug: "/games/sci-fi"
+            slug: "/games/sci-fi",
         },
         {
             id: 9,
             name: "Sports",
-            slug: "/games/sports"
+            slug: "/games/sports",
         },
         {
             id: 10,
             name: "Social",
-            slug: "/games/social"
-        }
-    ]
+            slug: "/games/social",
+        },
+    ];
 
     const searchGame = (e) => {
         e.preventDefault();
@@ -99,10 +99,19 @@ const NavBar = () => {
                 />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link className="me-3" onClick={() => setExpanded(false)} as={NavLink} to="/">
+                        <Nav.Link
+                            className="me-3"
+                            onClick={() => setExpanded(false)}
+                            as={NavLink}
+                            to="/"
+                        >
                             Home
                         </Nav.Link>
-                        <NavDropdown title="Platform" id="collasible-nav-dropdown" className="me-3">
+                        <NavDropdown
+                            title="Platform"
+                            id="collasible-nav-dropdown"
+                            className="me-3"
+                        >
                             <NavDropdown.Item
                                 onClick={() => setExpanded(false)}
                                 className="fw-bold fs-6"
@@ -120,25 +129,32 @@ const NavBar = () => {
                                 Web Browser
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <NavDropdown title="Category" id="collasible-nav-dropdown" className="me-3">
-                            {
-                                categories.map((category) => {
-                                    const { id, name, slug } = category
-                                    return (
-                                        <NavDropdown.Item
-                                            onClick={() => setExpanded(false)}
-                                            className="fw-bold fs-6"
-                                            as={NavLink}
-                                            to={slug}
-                                            key={id}
-                                        >
-                                            {name}
-                                        </NavDropdown.Item>
-                                    )
-                                })
-                            }
+                        <NavDropdown
+                            title="Category"
+                            id="collasible-nav-dropdown"
+                            className="me-3"
+                        >
+                            {categories.map((category) => {
+                                const { id, name, slug } = category;
+                                return (
+                                    <NavDropdown.Item
+                                        onClick={() => setExpanded(false)}
+                                        className="fw-bold fs-6"
+                                        as={NavLink}
+                                        to={slug}
+                                        key={id}
+                                    >
+                                        {name}
+                                    </NavDropdown.Item>
+                                );
+                            })}
                         </NavDropdown>
-                        <Nav.Link className="me-3" onClick={() => setExpanded(false)} as={NavLink} to="/about">
+                        <Nav.Link
+                            className="me-3"
+                            onClick={() => setExpanded(false)}
+                            as={NavLink}
+                            to="/about"
+                        >
                             About
                         </Nav.Link>
                     </Nav>
