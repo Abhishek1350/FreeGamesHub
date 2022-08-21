@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
@@ -9,17 +9,18 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
+
     return (
         <Router>
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/games/all" element={<Games />} />
+                <Route path="/games/all" element={<Games  />} />
                 <Route path="/games/pc" element={<Games platform="pc" />} />
                 <Route path="/games/webbrowser" element={<Games platform="browser" />} />
                 <Route path="/games/mmorpg" element={<Games category="mmorpg" />} />
-                <Route path="/games/racing" element={<Games category="shooter" />} />
-                <Route path="/games/shooter" element={<Games category="" />} />
+                <Route path="/games/racing" element={<Games category="racing" />} />
+                <Route path="/games/shooter" element={<Games category="shooter" />} />
                 <Route path="/games/anime" element={<Games category="anime" />} />
                 <Route path="/games/strategy" element={<Games category="strategy" />} />
                 <Route path="/games/fantasy" element={<Games category="fantasy" />} />

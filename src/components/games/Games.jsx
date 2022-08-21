@@ -1,8 +1,9 @@
 import React from 'react'
+import SpinneR from '../SpinneR'
 
 const Games = () => {
   return (
-    <div>Games</div>
+    <SpinneR message="Working On It" fs="fs-1" />
   )
 }
 

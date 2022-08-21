@@ -67,10 +67,10 @@ const NavBar = () => {
         },
     ];
 
-    const searchGame = (e) => {
-        e.preventDefault();
-        console.log(searchInput);
-    };
+    // const searchGame = (e) => {
+    //     e.preventDefault();
+    //     console.log(searchInput);
+    // };
 
     return (
         <Navbar
@@ -149,16 +149,16 @@ const NavBar = () => {
                                 );
                             })}
                         </NavDropdown>
-                        <Nav.Link
+                        {/* <Nav.Link
                             className="me-3"
                             onClick={() => setExpanded(false)}
                             as={NavLink}
                             to="/about"
                         >
                             About
-                        </Nav.Link>
+                        </Nav.Link> */}
                     </Nav>
-                    <Form className="d-flex" onSubmit={searchGame}>
+                    {/* <Form className="d-flex" onSubmit={searchGame}>
                         <Form.Control
                             type="search"
                             placeholder="Search Free Games"
@@ -170,7 +170,7 @@ const NavBar = () => {
                         <Button variant="outline-success" type="submit">
                             Search
                         </Button>
-                    </Form>
+                    </Form> */}
                 </Navbar.Collapse>
             </Container>
         </Navbar>
