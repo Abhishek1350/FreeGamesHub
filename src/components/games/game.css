@@ -6,12 +6,43 @@
     text-align: justify;
 }
 
-@media only screen and (max-width:1000px) {
+.games__container {
+    background: linear-gradient(rgba(0, 0, 0, 0.9),
+            rgba(0, 0, 0, 0.92),
+            rgba(0, 0, 0, 0.9)),
+        url("../../images/bg2.jpg");
+    background-position: center;
+    background-size: cover;
+    padding: 2rem 1rem;
+}
+
+.game-card {
+    background-color: #111010d9;
+    border-radius: 10px;
+    transition: 0.4s;
+    box-shadow: rgba(255, 83, 83, 0.3) 0px 1px 2px 0px, rgba(0, 4, 255, 0.15) 0px 1px 3px 1px;
+}
+
+.game-card img {
+    border-radius: 5px;
+}
+
+.game-card:hover {
+    transform: scale(1.015);
+    box-shadow: rgba(0, 128, 255, 0.3) 0px 1px 2px 0px, rgba(111, 255, 28, 0.15) 0px 1px 3px 1px;
+}
+
+.game-card img:hover {
+    filter: brightness(90%);
+}
+
+@media only screen and (max-width: 1000px) {
     .game-info {
         padding: 0;
     }
 }
-@media only screen and (max-width:700px) {
+
+@media only screen and (max-width: 700px) {
     .game-detail-container {
         padding: 0;
     }

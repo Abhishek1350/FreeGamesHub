@@ -18,10 +18,10 @@ const Home = () => {
         fluid
         className="home__container d-flex flex-column align-items-center"
       >
-        <h1 className="fs-1 fw-bold text-secondary text-center my-3">
+        <h2 className="fs-1 fw-bold text-secondary text-center my-3">
           Find & track the best{" "}
           <span className="text-warning fw-bolder">free-to-play</span> games!
-        </h1>
+        </h2>
         <p className="text-secondary fw-normal text-center fs-4">
           Track what you've played and search for what to play next! Plus get
           free premium loot!

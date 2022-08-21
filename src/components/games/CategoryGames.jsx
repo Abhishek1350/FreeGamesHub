@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SpinneR from "../SpinneR";
 import { Container, Row, Col, Image, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -6,12 +6,20 @@ import { FaFirefoxBrowser } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import { AiFillWindows } from "react-icons/ai";
 
-const Games = ({ fetchData }) => {
+const CategoryGames = ({ fetchData, category }) => {
   const [gameData, setGameData] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchData().then((data) => setGameData(data.slice(0, 75)));
-  }, []);
+    fetchData().then((data) =>
+      setGameData(
+        data
+          .filter((game) => {
+            return game.genre === category;
+          })
+          .slice(0, 75)
+      )
+    );
+  }, [category]);
 
   if (gameData.length === 0) {
     return (
@@ -24,7 +32,7 @@ const Games = ({ fetchData }) => {
   return (
     <Container fluid className="games__container text-secondary">
       <h2 className="fs-1 fw-bold text-secondary text-center my-1">
-        Here Are All <span className="text-warning fw-bolder">Games</span>
+        {category} <span className="text-warning fw-bolder">Games</span>
       </h2>
 
       <Container>
@@ -82,4 +90,4 @@ const Games = ({ fetchData }) => {
   );
 };
 
-export default Games;
+export default CategoryGames;

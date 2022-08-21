@@ -35,33 +35,24 @@ const NavBar = () => {
             name: "Shooter",
             slug: "/games/shooter",
         },
+        
         {
             id: 5,
-            name: "Anime",
-            slug: "/games/anime",
-        },
-        {
-            id: 6,
             name: "Strategy",
             slug: "/games/strategy",
         },
         {
-            id: 7,
+            id: 6,
             name: "Fantasy",
             slug: "/games/fantasy",
         },
         {
-            id: 8,
-            name: "Sci-Fi",
-            slug: "/games/sci-fi",
-        },
-        {
-            id: 9,
+            id: 7,
             name: "Sports",
             slug: "/games/sports",
         },
         {
-            id: 10,
+            id: 8,
             name: "Social",
             slug: "/games/social",
         },
