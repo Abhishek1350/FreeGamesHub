@@ -55,13 +55,8 @@
     .home-recentaly-added, .home-most-popular {
         padding: 0 5px;
     }
-
-    .home-recentaly-added-game-card {
-        box-shadow: 0 1px 3px 0 #2403ffa4;
-    }
-
+    
     .home-recentaly-added-game-card:hover {
-        box-shadow: 0 1px 5px 1px #2403ffa4;
         transform: scale(1.005);
     }
 
