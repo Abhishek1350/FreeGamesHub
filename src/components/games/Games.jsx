@@ -15,8 +15,8 @@ const Games = ({ fetchData }) => {
     window.scrollTo(0, 0);
     const fetchGames = async () => {
       const data = await fetchData();
+      setGameData(data.slice(0, 15));
       setAllGames(data)
-      setGameData(allGames.slice(0, 15));
     }
     fetchGames();
   }, []);
