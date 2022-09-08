@@ -24,7 +24,7 @@ const Games = ({ fetchData }) => {
   const fetchMoreData = () => {
     setTimeout(() => {
       setGameData(allGames.slice(0, gameData.length + 15));
-    }, 500);
+    }, 1500);
   }
 
   if (gameData.length === 0) {
