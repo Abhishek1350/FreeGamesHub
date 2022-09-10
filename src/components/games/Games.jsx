@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SpinneR from "../SpinneR";
 import { Container, Row, Col, Image, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -10,22 +10,25 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const Games = ({ fetchData }) => {
   const [allGames, setAllGames] = useState([]);
   const [gameData, setGameData] = useState([]);
+  const DATA_LENGTH = allGames.length;
+  const GAMES_LENGHT = gameData.length;
+
+  const loadGames = useCallback(async () => {
+    const data = await fetchData();
+    setGameData(data.slice(0, 15));
+    setAllGames(data);
+  }, [fetchData]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchGames = async () => {
-      const data = await fetchData();
-      setGameData(data.slice(0, 15));
-      setAllGames(data)
-    }
-    fetchGames();
-  }, []);
+    loadGames();
+  }, [loadGames]);
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      setGameData(allGames.slice(0, gameData.length + 15));
-    }, 1500);
-  }
+      setGameData((data) => allGames.slice(data.Length, data.length + 15));
+    }, 1000);
+  };
 
   if (gameData.length === 0) {
     return (
@@ -45,9 +48,9 @@ const Games = ({ fetchData }) => {
         <InfiniteScroll
           dataLength={gameData.length}
           next={fetchMoreData}
-          hasMore={gameData.length !== allGames.length}
+          hasMore={GAMES_LENGHT !== DATA_LENGTH}
           loader={
-            allGames.length !== gameData.length && (
+            DATA_LENGTH !== GAMES_LENGHT && (
               <SpinneR message="Fetching More Games" fs="fs-2" />
             )
           }
@@ -55,8 +58,14 @@ const Games = ({ fetchData }) => {
         >
           <Row className="justify-content-around">
             {gameData.map((game) => {
-              const { title, short_description, genre, platform, thumbnail, id } =
-                game;
+              const {
+                title,
+                short_description,
+                genre,
+                platform,
+                thumbnail,
+                id,
+              } = game;
               return (
                 <Col xl="3" md="4" className="game-card p-0 my-4 mx-3" key={id}>
                   <Link to={`/games/id/${id}`} className="game-card">
@@ -101,8 +110,14 @@ const Games = ({ fetchData }) => {
                 </Col>
               );
             })}
-
           </Row>
+          {DATA_LENGTH === GAMES_LENGHT && (
+            <div className="text-center">
+              <h2 className="fs-1 py-3 fw-bold text-secondary text-center my-1">
+                No More <span className="text-info fw-bolder">Games</span>
+              </h2>
+            </div>
+          )}
         </InfiniteScroll>
       </Container>
     </Container>
