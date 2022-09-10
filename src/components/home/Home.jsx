@@ -18,23 +18,25 @@ const Home = () => {
         fluid
         className="home__container d-flex flex-column align-items-center"
       >
-        <h2 className="fs-1 fw-bold text-secondary text-center my-3">
+        <h2 className="fs-1 fw-bold text-secondary text-center my-1">
           Find & track the best{" "}
           <span className="text-warning fw-bolder">free-to-play</span> games!
         </h2>
-        <p className="text-secondary fw-normal text-center fs-4">
-          Track what you've played and search for what to play next! Plus get
-          free premium loot!
+        <p className="text-secondary my-3 fw-normal text-center fs-3">
+          Track what you've played and search for what to play next!
         </p>
-        <Container className="d-flex justify-content-center gap-4">
+        <p className="text-danger text-center fs-2 fw-bold">
+          Choose Your Platform
+          </p>
+        <Container className="d-flex my-1 justify-content-center gap-4 p-0">
           <Link to="/games/pc">
             <Button variant="outline-primary" size="lg" className="fw-bold fs-4 my-2">
-              <AiFillWindows /> Games
+              <AiFillWindows /> Windows
             </Button>
           </Link>
           <Link to="/games/webbrowser">
             <Button variant="outline-info" size="lg" className="fw-bold fs-4 my-2">
-              <FaFirefoxBrowser /> Games
+              <FaFirefoxBrowser /> Browser
             </Button>
           </Link>
         </Container>

@@ -36,11 +36,7 @@ const PlatformGames = ({ fetchData, platform }) => {
   const fetchMoreData = () => {
     setTimeout(() => {
       setGameData((data) =>
-        allGames
-          .filter((game) => {
-            return game.platform === platform;
-          })
-          .slice(data.Length, data.length + 15)
+        allGames.slice(data.Length, data.length + 15)
       );
     }, 1000);
   };
@@ -61,7 +57,7 @@ const PlatformGames = ({ fetchData, platform }) => {
 
       <Container>
         <InfiniteScroll
-          dataLength={gameData.length}
+          dataLength={GAMES_LENGHT}
           next={fetchMoreData}
           hasMore={GAMES_LENGHT !== DATA_LENGTH}
           loader={
@@ -85,7 +81,7 @@ const PlatformGames = ({ fetchData, platform }) => {
                 <Col xl="3" md="4" className="game-card p-0 my-4 mx-3" key={id}>
                   <Link to={`/games/id/${id}`} className="game-card">
                     <div className="game-card-img">
-                      <Image fluid src={thumbnail} alt={title} />
+                      <Image fluid src={thumbnail} alt={title} style={{width:"100%"}}/>
                     </div>
                     <div className="game-card-body text-secondary  px-3">
                       <div className=" d-flex justify-content-between mt-2">

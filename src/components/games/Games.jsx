@@ -46,7 +46,7 @@ const Games = ({ fetchData }) => {
 
       <Container>
         <InfiniteScroll
-          dataLength={gameData.length}
+          dataLength={GAMES_LENGHT}
           next={fetchMoreData}
           hasMore={GAMES_LENGHT !== DATA_LENGTH}
           loader={
@@ -70,7 +70,7 @@ const Games = ({ fetchData }) => {
                 <Col xl="3" md="4" className="game-card p-0 my-4 mx-3" key={id}>
                   <Link to={`/games/id/${id}`} className="game-card">
                     <div className="game-card-img">
-                      <Image fluid src={thumbnail} alt={title} />
+                      <Image fluid src={thumbnail} alt={title} style={{width:"100%"}}/>
                     </div>
                     <div className="game-card-body text-secondary  px-3">
                       <div className=" d-flex justify-content-between mt-2">

@@ -4,8 +4,6 @@ import {
     Nav,
     Navbar,
     NavDropdown,
-    Form,
-    Button,
     Image,
 } from "react-bootstrap";
 import logo from "../images/logo.png";
@@ -13,7 +11,6 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
     const [expanded, setExpanded] = useState(false);
-    const [searchInput, setSearchInput] = useState("");
     const categories = [
         {
             id: 1,
@@ -35,7 +32,7 @@ const NavBar = () => {
             name: "Shooter",
             slug: "/games/shooter",
         },
-        
+
         {
             id: 5,
             name: "Strategy",
@@ -57,11 +54,6 @@ const NavBar = () => {
             slug: "/games/social",
         },
     ];
-
-    // const searchGame = (e) => {
-    //     e.preventDefault();
-    //     console.log(searchInput);
-    // };
 
     return (
         <Navbar
@@ -92,6 +84,13 @@ const NavBar = () => {
                     <Nav className="me-auto">
                         <Nav.Link
                             className="me-3"
+                            style={
+                                ({ isActive }) => (isActive ? {
+                                    borderBottom: "2px solid #007bff",
+                                } : {
+                                    borderBottom: "0",
+                                })
+                            }
                             onClick={() => setExpanded(false)}
                             as={NavLink}
                             to="/"
@@ -140,28 +139,7 @@ const NavBar = () => {
                                 );
                             })}
                         </NavDropdown>
-                        {/* <Nav.Link
-                            className="me-3"
-                            onClick={() => setExpanded(false)}
-                            as={NavLink}
-                            to="/about"
-                        >
-                            About
-                        </Nav.Link> */}
                     </Nav>
-                    {/* <Form className="d-flex" onSubmit={searchGame}>
-                        <Form.Control
-                            type="search"
-                            placeholder="Search Free Games"
-                            className="me-2"
-                            aria-label="Search"
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
-                        />
-                        <Button variant="outline-success" type="submit">
-                            Search
-                        </Button>
-                    </Form> */}
                 </Navbar.Collapse>
             </Container>
         </Navbar>
