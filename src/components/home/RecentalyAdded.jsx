@@ -48,7 +48,7 @@ const RecentalyAdded = () => {
                     <div className="gamge-card-right pe-1">
                         <h3 className="fs-6 fw-bold text-secondary mt-2 mb-1">{title}</h3>
                         <p className="fs-6 text-secondary m-0 p-0">
-                            {short_description.slice(0, 70)}...
+                            {short_description.slice(0, 80)}
                         </p>
                         <div className="game-card-badgnes d-flex align-items-center">
                             <p className="fs-6  me-3 my-0 py-0">
