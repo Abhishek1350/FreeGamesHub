@@ -1,12 +1,12 @@
 .home__container {
-    background: url("../../images/bg.jpg");
+    background: url("../../images/bg.webp");
     background-position: center;
     background-size: cover;
     padding: 5rem 2rem;
 }
 
 .home__container-2 {
-    background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.95)), url("../../images/bg2.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.95)), url("../../images/bg2.webp");
     background-position: center;
     background-size: cover;
 }

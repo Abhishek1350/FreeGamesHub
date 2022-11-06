@@ -10,7 +10,7 @@
     background: linear-gradient(rgba(0, 0, 0, 0.9),
             rgba(0, 0, 0, 0.92),
             rgba(0, 0, 0, 0.9)),
-        url("../../images/bg2.jpg");
+        url("../../images/bg2.webp");
     background-position: center;
     background-size: cover;
     padding: 2rem 1rem;

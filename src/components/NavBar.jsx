@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Container,
     Nav,
@@ -7,7 +7,7 @@ import {
     Image,
     Button,
 } from "react-bootstrap";
-import logo from "../images/logo.png";
+import logo from "../images/logo.webp";
 import { NavLink } from "react-router-dom";
 import { AiOutlineLogin } from 'react-icons/ai'
 import { SiGnuprivacyguard } from 'react-icons/si'
@@ -78,6 +78,11 @@ const NavBar = () => {
             slug: "/games/social",
         },
     ];
+
+    useEffect(() => {
+        // Waking up the backend server
+        fetch(process.env.REACT_APP_AUTH_URL).then((res) => { })
+    }, [])
 
     return (
         <>
@@ -197,7 +202,7 @@ const NavBar = () => {
                                             variant="outline-danger"
                                             className="fw-bold"
                                             onClick={
-                                                ()=>{
+                                                () => {
                                                     setUser(null)
                                                     localStorage.removeItem('user')
                                                 }
