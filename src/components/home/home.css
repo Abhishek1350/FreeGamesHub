@@ -48,6 +48,11 @@
     filter: opacity(1);
 }
 
+.RA-Skeleton {
+    width: 600px;
+}
+
+
 @media only screen and (max-width:500px) {
     .home__container {
         padding: 4rem 1.5rem;
@@ -56,13 +61,17 @@
     .home-recentaly-added, .home-most-popular {
         padding: 0 5px;
     }
-    
+
     .home-recentaly-added-game-card:hover {
         transform: scale(1.005);
     }
 
     .home-most-popular-game-card img:hover {
         transform: scale(1.005);
+    }
+
+    .RA-Skeleton {
+        width: 330px;
     }
 
 

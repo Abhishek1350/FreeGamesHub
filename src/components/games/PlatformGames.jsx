@@ -7,6 +7,7 @@ import { IoGameController } from "react-icons/io5";
 import { AiFillWindows } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LazyLoad from "../../commons/LazyLoadImage";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 const PlatformGames = ({ fetchData, platform }) => {
   const [allGames, setAllGames] = useState([]);
@@ -23,10 +24,11 @@ const PlatformGames = ({ fetchData, platform }) => {
         })
         .slice(0, 15)
     );
-    setAllGames(data
-      .filter((game) => {
+    setAllGames(
+      data.filter((game) => {
         return game.platform === platform;
-      }));
+      })
+    );
   }, [fetchData, platform]);
 
   useEffect(() => {
@@ -36,19 +38,9 @@ const PlatformGames = ({ fetchData, platform }) => {
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      setGameData((data) =>
-        allGames.slice(data.Length, data.length + 15)
-      );
+      setGameData((data) => allGames.slice(data.Length, data.length + 15));
     }, 1000);
   };
-
-  if (gameData.length === 0) {
-    return (
-      <Container fluid className="bg-black" style={{ height: "85vh" }}>
-        <SpinneR message="Fetching Data" fs="fs-1" />
-      </Container>
-    );
-  }
 
   return (
     <Container fluid className="games__container text-secondary">
@@ -63,65 +55,94 @@ const PlatformGames = ({ fetchData, platform }) => {
           hasMore={GAMES_LENGHT !== DATA_LENGTH}
           loader={
             DATA_LENGTH !== GAMES_LENGHT && (
-              <SpinneR message="Fetching More Games" fs="fs-2" />
+              <SpinneR message="Loading" fs="fs-2" />
             )
           }
           style={{ overflow: "hidden" }}
         >
           <Row className="justify-content-around">
-            {gameData.map((game) => {
-              const {
-                title,
-                short_description,
-                genre,
-                platform,
-                thumbnail,
-                id,
-              } = game;
-              return (
-                <Col xl="3" md="4" className="game-card p-0 my-4 mx-3" key={id}>
-                  <Link to={`/games/id/${id}`} className="game-card">
-                    <div className="game-card-img">
-                      <LazyLoad src={thumbnail} alt={title} style={{width:"100%"}}/>
-                    </div>
-                    <div className="game-card-body text-secondary  px-3">
-                      <div className=" d-flex justify-content-between mt-2">
-                        <p className="fs-5 fw-bold mb-1">{title}</p>
-                        <p className="fs-5 mb-1">
-                          <Badge bg="success">Free</Badge>
-                        </p>
+            {gameData.length === 0 ? (
+              <Container className="d-flex flex-wrap justify-content-center">
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+                <LoadingSkeleton />
+              </Container>
+            ) : (
+              gameData.map((game) => {
+                const {
+                  title,
+                  short_description,
+                  genre,
+                  platform,
+                  thumbnail,
+                  id,
+                } = game;
+                return (
+                  <Col
+                    xl="3"
+                    md="4"
+                    className="game-card p-0 my-4 mx-3"
+                    key={id}
+                  >
+                    <Link to={`/games/id/${id}`} className="game-card">
+                      <div className="game-card-img">
+                        <LazyLoad
+                          src={thumbnail}
+                          alt={title}
+                          style={{ width: "100%" }}
+                        />
                       </div>
+                      <div className="game-card-body text-secondary  px-3">
+                        <div className=" d-flex justify-content-between mt-2">
+                          <p className="fs-5 fw-bold mb-1">{title}</p>
+                          <p className="fs-5 mb-1">
+                            <Badge bg="success">Free</Badge>
+                          </p>
+                        </div>
 
-                      <div className="fs-6" style={{ textAlign: "justify" }}>
-                        <p className="mb-0">
-                          {short_description.slice(0, 120)}...
-                        </p>
-                      </div>
+                        <div className="fs-6" style={{ textAlign: "justify" }}>
+                          <p className="mb-0">
+                            {short_description.slice(0, 120)}...
+                          </p>
+                        </div>
 
-                      <div className=" d-flex justify-content-start py-2">
-                        <p className="fs-5 mb-1 me-4">
-                          <Badge bg="secondary">{genre}</Badge>
-                        </p>
-                        <p className="fs-5 mb-1 me-4">
-                          <Badge bg="danger">
-                            <IoGameController />
-                          </Badge>
-                        </p>
-                        <p className="fs-5 mb-1">
-                          <Badge bg="primary">
-                            {platform === "PC (Windows)" ? (
-                              <AiFillWindows />
-                            ) : (
-                              <FaFirefoxBrowser />
-                            )}
-                          </Badge>
-                        </p>
+                        <div className=" d-flex justify-content-start py-2">
+                          <p className="fs-5 mb-1 me-4">
+                            <Badge bg="secondary">{genre}</Badge>
+                          </p>
+                          <p className="fs-5 mb-1 me-4">
+                            <Badge bg="danger">
+                              <IoGameController />
+                            </Badge>
+                          </p>
+                          <p className="fs-5 mb-1">
+                            <Badge bg="primary">
+                              {platform === "PC (Windows)" ? (
+                                <AiFillWindows />
+                              ) : (
+                                <FaFirefoxBrowser />
+                              )}
+                            </Badge>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                </Col>
-              );
-            })}
+                    </Link>
+                  </Col>
+                );
+              })
+            )}
           </Row>
           {DATA_LENGTH === GAMES_LENGHT && (
             <div className="text-center">

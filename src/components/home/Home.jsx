@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./home.css"
+import "./home.css";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AiFillWindows } from "react-icons/ai";
@@ -10,8 +10,8 @@ import MostPopular from "./MostPopular";
 
 const Home = () => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  })
+    window.scrollTo(0, 0);
+  });
   return (
     <>
       <Container
@@ -27,24 +27,29 @@ const Home = () => {
         </p>
         <p className="text-danger text-center fs-2 fw-bold">
           Choose Your Platform
-          </p>
+        </p>
         <Container className="d-flex my-1 justify-content-center gap-4 p-0">
           <Link to="/games/pc">
-            <Button variant="outline-primary" size="lg" className="fw-bold fs-4 my-2">
+            <Button
+              variant="outline-primary"
+              size="lg"
+              className="fw-bold fs-4 my-2"
+            >
               <AiFillWindows /> Windows
             </Button>
           </Link>
           <Link to="/games/webbrowser">
-            <Button variant="outline-info" size="lg" className="fw-bold fs-4 my-2">
+            <Button
+              variant="outline-info"
+              size="lg"
+              className="fw-bold fs-4 my-2"
+            >
               <FaFirefoxBrowser /> Browser
             </Button>
           </Link>
         </Container>
       </Container>
-      <Container
-        className="recent-added py-3 home__container-2"
-        fluid
-      >
+      <Container className="recent-added py-3 home__container-2" fluid>
         <Container className="py-0 d-flex justify-content-center">
           <Row>
             <Col md="7" className="home-recentaly-added">
@@ -54,7 +59,7 @@ const Home = () => {
               <RecentalyAdded />
             </Col>
 
-            <Col md='5' className="home-most-popular">
+            <Col md="5" className="home-most-popular">
               <h3 className="fs-2 fw-bold text-secondary py-3 text-center">
                 Most Popular
               </h3>
@@ -63,7 +68,10 @@ const Home = () => {
           </Row>
         </Container>
         <p className="text-center">
-          <Link to="/games/all" className="btn btn-outline-secondary fs-5 fw-bold">
+          <Link
+            to="/games/all"
+            className="btn btn-outline-secondary fs-5 fw-bold"
+          >
             More Games <IoGameController />
           </Link>
         </p>

@@ -36,14 +36,33 @@
     filter: brightness(90%);
 }
 
+.card-loading-skeleton {
+    background-color: #111010d9;
+}
+
+.loading-img-game {
+    width: 600px;
+    height: 400px;
+}
+
 @media only screen and (max-width: 1000px) {
     .game-info {
         padding: 0;
+    }
+
+    .loading-img-game {
+        width: 500px;
+        height: 300px;
     }
 }
 
 @media only screen and (max-width: 700px) {
     .game-detail-container {
         padding: 0;
+    }
+
+    .loading-img-game {
+        width: 320px;
+        height: 250px;
     }
 }

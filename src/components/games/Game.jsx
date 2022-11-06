@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./game.css";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import SpinneR from "../SpinneR";
 import { AiFillWindows } from "react-icons/ai";
 import { FaFirefoxBrowser } from "react-icons/fa";
 import LazyLoad from "../../commons/LazyLoadImage";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Game = () => {
   const { gameId } = useParams();
@@ -31,8 +32,24 @@ const Game = () => {
 
   if (gameData.length === 0) {
     return (
-      <Container fluid className="bg-black" style={{ height: "90vh" }}>
-        <SpinneR message="Fetching Data" fs="fs-1" />
+      <Container
+        fluid
+        className="d-flex justify-content-center align-items-center flex-column bg-secondary"
+      >
+        <SkeletonTheme baseColor="#212529" highlightColor="white">
+          <div className="mb-2">
+            <Skeleton height={20} width={300} />
+          </div>
+          <div className="loading-img-game mb-2">
+            <Skeleton height="100%" width="100%" />
+          </div>
+          <div className="mb-2">
+            <Skeleton height={50} width={300} />
+          </div>
+          <div className="loading-img-game mb-2">
+            <Skeleton height="100%" width="100%" />
+          </div>
+        </SkeletonTheme>
       </Container>
     );
   }
@@ -126,7 +143,11 @@ const Game = () => {
               return (
                 <Col sm key={img.id} className="my-3">
                   <a href={img.image} target="_black">
-                    <LazyLoad src={img.image} alt={img.id} style={{width:"100%"}}/>
+                    <LazyLoad
+                      src={img.image}
+                      alt={img.id}
+                      style={{ width: "100%" }}
+                    />
                   </a>
                 </Col>
               );

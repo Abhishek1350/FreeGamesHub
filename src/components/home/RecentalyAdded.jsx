@@ -4,10 +4,13 @@ import { AiFillWindows } from "react-icons/ai";
 import { FaFirefoxBrowser } from "react-icons/fa";
 import { Badge } from "react-bootstrap";
 import { Image } from "react-bootstrap";
-import SpinneR from "../SpinneR";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const RecentalyAdded = () => {
+
     const [gameData, setGameData] = useState([]);
+    
     useEffect(() => {
         const fetchData = async () => {
             const res = await fetch(
@@ -26,7 +29,27 @@ const RecentalyAdded = () => {
     }, []);
 
     if (gameData.length === 0) {
-        return <SpinneR message="Loading" />;
+        return (
+            <div className="home-recentaly-added-game-card my-2 mx-3 RA-Skeleton">
+                <SkeletonTheme baseColor="#212529" highlightColor="white">
+                    <div className="RA-Skeleton my-2">
+                        <Skeleton height={140} width="100%" />
+                    </div>
+                    <div className="RA-Skeleton my-2">
+                        <Skeleton height={140} width="100%" />
+                    </div>
+                    <div className="RA-Skeleton my-2">
+                        <Skeleton height={140} width="100%" />
+                    </div>
+                    <div className="RA-Skeleton my-2">
+                        <Skeleton height={140} width="100%" />
+                    </div>
+                    <div className="RA-Skeleton my-2">
+                        <Skeleton height={140} width="100%" />
+                    </div>
+                </SkeletonTheme>
+            </div>
+        );
     }
 
     return gameData.map((game) => {

@@ -4,7 +4,8 @@ import { Image } from "react-bootstrap";
 import { AiFillWindows } from "react-icons/ai";
 import { FaFirefoxBrowser } from "react-icons/fa";
 import { Badge } from "react-bootstrap";
-import SpinneR from "../SpinneR";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const MostPopular = () => {
     const [gameData, setGameData] = useState([]);
@@ -26,7 +27,24 @@ const MostPopular = () => {
     }, []);
 
     if (gameData.length === 0) {
-        return <SpinneR message="Plase Wait" />;
+        return (
+            <div className="home-most-popular-game-card w-100 my-2 mx-3">
+                <SkeletonTheme baseColor="#212529" highlightColor="white">
+                    <div className="MP-Skeleton my-2">
+                        <Skeleton height={260} width={300} />
+                    </div>
+                    <div className="MP-Skeleton my-2">
+                        <Skeleton height={260} width={300} />
+                    </div>
+                    <div className="MP-Skeleton my-2">
+                        <Skeleton height={260} width={300} />
+                    </div>
+                    <div className="MP-Skeleton my-2">
+                        <Skeleton height={260} width={300} />
+                    </div>
+                </SkeletonTheme>
+            </div>
+        );
     }
 
     return gameData.map((game) => {
@@ -39,7 +57,7 @@ const MostPopular = () => {
             >
                 <div className="d-flex align-items-center pt-2">
                     <figure className="m-0">
-                        <Image fluid src={thumbnail} alt={title} thumbnail={true}/>
+                        <Image fluid src={thumbnail} alt={title} thumbnail={true} />
                         <div
                             className="d-flex justify-content-around align-items-center position-relative fw-bold"
                             style={{ bottom: "40px" }}
