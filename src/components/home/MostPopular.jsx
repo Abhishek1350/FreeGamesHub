@@ -39,10 +39,10 @@ const MostPopular = () => {
             >
                 <div className="d-flex align-items-center pt-2">
                     <figure className="m-0">
-                        <Image fluid src={thumbnail} alt={title} />
+                        <Image fluid src={thumbnail} alt={title} thumbnail={true}/>
                         <div
                             className="d-flex justify-content-around align-items-center position-relative fw-bold"
-                            style={{ bottom: "33px" }}
+                            style={{ bottom: "40px" }}
                         >
                             <Badge bg="danger">{genre}</Badge>
                             <Badge bg="dark">Free</Badge>

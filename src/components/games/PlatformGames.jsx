@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import SpinneR from "../SpinneR";
-import { Container, Row, Col, Image, Badge } from "react-bootstrap";
+import { Container, Row, Col, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaFirefoxBrowser } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import { AiFillWindows } from "react-icons/ai";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LazyLoad from "../../commons/LazyLoadImage";
 
 const PlatformGames = ({ fetchData, platform }) => {
   const [allGames, setAllGames] = useState([]);
@@ -81,7 +82,7 @@ const PlatformGames = ({ fetchData, platform }) => {
                 <Col xl="3" md="4" className="game-card p-0 my-4 mx-3" key={id}>
                   <Link to={`/games/id/${id}`} className="game-card">
                     <div className="game-card-img">
-                      <Image fluid src={thumbnail} alt={title} style={{width:"100%"}}/>
+                      <LazyLoad src={thumbnail} alt={title} style={{width:"100%"}}/>
                     </div>
                     <div className="game-card-body text-secondary  px-3">
                       <div className=" d-flex justify-content-between mt-2">

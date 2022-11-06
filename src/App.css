@@ -10,3 +10,7 @@ a{
     text-decoration: none!important;
 }
 
+.lazy-load-image-background {
+    width: 100%;
+}
+

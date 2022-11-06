@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import SpinneR from "../SpinneR";
 import { AiFillWindows } from "react-icons/ai";
 import { FaFirefoxBrowser } from "react-icons/fa";
+import LazyLoad from "../../commons/LazyLoadImage";
 
 const Game = () => {
   const { gameId } = useParams();
@@ -125,7 +126,7 @@ const Game = () => {
               return (
                 <Col sm key={img.id} className="my-3">
                   <a href={img.image} target="_black">
-                    <Image src={img.image} fluid alt={img.id} />
+                    <LazyLoad src={img.image} alt={img.id} style={{width:"100%"}}/>
                   </a>
                 </Col>
               );
