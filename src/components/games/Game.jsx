@@ -60,9 +60,10 @@ const Game = () => {
       className="game-container"
       style={{
         background: `linear-gradient(rgba(0, 0, 0, 0.90), rgba(0, 0, 0, 0.90)), url(${gameData.thumbnail})`,
-        backgroundPosition: "center",
         backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed"
       }}
     >
       <Container className="py-3 game-detail-container">
