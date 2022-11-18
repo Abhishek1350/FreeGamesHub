@@ -11,9 +11,11 @@
             rgba(0, 0, 0, 0.92),
             rgba(0, 0, 0, 0.9)),
         url("../../images/bg2.webp");
-    background-position: center;
-    background-size: cover;
     padding: 2rem 1rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .game-card {
