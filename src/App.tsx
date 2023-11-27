@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from "./containers"
-import { Navbar } from './components';
+import { Navbar, Footer } from './components';
 import { NextUIProvider } from '@nextui-org/react'
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
           </Routes>
+          <Footer />
         </main>
       </Router>
     </NextUIProvider>

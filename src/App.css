@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 section {
-    min-height: 100vh;
-    padding: 20px 0;
+    min-height: calc(100vh - 65px);
 }
 
-.container{
-    max-width: 1000px;
+.container {
+    max-width: 1024px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 1rem 1.5rem;
 }
