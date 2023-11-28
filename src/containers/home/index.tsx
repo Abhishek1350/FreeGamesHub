@@ -1,8 +1,53 @@
+import { Button } from "@nextui-org/react";
+import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 export const Home = () => {
   return (
     <section className="top-section">
-      <div className="container ">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, nesciunt repudiandae cupiditate, rem impedit iure dicta quas autem beatae dolores sapiente eligendi sequi! Animi, eum alias repellendus ad doloremque, magni incidunt sed culpa nobis cupiditate inventore natus accusantium repudiandae saepe. Repellendus obcaecati molestias expedita, placeat quis vitae. Ratione sapiente, veniam et molestias voluptatibus ipsa vitae. Unde tempore debitis delectus voluptates, nisi incidunt ex molestias minus harum at mollitia iure rerum libero temporibus officia molestiae suscipit tempora aliquam! Voluptas voluptate ex sapiente! Eaque autem ex reiciendis exercitationem officia est aliquam alias totam nihil aut dignissimos neque provident vitae aliquid, ducimus numquam ipsa a, necessitatibus pariatur error officiis. Dolorum nisi animi quos nesciunt dolores accusamus, numquam amet iure architecto, recusandae ratione quam quia officia culpa voluptatem, veritatis eos! Qui temporibus provident illum repellendus rem! Maiores id nihil tempora corrupti esse quisquam aliquam amet. Esse laboriosam debitis, illum, repellendus ad veritatis nulla culpa deserunt ab et corporis officia tempora consequatur! Fugiat atque eos exercitationem, saepe ab dolores ullam quod non qui commodi voluptatibus blanditiis corporis maiores suscipit deserunt impedit aperiam assumenda rem delectus consequatur natus deleniti molestias minima. Id reiciendis sunt molestiae? Odio accusamus sed illo fuga molestias ducimus modi ad libero est.
+      <div
+        className="bg-center bg-cover bg-no-repeat py-4 sm:py-14"
+        style={{
+          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(https://wallpaper.dog/large/5483415.jpg)"
+        }}
+      >
+        <div className="container mx-auto flex items-center justify-center flex-col">
+          <div className="text-center max-w-[700px]">
+            <h1 className="sm:text-4xl text-3xl mb-3 sm:mb-5 font-semibold text-white">
+              Hunt Down the Ultimate <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">Free-to-Play</span> Gaming Experiences!
+            </h1>
+            <p className="mb-5  sm:text-[16px] text-[15px]">
+              Embark on a quest for the best free-to-play thrills! Discover diverse digital realms, each offering exciting adventures. Unleash the <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-semibold">ultimate gaming experiences</span> and let the quest begin!
+            </p>
+            <p className="sm:text-3xl text-2xl mb-6 font-bold text-danger">
+              Choose your platform
+            </p>
+            <div className="flex justify-center gap-6">
+              <Button
+                color="primary"
+                variant="ghost"
+                className="font-bold gap-1"
+                size="lg"
+                startContent={<FaWindows size={18} />}
+                as={Link}
+                to="/pc-games"
+              >
+                Windows
+              </Button>
+              <Button
+                color="secondary"
+                variant="ghost"
+                className="font-bold gap-1"
+                size="lg"
+                startContent={<FaFirefoxBrowser size={18} />}
+                as={Link}
+                to="/browser-games"
+              >
+                Browser
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
