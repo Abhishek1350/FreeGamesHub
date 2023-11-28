@@ -29,7 +29,6 @@ export const Navbar = () => {
         setIsMenuOpen(false);
     };
 
-
     const menuItems = [
         {
             name: "Home",
@@ -136,7 +135,7 @@ export const Navbar = () => {
                             <Link
                                 to={item?.link}
                                 as={ReactRouterLink}
-                                color={completeUrl=== item.link ? 'danger' : 'foreground'}
+                                color={completeUrl === item.link ? 'danger' : 'foreground'}
                                 style={{ fontWeight: completeUrl === item.link ? 'bold' : 'normal' }}
                             >
                                 {item.name}
@@ -173,7 +172,7 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === completeUrl? '#f31260' : 'white',
+                                                color: category.slug === completeUrl ? '#f31260' : 'white',
                                             }}
                                             className="dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-white dark:hover:text-white"
                                         >

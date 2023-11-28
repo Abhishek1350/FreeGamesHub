@@ -1,4 +1,3 @@
-
 export const Home = () => {
   return (
     <section className="top-section">
