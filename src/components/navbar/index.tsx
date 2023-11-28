@@ -22,11 +22,13 @@ export const Navbar = () => {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const completeUrl = location.pathname + location.search;
 
     const handleNavigate = (link: string) => {
         navigate(link);
         setIsMenuOpen(false);
     };
+
 
     const menuItems = [
         {
@@ -39,37 +41,37 @@ export const Navbar = () => {
             categories: [
                 {
                     name: "All",
-                    slug: "/pc-games/all",
+                    slug: "/pc-games",
 
                 },
                 {
                     name: "MMORPG",
-                    slug: "/pc-games/MMORPG",
+                    slug: "/pc-games?category=MMORPG",
                 },
                 {
                     name: "Racing",
-                    slug: "/pc-games/Racing",
+                    slug: "/pc-games?category=Racing",
                 },
                 {
                     name: "Shooter",
-                    slug: "/pc-games/Shooter",
+                    slug: "/pc-games?category=Shooter",
                 },
 
                 {
                     name: "Strategy",
-                    slug: "/pc-games/Strategy",
+                    slug: "/pc-games?category=Strategy",
                 },
                 {
                     name: "Fantasy",
-                    slug: "/pc-games/Fantasy",
+                    slug: "/pc-games?category=Fantasy",
                 },
                 {
                     name: "Sports",
-                    slug: "/pc-games/Sports",
+                    slug: "/pc-games?category=Sports",
                 },
                 {
                     name: "Social",
-                    slug: "/pc-games/Social",
+                    slug: "/pc-games?category=Social",
                 },
             ]
 
@@ -79,37 +81,37 @@ export const Navbar = () => {
             categories: [
                 {
                     name: "All",
-                    slug: "/browser-games/all",
+                    slug: "/browser-games",
 
                 },
                 {
                     name: "MMORPG",
-                    slug: "/browser-games/MMORPG",
+                    slug: "/browser-games?category=MMORPG",
                 },
                 {
                     name: "Racing",
-                    slug: "/browser-games/Racing",
+                    slug: "/browser-games?category=Racing",
                 },
                 {
                     name: "Shooter",
-                    slug: "/browser-games/Shooter",
+                    slug: "/browser-games?category=Shooter",
                 },
 
                 {
                     name: "Strategy",
-                    slug: "/browser-games/Strategy",
+                    slug: "/browser-games?category=Strategy",
                 },
                 {
                     name: "Fantasy",
-                    slug: "/browser-games/Fantasy",
+                    slug: "/browser-games?category=Fantasy",
                 },
                 {
                     name: "Sports",
-                    slug: "/browser-games/Sports",
+                    slug: "/browser-games?category=Sports",
                 },
                 {
                     name: "Social",
-                    slug: "/browser-games/Social",
+                    slug: "/browser-games?category=Social",
                 },
             ]
 
@@ -134,8 +136,8 @@ export const Navbar = () => {
                             <Link
                                 to={item?.link}
                                 as={ReactRouterLink}
-                                color={location.pathname === item.link ? 'danger' : 'foreground'}
-                                style={{ fontWeight: location.pathname === item.link ? 'bold' : 'normal' }}
+                                color={completeUrl=== item.link ? 'danger' : 'foreground'}
+                                style={{ fontWeight: completeUrl === item.link ? 'bold' : 'normal' }}
                             >
                                 {item.name}
                             </Link>
@@ -151,8 +153,8 @@ export const Navbar = () => {
                                         radius="sm"
                                         variant="light"
                                         style={{
-                                            color: item?.categories?.some((category) => category.slug === location.pathname) ? '#f31260' : 'white',
-                                            fontWeight: item?.categories?.some((category) => category.slug === location.pathname) ? 'bold' : 'normal',
+                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#f31260' : 'white',
+                                            fontWeight: item?.categories?.some((category) => category.slug === completeUrl) ? 'bold' : 'normal',
                                         }}
                                     >
                                         {item.name}
@@ -171,7 +173,7 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === location.pathname ? '#f31260' : 'white',
+                                                color: category.slug === completeUrl? '#f31260' : 'white',
                                             }}
                                             className="dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-white dark:hover:text-white"
                                         >
@@ -206,13 +208,13 @@ export const Navbar = () => {
                     item?.link ? (
                         <NavbarMenuItem
                             key={item.name}
-                            isActive={location.pathname === item.link ? true : false}
+                            isActive={completeUrl === item.link ? true : false}
                             onClick={() => handleNavigate(item.link)}
                             as={Link}
                             style={{
-                                color: location.pathname === item.link ? '#f31260' : 'white',
+                                color: completeUrl === item.link ? '#f31260' : 'white',
                                 fontSize: "18px",
-                                fontWeight: location.pathname === item.link ? 'bold' : 'normal'
+                                fontWeight: completeUrl === item.link ? 'bold' : 'normal'
                             }}
                         >
                             {item.name}
@@ -229,8 +231,8 @@ export const Navbar = () => {
                                         variant="light"
                                         style={{
                                             fontSize: "18px",
-                                            color: item?.categories?.some((category) => category.slug === location.pathname) ? '#f31260' : 'white',
-                                            fontWeight: item?.categories?.some((category) => category.slug === location.pathname) ? 'bold' : 'normal',
+                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#f31260' : 'white',
+                                            fontWeight: item?.categories?.some((category) => category.slug === completeUrl) ? 'bold' : 'normal',
                                         }}
                                     >
                                         {item.name}
@@ -249,8 +251,8 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === location.pathname ? '#f31260' : 'white',
-                                                fontWeight: category.slug === location.pathname ? 'bold' : 'normal',
+                                                color: category.slug === completeUrl ? '#f31260' : 'white',
+                                                fontWeight: category.slug === completeUrl ? 'bold' : 'normal',
                                             }}
                                         >
                                             {category.name}
