@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { NewGameAdded } from "../../components";
 
 export const Home = () => {
   return (
@@ -49,6 +50,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <NewGameAdded/>
     </section>
   )
 }
