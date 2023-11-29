@@ -23,7 +23,6 @@ export const NewGameAdded = () => {
     return (
         <Card
             isPressable
-
             className="relative w-full h-[200px] max-w-[320px] overflow-hidden"
             onPress={() => navigate(`/game/${1}`)}
         >

@@ -12,6 +12,10 @@ section {
     padding: 1rem 1.5rem;
 }
 
+.swiper-button-next:after, .swiper-button-prev:after {
+    content: "" !important;
+  }
+
 @media only screen and (max-width: 768px) {
     .container {
         padding: 0.8rem;
