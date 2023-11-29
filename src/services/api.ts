@@ -1,36 +1,65 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const cryptoApiHeaders = {
+interface Screenshots {
+    id: number
+    image: string
+}
+
+interface MinimumSystemRequirements {
+    graphics: string;
+    memory: string;
+    os: string;
+    processor: string;
+    storage: string;
+}
+
+interface Game {
+    id: number
+    developer: string
+    freetogame_profile_url: string
+    game_url: string
+    genre: string
+    platform: string
+    publisher: string
+    release_date: Date | string
+    short_description: string
+    thumbnail: string
+    title: string
+    minimum_system_requirements?: MinimumSystemRequirements
+    description: string
+    screenshots: Screenshots[]
+    status: string
+}
+
+type GamesResponse = Game[]
+
+const apiHeaders = {
     'x-rapidapi-host': process.env.REACT_APP_GAMES_API_HOST,
     'x-rapidapi-key': process.env.REACT_APP_GAMES_API_KEY,
 };
-const createRequest = (url: string) => ({ url, headers: cryptoApiHeaders });
+const createRequest = (url: string) => ({ url, headers: apiHeaders });
 
 export const gamesApi = createApi({
     reducerPath: 'gamesApi',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_GAMES_API_URL }),
     endpoints: (builder) => ({
-        getAllGames: builder.query({
+        getAllGames: builder.query<GamesResponse, void>({
             query: () => createRequest(`/games`),
         }),
 
-        getGameDetails: builder.query({
+        getGameDetails: builder.query<Game, number>({
             query: (id: number) => createRequest(`/game?id=${id}`),
         }),
 
-        getPopularGames: builder.query({
-            query: () => createRequest(`/games??sort-by=popularity`),
+        getPopularGames: builder.query<GamesResponse, void>({
+            query: () => createRequest(`/games?sort-by=popularity`),
         }),
 
-        getNewGames: builder.query({
-            query: () => createRequest(`/games?sort-by=release-date`),
-        }),
-
-        getGamesByPlatform: builder.query({
+        getGamesByPlatform: builder.query<GamesResponse, string>({
             query: (platform: string) => createRequest(`/games?platform=${platform}`),
         }),
-    
+
     }),
 });
 
-export const { useGetAllGamesQuery, useGetGameDetailsQuery, useGetGamesByPlatformQuery } = gamesApi;
+export const { useGetAllGamesQuery, useGetGameDetailsQuery, useGetPopularGamesQuery, useGetGamesByPlatformQuery } = gamesApi;
