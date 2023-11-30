@@ -1,10 +1,4 @@
-import {
-    Card,
-    CardHeader,
-    CardFooter,
-    Image,
-    Chip
-} from "@nextui-org/react";
+import { Card, CardHeader, CardFooter, Image, Chip, Skeleton } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
 
 // interface Game {
@@ -15,7 +9,6 @@ import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
 //     placeformat?: string;
 //     genre?: string;
 // }
-
 
 export const MostPlayedGamesCard = () => {
     return (

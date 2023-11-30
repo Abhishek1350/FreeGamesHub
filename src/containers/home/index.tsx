@@ -2,9 +2,27 @@ import { Button } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { SwiperSlider, NewGamesAddedCard, MostPlayedGamesCard } from "../../components";
+import {
+  SwiperSlider,
+  NewGamesAddedCard,
+  MostPlayedGamesCard,
+  MostPlayedGamesSkeleton,
+  NewGameAddedSkeleton
+} from "../../components";
+import { useEffect, useState } from "react";
 
 export const Home = () => {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setLoading(prevLoading => !prevLoading);
+    }, 5000);
+
+    console.log(intervalId)
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <section className="top-section">
       <div
@@ -70,7 +88,9 @@ export const Home = () => {
         </div>
         <div className="py-5">
           <SwiperSlider effect="coverflow">
-            <NewGamesAddedCard />
+            {
+              loading ? <NewGameAddedSkeleton /> : <NewGamesAddedCard />
+            }
           </SwiperSlider>
         </div>
       </div>
@@ -91,9 +111,11 @@ export const Home = () => {
             View All
           </Button>
         </div>
-        <div className="py-5">
+        <div className="py-5 pb-10">
           <SwiperSlider>
-            <MostPlayedGamesCard />
+            {
+              loading ? <MostPlayedGamesSkeleton /> : <MostPlayedGamesCard />
+            }
           </SwiperSlider>
         </div>
       </div>
