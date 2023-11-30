@@ -2,7 +2,7 @@ import { Button } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { NewGameAdded, SwiperSlider } from "../../components";
+import { SwiperSlider, NewGamesAddedCard, MostPlayedGamesCard } from "../../components";
 
 export const Home = () => {
   return (
@@ -69,13 +69,13 @@ export const Home = () => {
           </Button>
         </div>
         <div className="py-5">
-          <SwiperSlider>
-            <NewGameAdded />
+          <SwiperSlider effect="coverflow">
+            <NewGamesAddedCard />
           </SwiperSlider>
         </div>
       </div>
 
-      <div className="container">
+      <div className="container mt-10">
         <div className="flex justify-between items-center">
           <h4 className="sm:text-3xl text-2xl">
             <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
@@ -93,7 +93,7 @@ export const Home = () => {
         </div>
         <div className="py-5">
           <SwiperSlider>
-            <NewGameAdded />
+            <MostPlayedGamesCard />
           </SwiperSlider>
         </div>
       </div>

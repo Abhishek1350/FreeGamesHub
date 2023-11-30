@@ -1,10 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { Button } from '@nextui-org/react';
 
 // interface Data {
 //     id: number;
@@ -18,20 +19,23 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 // type Props = {
 //     data: Data[];
 //     children: React.ReactNode;
+//     effect: 'coverflow' | 'slide';
 // }
 
 const CustomPrevArrow = () => (
-    <div className='swiper-button-prev'
+    <div
+        className='swiper-button-prev'
         style={{
-            background: "#fff",
             padding: "0px",
             borderRadius: "50%",
             height: "20px",
             width: "20px",
-            left: 0
+            left: "10px"
         }}
     >
-        <MdNavigateBefore />
+        <Button isIconOnly size='sm' color="default" radius='full' >
+            <MdNavigateBefore />
+        </Button>
     </div>
 );
 
@@ -39,39 +43,41 @@ const CustomNextArrow = () => (
     <div
         className='swiper-button-next'
         style={{
-            background: "#fff",
             padding: "0px",
             borderRadius: "50%",
             height: "20px",
             width: "20px",
-            right: 0
+            right: "10px"
         }}
     >
-        <MdNavigateNext />
+        <Button isIconOnly size='sm' color="default" radius='full' >
+            <MdNavigateNext />
+        </Button>
     </div>
 );
 
 export const SwiperSlider = (props: any) => {
+
     return (
         <Swiper
             spaceBetween={50}
             slidesPerView={1}
             slidesPerGroup={1}
+            modules={[Navigation, EffectCoverflow]}
             navigation={{
                 prevEl: '.swiper-button-prev',
                 nextEl: '.swiper-button-next'
             }}
-            modules={[Navigation]}
+            effect={props.effect}
             breakpoints={{
                 1000: {
                     slidesPerView: 3,
-                    slidesPerGroup: 3
+                    slidesPerGroup: 1,
                 },
 
                 550: {
                     slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    navigation: false
+                    slidesPerGroup: 1,
                 }
             }}
             style={{ padding: "10px" }}
@@ -80,7 +86,7 @@ export const SwiperSlider = (props: any) => {
             <CustomNextArrow />
             {
                 [1, 2, 3, 4, 5, 6].map((item) => (
-                    <SwiperSlide >
+                    <SwiperSlide key={item}>
                         {props.children}
                     </SwiperSlide>
                 ))
