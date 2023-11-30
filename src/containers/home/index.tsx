@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
+import { MdNavigateNext } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { NewGameAdded, SwiperSlider } from "../../components";
 
@@ -17,7 +18,7 @@ export const Home = () => {
             <h1 className="sm:text-4xl text-3xl mb-3 sm:mb-5 font-semibold text-white">
               Hunt Down the Ultimate <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">Free-to-Play</span> Gaming Experiences!
             </h1>
-            <p className="mb-5  sm:text-[16px] text-[15px]">
+            <p className="mb-5 sm:text-[16px] text-[15px]">
               Embark on a quest for the best free-to-play thrills! Discover diverse digital realms, each offering exciting adventures. Unleash the <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-semibold">ultimate gaming experiences</span> and let the quest begin!
             </p>
             <p className="sm:text-3xl text-2xl mb-6 font-bold text-danger">
@@ -50,9 +51,53 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <SwiperSlider>
-        <NewGameAdded />
-      </SwiperSlider>
+
+      <div className="container">
+        <div className="flex justify-between items-center">
+          <h4 className="sm:text-3xl text-2xl">
+            <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
+              Recently Added
+            </span>
+          </h4>
+          <Button
+            endContent={<MdNavigateNext size={22} />}
+            color="primary"
+            variant="light"
+            className="font-semibold px-1 gap-0"
+          >
+            View All
+          </Button>
+        </div>
+        <div className="py-5">
+          <SwiperSlider>
+            <NewGameAdded />
+          </SwiperSlider>
+        </div>
+      </div>
+
+      <div className="container">
+        <div className="flex justify-between items-center">
+          <h4 className="sm:text-3xl text-2xl">
+            <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
+              Most Played
+            </span>
+          </h4>
+          <Button
+            endContent={<MdNavigateNext size={22} />}
+            color="primary"
+            variant="light"
+            className="font-semibold px-1 gap-0"
+          >
+            View All
+          </Button>
+        </div>
+        <div className="py-5">
+          <SwiperSlider>
+            <NewGameAdded />
+          </SwiperSlider>
+        </div>
+      </div>
+
     </section>
   )
 }

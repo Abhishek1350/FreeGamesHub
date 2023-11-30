@@ -12,6 +12,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/pc-games" element={<Home />} />
+            <Route path="/browser-games" element={<Home />} />
           </Routes>
           <Footer />
         </main>

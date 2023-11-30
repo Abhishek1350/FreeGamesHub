@@ -24,11 +24,11 @@ const CustomPrevArrow = () => (
     <div className='swiper-button-prev'
         style={{
             background: "#fff",
-            padding: "3px",
+            padding: "0px",
             borderRadius: "50%",
-            height: "30px",
-            width: "30px",
-            boxShadow: "rgb(217, 217, 217) 0px 2px 10px",
+            height: "20px",
+            width: "20px",
+            left: 0
         }}
     >
         <MdNavigateBefore />
@@ -40,11 +40,11 @@ const CustomNextArrow = () => (
         className='swiper-button-next'
         style={{
             background: "#fff",
-            padding: "3px",
+            padding: "0px",
             borderRadius: "50%",
-            height: "30px",
-            width: "30px",
-            boxShadow: "rgb(217, 217, 217) 0px 2px 10px",
+            height: "20px",
+            width: "20px",
+            right: 0
         }}
     >
         <MdNavigateNext />
@@ -55,14 +55,26 @@ export const SwiperSlider = (props: any) => {
     return (
         <Swiper
             spaceBetween={50}
-            slidesPerView={4}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper: any) => console.log(swiper)}
+            slidesPerView={1}
+            slidesPerGroup={1}
             navigation={{
                 prevEl: '.swiper-button-prev',
                 nextEl: '.swiper-button-next'
             }}
             modules={[Navigation]}
+            breakpoints={{
+                1000: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3
+                },
+
+                550: {
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                    navigation: false
+                }
+            }}
+            style={{ padding: "10px" }}
         >
             <CustomPrevArrow />
             <CustomNextArrow />
