@@ -29,7 +29,7 @@ export const NewGamesAddedCard = () => {
                     Category
                 </small>
                 <h4 className="font-bold text-large">
-                    Game Title should here
+                    Game Title should here!
                 </h4>
             </CardHeader>
             <CardBody className="overflow-visible py-2">
