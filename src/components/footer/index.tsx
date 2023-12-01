@@ -34,7 +34,7 @@ const getClassNames = (name: string) => {
 
 export const Footer = () => {
     return (
-        <footer className="text-gray-400 bg-gray-900 body-font py-4">
+        <footer className="text-gray-400 body-font py-4 dark-bg-2">
             <div className="container mx-auto flex items-center flex-col">
                 <div className="flex title-font font-medium items-center md:justify-start justify-center text-white">
                     <Image

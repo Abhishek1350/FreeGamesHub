@@ -122,7 +122,7 @@ export const Navbar = () => {
             onMenuOpenChange={setIsMenuOpen}
             isMenuOpen={isMenuOpen}
             shouldHideOnScroll isBordered
-            className="bg-gray-900"
+            className="dark-bg-2"
         >
             <Link to="/" as={ReactRouterLink} onClick={() => handleNavigate("/")} className="font-bold">
                 <Avatar size="sm" src="/logo.png" />
@@ -135,14 +135,14 @@ export const Navbar = () => {
                             <Link
                                 to={item?.link}
                                 as={ReactRouterLink}
-                                color={completeUrl === item.link ? 'danger' : 'foreground'}
+                                color={completeUrl === item.link ? 'primary' : 'foreground'}
                                 style={{ fontWeight: completeUrl === item.link ? 'bold' : 'normal' }}
                             >
                                 {item.name}
                             </Link>
                         </NavbarItem>
                     ) : (
-                        <Dropdown className="dark bg-gray-900" key={item.name}>
+                        <Dropdown className="dark-bg-1" key={item.name}>
                             <NavbarItem className="">
                                 <DropdownTrigger>
                                     <Button
@@ -152,7 +152,7 @@ export const Navbar = () => {
                                         radius="sm"
                                         variant="light"
                                         style={{
-                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#f31260' : 'white',
+                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#0070f0' : 'white',
                                             fontWeight: item?.categories?.some((category) => category.slug === completeUrl) ? 'bold' : 'normal',
                                         }}
                                     >
@@ -162,7 +162,7 @@ export const Navbar = () => {
                             </NavbarItem>
                             <DropdownMenu
                                 itemClasses={{
-                                    base: "gap-4",
+                                    base: "gap-",
                                 }}
                             >
                                 {
@@ -172,9 +172,9 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === completeUrl ? '#f31260' : 'white',
+                                                color: category.slug === completeUrl ? '#0070f0' : 'white',
                                             }}
-                                            className="dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-white dark:hover:text-white"
+                                            className="nav-link"
                                         >
                                             {category.name}
                                         </DropdownItem>
@@ -192,7 +192,7 @@ export const Navbar = () => {
                         base: "max-w-full h-10",
                         mainWrapper: "h-full",
                         input: "text-small",
-                        inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                        inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-dark-1",
                     }}
                     placeholder="Type to search..."
                     size="sm"
@@ -211,7 +211,7 @@ export const Navbar = () => {
                             onClick={() => handleNavigate(item.link)}
                             as={Link}
                             style={{
-                                color: completeUrl === item.link ? '#f31260' : 'white',
+                                color: completeUrl === item.link ? '#0070f0' : 'white',
                                 fontSize: "18px",
                                 fontWeight: completeUrl === item.link ? 'bold' : 'normal'
                             }}
@@ -219,8 +219,8 @@ export const Navbar = () => {
                             {item.name}
                         </NavbarMenuItem>
                     ) : (
-                        <Dropdown className="dark" key={item.name}>
-                            <NavbarItem className="dark">
+                        <Dropdown className="dark-bg-1" key={item.name}>
+                            <NavbarItem>
                                 <DropdownTrigger>
                                     <Button
                                         disableRipple
@@ -230,7 +230,7 @@ export const Navbar = () => {
                                         variant="light"
                                         style={{
                                             fontSize: "18px",
-                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#f31260' : 'white',
+                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#0070f0' : 'white',
                                             fontWeight: item?.categories?.some((category) => category.slug === completeUrl) ? 'bold' : 'normal',
                                         }}
                                     >
@@ -250,7 +250,7 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === completeUrl ? '#f31260' : 'white',
+                                                color: category.slug === completeUrl ? '#0070f0' : 'white',
                                                 fontWeight: category.slug === completeUrl ? 'bold' : 'normal',
                                             }}
                                         >

@@ -20,6 +20,27 @@ section {
     transition: all 0.4s ease;
 }
 
+.dark-bg-1 {
+    background: #151a1f;
+    color: #fff;
+}
+
+.dark-bg-2{
+    background: #101418;
+    color: #a5acb9;
+}
+
+.dark-bg-3{
+    background: #111827;
+    color: #b3b6bd;
+}
+
+.nav-link:hover{
+    background: #101418!important;
+    color: #fff!important;
+
+}
+
 @media only screen and (max-width: 768px) {
     .container {
         padding: 0.8rem;

@@ -103,6 +103,8 @@ export const Home = () => {
             color="primary"
             variant="light"
             className="font-semibold px-1 gap-0"
+            as={Link}
+            to="/recently-added-games"
           >
             View All
           </Button>
@@ -151,68 +153,72 @@ export const Home = () => {
         </SwiperSlider>
       </div >
 
-      <div className="container !py-10 pt-15">
-        <div className="flex justify-between items-center mb-2">
-          <h4 className="sm:text-3xl text-2xl">
-            <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
-              Today's Popular
-            </span>
-          </h4>
-          <Button
-            endContent={<MdNavigateNext size={22} />}
-            color="primary"
-            variant="light"
-            className="font-semibold px-1 gap-0"
-          >
-            View All
-          </Button>
-        </div>
-        <SwiperSlider effect="slide">
-          {
-            isFetching ? (
-              [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
-                  <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{
-                      delay: index * stagger,
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    viewport={{ amount: 0 }}
-                  >
-                    <MostPlayedGamesSkeleton />
-                  </motion.div>
-                </SwiperSlide>
-              ))
-            ) : (
-              popularGames?.slice(0, 15)?.map((game: Game, index: number) => (
-                <SwiperSlide key={game.id}>
-                  <motion.div
-                    variants={variants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{
-                      delay: index * stagger,
-                      ease: "easeInOut",
-                      duration: 0.5,
-                    }}
-                    viewport={{ amount: 0 }}
-                  >
-                    <MostPlayedGamesCard game={game} />
-                  </motion.div>
-                </SwiperSlide>
-              ))
-            )
-          }
+      <div className="dark-bg-2">
+        <div className="container !py-10 pt-15">
+          <div className="flex justify-between items-center mb-2">
+            <h4 className="sm:text-3xl text-2xl">
+              <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
+                Popular Games
+              </span>
+            </h4>
+            <Button
+              endContent={<MdNavigateNext size={22} />}
+              color="primary"
+              variant="light"
+              className="font-semibold px-1 gap-0"
+              as={Link}
+              to="/popular-games"
+            >
+              View All
+            </Button>
+          </div>
+          <SwiperSlider effect="slide">
+            {
+              isFetching ? (
+                [1, 2, 3, 4, 5, 6].map((item, index) => (
+                  <SwiperSlide key={item}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <MostPlayedGamesSkeleton />
+                    </motion.div>
+                  </SwiperSlide>
+                ))
+              ) : (
+                popularGames?.slice(0, 15)?.map((game: Game, index: number) => (
+                  <SwiperSlide key={game.id}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <MostPlayedGamesCard game={game} />
+                    </motion.div>
+                  </SwiperSlide>
+                ))
+              )
+            }
 
-        </SwiperSlider>
+          </SwiperSlider>
+        </div>
       </div>
 
       <div className="container !py-10 pt-15">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-5">
           <h4 className="sm:text-3xl text-2xl">
             <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
               Community Recommendations

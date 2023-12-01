@@ -13,25 +13,25 @@ export const NewGamesAddedCard = (props: Props) => {
         <Card
             isPressable
             onClick={() => console.log("Card clicked")}
-            className="py-4 cursor-pointer hover:scale-105 transition-400 w-full"
+            className="py-4 cursor-pointer hover:scale-105 transition-400 w-full dark-bg-1"
         >
 
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 {
                     game.platform === "PC (Windows)" ? (
-                        <p className="text-tiny font-bold flex items-center">
-                            Windows <FaWindows className="inline ml-1 text-primary" />
+                        <p className="text-tiny font-bold flex items-center text-primary">
+                            Windows <FaWindows className="inline ml-1 " />
                         </p>
                     ) : (
-                        <p className="text-tiny font-bold flex items-center">
-                            Browser {game?.platform} <FaFirefoxBrowser className="inline ml-1 text-secondary" />
+                        <p className="text-tiny font-bold flex items-center text-secondary">
+                            Browser <FaFirefoxBrowser className="inline ml-1 " />
                         </p>
                     )
                 }
                 <small className="text-default-500 mb-1">
                     {game?.genre}
                 </small>
-                <h4 className="font-bold text-large">
+                <h4 className="font-bold text-large text-white text-left">
                     {game?.title}
                 </h4>
             </CardHeader>
