@@ -1,21 +1,26 @@
 import { Image } from "@nextui-org/react";
-import { useNavigate } from "react-router-dom";
-import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
+import { Game } from "../../services"
 
-export const TopPicksCard = () => {
+interface Props {
+    game?: Game
+}
+
+export const TopPicksCard = (props: Props) => {
+    const game = props.game
+
     return (
-        <div className="mb-10 sm:w-full md:w-[450px]">
+        <div className="mb-10 sm:w-full md:w-[450px] cursor-pointer overflow-hidden hover:scale-105  transition-400">
             <Image
                 removeWrapper
                 alt="content"
                 className="object-cover !w-full md:h-[250px]"
-                src="https://www.freetogame.com/g/568/thumbnail.jpg"
+                src={game?.thumbnail}
             />
             <h2 className="title-font text-2xl font-medium text-white mt-6 mb-3">
-                Game Title should here
+                {game?.title}
             </h2>
             <p className="leading-relaxed text-base">
-                A free to play medieval strategy browser game. Build you own castle and create a powerful army! (100 chars )
+                {game?.short_description?.slice(0, 100)}...
             </p>
         </div>
     )

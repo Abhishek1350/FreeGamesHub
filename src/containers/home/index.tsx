@@ -10,19 +10,39 @@ import {
   MostPlayedGamesSkeleton,
   NewGameAddedSkeleton
 } from "../../components";
-import { useEffect, useState } from "react";
+import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
+import { useMemo } from "react";
+import { SwiperSlide } from 'swiper/react';
+import { motion } from "framer-motion"
+
+const stagger = 0.25;
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 export const Home = () => {
-  const [loading, setLoading] = useState(true)
+  const { data: allGames, isLoading } = useGetAllGamesQuery();
+  const { data: popularGames, isFetching } = useGetPopularGamesQuery();
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setLoading(prevLoading => !prevLoading);
-    }, 5000);
+  const newGames = useMemo(() => {
+    if (!allGames) return
+    const gamesCopy = [...allGames];
+    const sortedGames: Game[] = gamesCopy.sort((a: Game, b: Game) => {
+      const dateA = new Date(a.release_date);
+      const dateB = new Date(b.release_date);
 
-    console.log(intervalId)
-    return () => clearInterval(intervalId);
-  }, []);
+      if (dateA > dateB) {
+        return -1;
+      } else if (dateA > dateB) {
+        return 1;
+      } else {
+        return 0
+      }
+    });
+
+    return sortedGames.slice(0, 15);
+  }, [allGames]);
 
   return (
     <section className="top-section">
@@ -89,10 +109,47 @@ export const Home = () => {
         </div>
         <SwiperSlider effect="coverflow">
           {
-            loading ? <NewGameAddedSkeleton /> : <NewGamesAddedCard />
+            isLoading ? (
+              [1, 2, 3, 4, 5, 6].map((item, index) => (
+                <SwiperSlide key={item}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <NewGameAddedSkeleton />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+            ) : (
+              newGames?.map((game: Game, index: number) => (
+                <SwiperSlide key={game.id}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <NewGamesAddedCard game={game} />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+            )
           }
+
         </SwiperSlider>
-      </div>
+      </div >
 
       <div className="container !py-10 pt-15">
         <div className="flex justify-between items-center mb-2">
@@ -110,10 +167,47 @@ export const Home = () => {
             View All
           </Button>
         </div>
-        <SwiperSlider>
+        <SwiperSlider effect="slide">
           {
-            loading ? <MostPlayedGamesSkeleton /> : <MostPlayedGamesCard />
+            isFetching ? (
+              [1, 2, 3, 4, 5, 6].map((item, index) => (
+                <SwiperSlide key={item}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <MostPlayedGamesSkeleton />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+            ) : (
+              popularGames?.slice(0, 15)?.map((game: Game, index: number) => (
+                <SwiperSlide key={game.id}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <MostPlayedGamesCard game={game} />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+            )
           }
+
         </SwiperSlider>
       </div>
 
@@ -126,10 +220,10 @@ export const Home = () => {
           </h4>
         </div>
         <div className="flex justify-center gap-10 flex-wrap sm:flex-nowrap md:justify-between">
-          <TopPicksCard />
-          <TopPicksCard />
+          <TopPicksCard game={newGames && newGames[newGames.length - 1]} />
+          <TopPicksCard game={newGames && newGames[newGames.length - 2]} />
         </div>
       </div>
-    </section>
+    </section >
   )
 }

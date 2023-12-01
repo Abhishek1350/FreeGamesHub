@@ -13,7 +13,7 @@ interface MinimumSystemRequirements {
     storage: string;
 }
 
-interface Game {
+export interface Game {
     id: number
     developer: string
     freetogame_profile_url: string

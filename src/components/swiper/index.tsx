@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper } from 'swiper/react';
 import { Navigation, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -6,28 +6,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button } from '@nextui-org/react';
-import { motion } from 'framer-motion';
 
-// interface Data {
-//     id: number;
-//     title: string;
-//     description: string;
-//     image: string;
-//     placeformat: string;
-//     genre: string;
-// }
 
-// type Props = {
-//     data: Data[];
-//     children: React.ReactNode;
-//     effect: 'coverflow' | 'slide';
-// }
 
-const stagger = 0.25;
-const variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-};
+type Props = {
+    children: React.ReactNode;
+    effect: 'coverflow' | 'slide';
+}
+
 
 const CustomPrevArrow = () => (
     <div
@@ -63,7 +49,7 @@ const CustomNextArrow = () => (
     </div>
 );
 
-export const SwiperSlider = (props: any) => {
+export const SwiperSlider = (props: Props) => {
 
     return (
         <Swiper
@@ -91,26 +77,7 @@ export const SwiperSlider = (props: any) => {
         >
             <CustomPrevArrow />
             <CustomNextArrow />
-            {
-                [1, 2, 3, 4, 5, 6].map((item, index) => (
-                    <SwiperSlide key={item}>
-                        <motion.div
-                            variants={variants}
-                            initial="hidden"
-                            animate="visible"
-                            transition={{
-                                delay: index * stagger,
-                                ease: "easeInOut",
-                                duration: 0.5,
-                            }}
-                            viewport={{ amount: 0 }}
-                        >
-                            {props.children}
-                        </motion.div>
-                    </SwiperSlide>
-
-                ))
-            }
+            {props.children}
         </Swiper>
     )
 }

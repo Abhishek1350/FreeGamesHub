@@ -1,16 +1,15 @@
-import { Card, CardHeader, CardFooter, Image, Chip, Skeleton } from "@nextui-org/react";
+import { Card, CardHeader, CardFooter, Image, Chip } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
+import { Game } from "../../services"
 
-// interface Game {
-//     id: number
-//     title?: string;
-//     description?: string;
-//     image?: string;
-//     placeformat?: string;
-//     genre?: string;
-// }
+interface Props {
+    game: Game
+}
 
-export const MostPlayedGamesCard = () => {
+
+export const MostPlayedGamesCard = (props: Props) => {
+    const game = props.game
+    
     return (
         <Card
             isPressable
@@ -20,30 +19,40 @@ export const MostPlayedGamesCard = () => {
             <CardHeader
                 className="absolute py-8 px-[14px] flex-col z-10 w-full h-full opacity-0 transition-400 hover:opacity-100 bg-black/80">
                 <h5 className="font-bold text-large">
-                    Game Title should here
+                    {game?.title}
                 </h5>
                 <p className="text-default-500 text-tiny">
-                    A free to play medieval strategy browser game. Build you own castle and create a powerful army! (100 chars )
+                    {game?.short_description?.slice(0, 100)}...
                 </p>
             </CardHeader>
             <Image
                 removeWrapper
                 alt="Relaxing app background"
                 className="z-0 w-full h-full object-cover"
-                src="https://www.freetogame.com/g/569/thumbnail.jpg"
+                src={game?.thumbnail}
             />
             <CardFooter className="absolute gap-5 bg-black/20 bottom-0 z-1">
                 <Chip color="default" >
                     <span className="font-semibold">
-                        Category
+                        {game?.genre}
                     </span>
                 </Chip>
-                <Chip color="primary">
-                    <div className="flex items-center font-semibold">
-                        <FaWindows className="mr-1" />
-                        Windows
-                    </div>
-                </Chip>
+                {
+                    game.platform === "PC (Windows)" ? (
+                        <Chip color="primary">
+                            <div className="flex items-center font-semibold">
+                                <FaWindows className="mr-1" /> Windows
+                            </div>
+                        </Chip>
+                    ) : (
+                        <Chip color="secondary">
+                            <div className="flex items-center font-semibold">
+                                <FaFirefoxBrowser className="mr-1" /> Browser
+                            </div>
+                        </Chip>
+                    )
+                }
+
             </CardFooter>
         </Card>
     );
