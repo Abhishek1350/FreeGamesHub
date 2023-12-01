@@ -12,10 +12,10 @@ export const TopPicksCard = () => {
                 src="https://www.freetogame.com/g/568/thumbnail.jpg"
             />
             <h2 className="title-font text-2xl font-medium text-white mt-6 mb-3">
-                Buy YouTube Videos
+                Game Title should here
             </h2>
             <p className="leading-relaxed text-base">
-                Williamsburg occupy sustainable snackwave gochujang. Pinterest cornhole brunch, slow-carb neutra irony.
+                A free to play medieval strategy browser game. Build you own castle and create a powerful army! (100 chars )
             </p>
         </div>
     )

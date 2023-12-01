@@ -87,13 +87,11 @@ export const Home = () => {
             View All
           </Button>
         </div>
-        <div>
-          <SwiperSlider effect="coverflow">
-            {
-              loading ? <NewGameAddedSkeleton /> : <NewGamesAddedCard />
-            }
-          </SwiperSlider>
-        </div>
+        <SwiperSlider effect="coverflow">
+          {
+            loading ? <NewGameAddedSkeleton /> : <NewGamesAddedCard />
+          }
+        </SwiperSlider>
       </div>
 
       <div className="container !py-10 pt-15">
@@ -112,13 +110,11 @@ export const Home = () => {
             View All
           </Button>
         </div>
-        <div>
-          <SwiperSlider>
-            {
-              loading ? <MostPlayedGamesSkeleton /> : <MostPlayedGamesCard />
-            }
-          </SwiperSlider>
-        </div>
+        <SwiperSlider>
+          {
+            loading ? <MostPlayedGamesSkeleton /> : <MostPlayedGamesCard />
+          }
+        </SwiperSlider>
       </div>
 
       <div className="container !py-10 pt-15">

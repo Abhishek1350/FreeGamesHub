@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button } from '@nextui-org/react';
+import { motion } from 'framer-motion';
 
 // interface Data {
 //     id: number;
@@ -21,6 +22,12 @@ import { Button } from '@nextui-org/react';
 //     children: React.ReactNode;
 //     effect: 'coverflow' | 'slide';
 // }
+
+const stagger = 0.25;
+const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+};
 
 const CustomPrevArrow = () => (
     <div
@@ -85,10 +92,23 @@ export const SwiperSlider = (props: any) => {
             <CustomPrevArrow />
             <CustomNextArrow />
             {
-                [1, 2, 3, 4, 5, 6].map((item) => (
+                [1, 2, 3, 4, 5, 6].map((item, index) => (
                     <SwiperSlide key={item}>
-                        {props.children}
+                        <motion.div
+                            variants={variants}
+                            initial="hidden"
+                            animate="visible"
+                            transition={{
+                                delay: index * stagger,
+                                ease: "easeInOut",
+                                duration: 0.5,
+                            }}
+                            viewport={{ amount: 0 }}
+                        >
+                            {props.children}
+                        </motion.div>
                     </SwiperSlide>
+
                 ))
             }
         </Swiper>
