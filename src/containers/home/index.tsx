@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
+import { FaWindows, FaFirefoxBrowser, FaGamepad } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 import { Link } from "react-router-dom";
 import {
@@ -45,11 +45,11 @@ export const Home = () => {
   }, [allGames]);
 
   return (
-    <section className="top-section">
-      <div
+    <div className="top-section">
+      <section
         className="bg-center bg-cover bg-no-repeat py-4 sm:py-14"
         style={{
-          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(https://wallpaper.dog/large/5483415.jpg)"
+          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(/bg-2.webp)"
         }}
       >
         <div className="container mx-auto flex items-center justify-center flex-col">
@@ -89,9 +89,9 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="container !py-10">
+      <section className="container !py-10">
         <div className="flex justify-between items-center mb-2">
           <h4 className="sm:text-3xl text-2xl">
             <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
@@ -151,9 +151,9 @@ export const Home = () => {
           }
 
         </SwiperSlider>
-      </div >
+      </section >
 
-      <div className="dark-bg-2">
+      <section className="dark-bg-2">
         <div className="container !py-10 pt-15">
           <div className="flex justify-between items-center mb-2">
             <h4 className="sm:text-3xl text-2xl">
@@ -215,9 +215,9 @@ export const Home = () => {
 
           </SwiperSlider>
         </div>
-      </div>
+      </section>
 
-      <div className="container !py-10 pt-15">
+      <section className="container !py-10 pt-15">
         <div className="flex justify-between items-center mb-5">
           <h4 className="sm:text-3xl text-2xl">
             <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
@@ -229,7 +229,35 @@ export const Home = () => {
           <TopPicksCard game={newGames && newGames[newGames.length - 1]} />
           <TopPicksCard game={newGames && newGames[newGames.length - 2]} />
         </div>
-      </div>
-    </section >
+      </section>
+
+      <section
+        className="bg-top bg-cover bg-no-repeat py-4 sm:py-14"
+        style={{
+          backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/bg.webp)"
+        }}
+      >
+        <div className="container mx-auto">
+          <div className="py-24 flex flex-col sm:flex-row sm:items-start items-center mx-auto">
+            <h5
+              className="text-large sm:pr-16 mb-6 sm:mb-0 font-medium title-font text-white text-center sm:text-left"
+            >
+              Uncertain about your next gaming adventure? Explore our <br /> <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">exquisite collection of games</span> and discover the ideal match for your gaming desires!
+            </h5>
+            <Button
+              endContent={<FaGamepad size={22} />}
+              color="primary"
+              variant="ghost"
+              className="font-semibold px-3 gap-2"
+              as={Link}
+              to="/games"
+              size="lg"
+            >
+              View All
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div >
   )
 }

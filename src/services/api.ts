@@ -55,11 +55,7 @@ export const gamesApi = createApi({
             query: () => createRequest(`/games?sort-by=popularity`),
         }),
 
-        getGamesByPlatform: builder.query<GamesResponse, string>({
-            query: (platform: string) => createRequest(`/games?platform=${platform}`),
-        }),
-
     }),
 });
 
-export const { useGetAllGamesQuery, useGetGameDetailsQuery, useGetPopularGamesQuery, useGetGamesByPlatformQuery } = gamesApi;
+export const { useGetAllGamesQuery, useGetGameDetailsQuery, useGetPopularGamesQuery } = gamesApi;

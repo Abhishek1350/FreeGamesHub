@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-section {
-    min-height: calc(100vh - 65px);
-}
-
 .container {
     max-width: 1024px;
     margin: 0 auto;

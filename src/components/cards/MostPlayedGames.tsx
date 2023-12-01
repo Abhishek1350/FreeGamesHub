@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardFooter, Image, Chip } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
 import { Game } from "../../services"
+import { Link } from "react-router-dom"
 
 interface Props {
     game: Game
@@ -9,12 +10,13 @@ interface Props {
 
 export const MostPlayedGamesCard = (props: Props) => {
     const game = props.game
-    
+
     return (
         <Card
             isPressable
-            onClick={() => console.log("Card clicked")}
             className="relative w-full aspect-[16/9]  overflow-hidden hover:scale-105"
+            as={Link}
+            to={`/game/${game?.id}`}
         >
             <CardHeader
                 className="absolute py-8 px-[14px] flex-col z-10 w-full h-full opacity-0 transition-400 hover:opacity-100 bg-black/80">
