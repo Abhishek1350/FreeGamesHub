@@ -6,6 +6,7 @@ import {
   SwiperSlider,
   NewGamesAddedCard,
   MostPlayedGamesCard,
+  TopPicksCard,
   MostPlayedGamesSkeleton,
   NewGameAddedSkeleton
 } from "../../components";
@@ -70,8 +71,8 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="container">
-        <div className="flex justify-between items-center">
+      <div className="container !py-10">
+        <div className="flex justify-between items-center mb-2">
           <h4 className="sm:text-3xl text-2xl">
             <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
               Recently Added
@@ -86,7 +87,7 @@ export const Home = () => {
             View All
           </Button>
         </div>
-        <div className="py-5">
+        <div>
           <SwiperSlider effect="coverflow">
             {
               loading ? <NewGameAddedSkeleton /> : <NewGamesAddedCard />
@@ -95,11 +96,11 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="container mt-10">
-        <div className="flex justify-between items-center">
+      <div className="container !py-10 pt-15">
+        <div className="flex justify-between items-center mb-2">
           <h4 className="sm:text-3xl text-2xl">
             <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
-              Most Played
+              Today's Popular
             </span>
           </h4>
           <Button
@@ -111,7 +112,7 @@ export const Home = () => {
             View All
           </Button>
         </div>
-        <div className="py-5 pb-10">
+        <div>
           <SwiperSlider>
             {
               loading ? <MostPlayedGamesSkeleton /> : <MostPlayedGamesCard />
@@ -120,6 +121,19 @@ export const Home = () => {
         </div>
       </div>
 
+      <div className="container !py-10 pt-15">
+        <div className="flex justify-between items-center mb-4">
+          <h4 className="sm:text-3xl text-2xl">
+            <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
+              Community Recommendations
+            </span>
+          </h4>
+        </div>
+        <div className="flex justify-center gap-10 flex-wrap sm:flex-nowrap md:justify-between">
+          <TopPicksCard />
+          <TopPicksCard />
+        </div>
+      </div>
     </section>
   )
 }

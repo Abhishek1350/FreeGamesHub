@@ -80,7 +80,7 @@ export const SwiperSlider = (props: any) => {
                     slidesPerGroup: 1,
                 }
             }}
-            style={{ padding: "10px" }}
+            style={{ padding: "10px 0" }}
         >
             <CustomPrevArrow />
             <CustomNextArrow />
