@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { useSize } from "../../utils";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-const stagger = 0.25;
+const stagger = 0.1;
 const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -76,7 +76,7 @@ export const Games = () => {
                                     animate="visible"
                                     transition={{
                                         delay: index * stagger,
-                                        ease: "easeInOut",
+                                        ease: "easeIn",
                                         duration: 0.5,
                                     }}
                                     viewport={{ amount: 0 }}
