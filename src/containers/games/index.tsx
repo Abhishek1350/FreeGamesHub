@@ -25,10 +25,11 @@ export const Games = () => {
 
     const itemsPerPage = width < 500 ? 6 : 12;
     const currentPage = Number(searchParams.get("page")) || 1;
-    const currentPlatform = searchParams.get("platform") === "pc" ? PLATFORMS.PC : PLATFORMS.BROWSER || null;
     const currentCategory = searchParams.get("category") || null;
+    const currentPlatform = searchParams.get("platform") === "pc" ? PLATFORMS.PC : searchParams.get("platform") === "browser" ? PLATFORMS.BROWSER : null;
 
     const games = useMemo(() => {
+        if (!currentCategory || !currentPlatform) return allGames;
         return allGames?.filter((game: Game) => {
             if (currentPlatform && currentCategory) {
                 return game?.platform === currentPlatform && game?.genre === currentCategory;
@@ -41,6 +42,8 @@ export const Games = () => {
             }
         })
     }, [allGames, currentPlatform, currentCategory]);
+
+    console.log(currentCategory)
 
     return (
         <section className="text-gray-400 body-font py-10">

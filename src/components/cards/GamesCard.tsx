@@ -11,7 +11,7 @@ export const GamesCard = (props: Props) => {
     const game = props.game
 
     return (
-        <Link className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[320px] hover:scale-105 transition-400" to={`/game/${game?.id}`}>
+        <Link className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[341px] hover:scale-105 transition-400" to={`/game/${game?.id}`}>
             <Image
                 className=" rounded w-full object-cover object-center mb-6"
                 src={game?.thumbnail}
