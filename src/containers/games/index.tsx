@@ -1,6 +1,9 @@
-import { GamesCard, GamesCardSkeleton } from "../../components";
+import { useMemo } from "react";
+import { GamesCard, GamesCardSkeleton, Pagination } from "../../components";
 import { useGetAllGamesQuery, Game } from "../../services"
 import { motion } from "framer-motion"
+import { useSize } from "../../utils";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const stagger = 0.25;
 const variants = {
@@ -8,8 +11,36 @@ const variants = {
     visible: { opacity: 1 },
 };
 
+enum PLATFORMS {
+    PC = "PC (Windows)",
+    BROWSER = "Web Browser",
+}
+
+
 export const Games = () => {
     const { data: allGames, isLoading } = useGetAllGamesQuery();
+    const [searchParams] = useSearchParams();
+    const { width } = useSize();
+    const redirect = useNavigate();
+
+    const itemsPerPage = width < 500 ? 6 : 12;
+    const currentPage = Number(searchParams.get("page")) || 1;
+    const currentPlatform = searchParams.get("platform") === "pc" ? PLATFORMS.PC : PLATFORMS.BROWSER || null;
+    const currentCategory = searchParams.get("category") || null;
+
+    const games = useMemo(() => {
+        return allGames?.filter((game: Game) => {
+            if (currentPlatform && currentCategory) {
+                return game?.platform === currentPlatform && game?.genre === currentCategory;
+            } else if (currentPlatform) {
+                return game?.platform === currentPlatform;
+            } else if (currentCategory) {
+                return game?.genre === currentCategory;
+            } else {
+                return game;
+            }
+        })
+    }, [allGames, currentPlatform, currentCategory]);
 
     return (
         <section className="text-gray-400 body-font py-10">
@@ -21,7 +52,7 @@ export const Games = () => {
                                 <GamesCardSkeleton key={item} />
                             ))
                         ) : (
-                            allGames?.slice(0, 15).map((game: Game, index: number) => (
+                            games?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((game: Game, index: number) => (
                                 <motion.div
                                     key={game?.id}
                                     variants={variants}
@@ -37,11 +68,25 @@ export const Games = () => {
                                 >
                                     <GamesCard game={game} />
                                 </motion.div>
-
                             ))
                         )
                     }
                 </div>
+                {
+                    games && games?.length > itemsPerPage && (
+                        <div className="mt-10">
+                            <Pagination
+                                showControls
+                                total={Math.ceil(games?.length / itemsPerPage)}
+                                initialPage={currentPage}
+                                onChange={(page: number) => {
+                                    searchParams.set("page", page.toString());
+                                    redirect(`?${searchParams.toString()}`)
+                                }}
+                            />
+                        </div>
+                    )
+                }
             </div>
         </section >
     )
