@@ -12,12 +12,16 @@ import {
     NavbarMenuItem,
     NavbarItem,
     Button,
-    Input
 } from "@nextui-org/react";
 import { Link as ReactRouterLink, useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { FaChevronDown, FaSearch } from "react-icons/fa";
-import { useGetAllGamesQuery } from "../../services"
+import { FaChevronDown } from "react-icons/fa";
+import { useGetAllGamesQuery, Game } from "../../services"
+
+enum PLATFORMS {
+    PC = "PC (Windows)",
+    BROWSER = "Web Browser",
+}
 
 export const Navbar = () => {
     const location = useLocation();
@@ -31,8 +35,13 @@ export const Navbar = () => {
         setIsMenuOpen(false);
     };
 
-    const categories = useMemo(() => {
-        return Array.from(new Set(allGames?.map((game) => game?.genre)))
+    const browserCategories = useMemo(() => {
+        return Array.from(new Set(allGames?.filter((game: Game) => game?.platform === PLATFORMS.BROWSER)?.map((game:Game) => game?.genre)))
+    }, [allGames]);
+
+
+    const pcCategories = useMemo(() => {
+        return Array.from(new Set(allGames?.filter((game: Game) => game?.platform === PLATFORMS.PC)?.map((game:Game) => game?.genre)))
     }, [allGames]);
 
     const menuItems = useMemo(() => {
@@ -44,7 +53,7 @@ export const Navbar = () => {
             },
             {
                 name: "PC Games",
-                categories: categories.map((category) => ({
+                categories: pcCategories.map((category) => ({
                     name: category,
                     slug: `/games?platform=pc&category=${category}`,
                 }))
@@ -52,12 +61,12 @@ export const Navbar = () => {
             },
             {
                 name: "Browser Games",
-                categories: categories.map((category) => ({
+                categories: browserCategories.map((category) => ({
                     name: category,
                     slug: `/games?platform=browser&category=${category}`,
                 }))
             }]
-    }, [categories]);
+    }, [pcCategories, browserCategories]);
 
 
     return (
@@ -71,7 +80,7 @@ export const Navbar = () => {
                 <Avatar size="sm" src="/logo.png" />
             </Link>
 
-            <NavbarContent className="hidden sm:flex gap-5 ml-0 md:ml-5">
+            <NavbarContent className="hidden sm:flex gap-5 ml-0 md:ml-10">
                 {menuItems.map((item) => (
                     item?.link ? (
                         <NavbarItem key={item.name}>
@@ -130,18 +139,7 @@ export const Navbar = () => {
             </NavbarContent>
 
             <NavbarContent className="sm:flex gap-5">
-                <Input
-                    classNames={{
-                        base: "max-w-full h-10",
-                        mainWrapper: "h-full",
-                        input: "text-small",
-                        inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-dark-1",
-                    }}
-                    placeholder="Type to search..."
-                    size="sm"
-                    startContent={<FaSearch />}
-                    type="search"
-                />
+                
             </NavbarContent>
 
 

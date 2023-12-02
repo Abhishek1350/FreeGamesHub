@@ -1,8 +1,8 @@
 
 export const SingleGame = () => {
   return (
-    <section className="text-gray-400 bg-gray-900 body-font">
-      <div className="container px-5 py-24 mx-auto flex flex-col">
+    <section className="text-gray-400 dark-bg-1 shadow-inset-1 body-font min-h-[66dvh]">
+      {/* <div className="container px-5 py-24 mx-auto flex flex-col">
         <div className="lg:w-4/6 mx-auto">
           <div className="rounded-lg h-64 overflow-hidden">
             <img alt="content" className="object-cover object-center h-full w-full" src="https://dummyimage.com/1200x500"/>
@@ -31,6 +31,14 @@ export const SingleGame = () => {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className="min-h-[66dvh] flex justify-center items-center">
+        <h1 className="text-6xl">
+          <span className=" bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent  font-extrabold">
+            Working on it!
+          </span>
+        </h1>
+
       </div>
     </section>
   )
