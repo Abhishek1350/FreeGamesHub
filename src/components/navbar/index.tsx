@@ -65,7 +65,7 @@ export const Navbar = () => {
             onMenuOpenChange={setIsMenuOpen}
             isMenuOpen={isMenuOpen}
             shouldHideOnScroll isBordered
-            className="dark-bg-2"
+            className="dark text-foreground bg-background dark-bg-2"
         >
             <Link to="/" as={ReactRouterLink} onClick={() => handleNavigate("/")} className="font-bold">
                 <Avatar size="sm" src="/logo.png" />

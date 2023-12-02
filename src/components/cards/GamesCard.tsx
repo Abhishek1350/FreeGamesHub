@@ -1,6 +1,7 @@
 import { Game } from "../../services"
 import { Link } from "react-router-dom"
 import { Image } from "@nextui-org/react"
+import { FaFirefoxBrowser, FaWindows } from "react-icons/fa"
 
 interface Props {
     game: Game
@@ -17,18 +18,23 @@ export const GamesCard = (props: Props) => {
                 src={game?.thumbnail}
                 alt="content"
             />
-            <h3
-                className="tracking-widest text-indigo-400 text-xs font-medium title-font"
-            >
-                {game?.genre}
-            </h3>
-            <h2
-                className="text-lg text-white font-medium title-font mb-2"
-            >
+            {
+                game.platform === "PC (Windows)" ? (
+                    <h3 className="tracking-widest text-primary text-xs font-medium title-font flex items-center gap-1">
+                        <FaWindows className="inline" /> {game?.genre}
+                    </h3>
+                ) : (
+                    <h3 className="tracking-widest text-secondary text-xs font-medium title-font flex items-center ">
+                        <FaFirefoxBrowser className="inline" /> {game?.genre}
+                    </h3>
+                )
+            }
+
+            <h2 className="text-lg text-white font-medium title-font mb-2 line-clamp-1">
                 {game?.title}
             </h2>
-            <p className="leading-relaxed text-tiny">
-                {game?.short_description?.slice(0, 100)}
+            <p className="leading-relaxed text-tiny line-clamp-3">
+                {game?.short_description}
             </p>
         </Link>
     )

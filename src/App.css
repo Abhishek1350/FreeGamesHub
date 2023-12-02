@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: #101418;
+}
+
 .container {
     max-width: 1024px;
     margin: 0 auto;
@@ -21,23 +25,23 @@
     color: #fff;
 }
 
-.dark-bg-2{
+.dark-bg-2 {
     background: #101418;
     color: #a5acb9;
 }
 
-.dark-bg-3{
+.dark-bg-3 {
     background: #111827;
     color: #b3b6bd;
 }
 
-.nav-link:hover{
-    background: #101418!important;
-    color: #fff!important;
+.nav-link:hover {
+    background: #101418 !important;
+    color: #fff !important;
 }
 
 .shadow-inset-1 {
-    box-shadow:  rgba(255, 255, 255, 0.2) 0px -1px 6px 0px inset;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px -1px 6px 0px inset;
 }
 
 @media only screen and (max-width: 768px) {

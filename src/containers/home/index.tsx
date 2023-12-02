@@ -28,7 +28,7 @@ export const Home = () => {
   const newGames = useMemo(() => {
     if (!allGames) return
     const gamesCopy = [...allGames];
-    
+
     const sortedGames: Game[] = gamesCopy.sort((a: Game, b: Game) => {
       return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
     });
@@ -52,8 +52,10 @@ export const Home = () => {
             <p className="mb-5 sm:text-[16px] text-[15px]">
               Embark on a quest for the best free-to-play thrills! Discover diverse digital realms, each offering exciting adventures. Unleash the <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-semibold">ultimate gaming experiences</span> and let the quest begin!
             </p>
-            <p className="sm:text-3xl text-2xl mb-6 font-bold text-danger">
-              Choose your platform
+            <p className="sm:text-3xl text-2xl mb-6 font-bold">
+              <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent">
+                Choose your platform
+              </span>
             </p>
             <div className="flex justify-center gap-6">
               <Button

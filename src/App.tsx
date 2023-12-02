@@ -9,15 +9,15 @@ function App() {
     <NextUIProvider>
       <Router>
         <ScrollToTop />
+        <Navbar />
         <main className="dark text-foreground bg-background">
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/games" element={<Games />} />
             <Route path="/game/:id" element={<SingleGame />} />
           </Routes>
-          <Footer />
         </main>
+        <Footer />
       </Router>
     </NextUIProvider>
   );

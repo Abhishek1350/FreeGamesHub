@@ -59,7 +59,7 @@ export const Games = () => {
 
 
     return (
-        <section className="text-gray-400 body-font py-10">
+        <section className="text-gray-400 body-font py-10 min-h-[66dvh]">
             <div className="container px-5 py-24 mx-auto ">
                 <div className="flex flex-wrap gap-y-5">
                     {

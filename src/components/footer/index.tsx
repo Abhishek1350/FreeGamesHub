@@ -34,7 +34,7 @@ const getClassNames = (name: string) => {
 
 export const Footer = () => {
     return (
-        <footer className="text-gray-400 body-font py-4 dark-bg-2">
+        <footer className="dark  bg-background text-gray-400 body-font py-4 dark-bg-2">
             <div className="container mx-auto flex items-center flex-col">
                 <div className="flex title-font font-medium items-center md:justify-start justify-center text-white">
                     <Image
@@ -43,7 +43,7 @@ export const Footer = () => {
                         height={30}
                         alt="Free Games Hub"
                     />
-                    <span className="ml-3 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                    <span className="ml-3 bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent font-bold">
                         © {new Date().getFullYear()} FreeGamesHub
                     </span>
                 </div>

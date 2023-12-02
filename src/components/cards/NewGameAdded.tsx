@@ -33,7 +33,7 @@ export const NewGamesAddedCard = (props: Props) => {
                 <small className="text-default-500 mb-1">
                     {game?.genre}
                 </small>
-                <h4 className="font-bold text-large text-white text-left">
+                <h4 className="font-bold text-large text-white text-left line-clamp-1">
                     {game?.title}
                 </h4>
             </CardHeader>
