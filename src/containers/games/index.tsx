@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { GamesCard, GamesCardSkeleton, Pagination } from "../../components";
-import { useGetAllGamesQuery, Game } from "../../services"
+import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
 import { motion } from "framer-motion"
 import { useSize } from "../../utils";
 import { useSearchParams, useNavigate } from "react-router-dom";
@@ -19,31 +19,44 @@ enum PLATFORMS {
 
 export const Games = () => {
     const { data: allGames, isLoading } = useGetAllGamesQuery();
+    const { data: popularGames } = useGetPopularGamesQuery();
+
     const [searchParams] = useSearchParams();
     const { width } = useSize();
     const redirect = useNavigate();
 
     const itemsPerPage = width < 500 ? 6 : 12;
     const currentPage = Number(searchParams.get("page")) || 1;
+    const sortBy = searchParams.get("sortby") || null;
     const currentCategory = searchParams.get("category") || null;
-    const currentPlatform = searchParams.get("platform") === "pc" ? PLATFORMS.PC : searchParams.get("platform") === "browser" ? PLATFORMS.BROWSER : null;
+    const currentPlatform =
+        searchParams.get("platform") === "pc"
+            ? PLATFORMS.PC
+            : searchParams.get("platform") === "browser"
+                ? PLATFORMS.BROWSER
+                : null;
 
     const games = useMemo(() => {
-        if (!currentCategory || !currentPlatform) return allGames;
-        return allGames?.filter((game: Game) => {
-            if (currentPlatform && currentCategory) {
-                return game?.platform === currentPlatform && game?.genre === currentCategory;
-            } else if (currentPlatform) {
-                return game?.platform === currentPlatform;
-            } else if (currentCategory) {
-                return game?.genre === currentCategory;
-            } else {
-                return game;
-            }
-        })
-    }, [allGames, currentPlatform, currentCategory]);
+        if (!allGames) return null;
+        if (!currentCategory && !currentPlatform && !sortBy) return allGames;
 
-    console.log(currentCategory)
+        let filteredGames = [...allGames];
+
+        if (sortBy === "popularity") return popularGames;
+
+        if (sortBy === "recently_added") {
+            return filteredGames.sort((a: Game, b: Game) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime());
+        }
+
+        return filteredGames.filter((game: Game) => {
+            const platformCondition = !currentPlatform || game.platform === currentPlatform;
+            const categoryCondition = !currentCategory || game.genre === currentCategory;
+            return platformCondition && categoryCondition;
+        });
+
+    }, [allGames, currentPlatform, currentCategory, sortBy, popularGames]);
+
+
 
     return (
         <section className="text-gray-400 body-font py-10">

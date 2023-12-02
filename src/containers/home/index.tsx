@@ -28,17 +28,9 @@ export const Home = () => {
   const newGames = useMemo(() => {
     if (!allGames) return
     const gamesCopy = [...allGames];
+    
     const sortedGames: Game[] = gamesCopy.sort((a: Game, b: Game) => {
-      const dateA = new Date(a.release_date);
-      const dateB = new Date(b.release_date);
-
-      if (dateA > dateB) {
-        return -1;
-      } else if (dateA > dateB) {
-        return 1;
-      } else {
-        return 0
-      }
+      return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
     });
 
     return sortedGames.slice(0, 15);
@@ -104,7 +96,7 @@ export const Home = () => {
             variant="light"
             className="font-semibold px-1 gap-0"
             as={Link}
-            to="/recently-added-games"
+            to="/games?sortby=recently_added"
           >
             View All
           </Button>
@@ -167,7 +159,7 @@ export const Home = () => {
               variant="light"
               className="font-semibold px-1 gap-0"
               as={Link}
-              to="/popular-games"
+              to="/games?sortby=popularity"
             >
               View All
             </Button>

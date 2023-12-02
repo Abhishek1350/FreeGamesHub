@@ -13,8 +13,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/games" element={<Games />} />
-            <Route path="/recently-added-games" element={<Games />} />
-            <Route path="/popular-games" element={<Games />} />
             <Route path="/game/:id" element={<SingleGame />} />
           </Routes>
           <Footer />
