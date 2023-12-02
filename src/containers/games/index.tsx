@@ -14,25 +14,11 @@ export const Games = () => {
     return (
         <section className="text-gray-400 body-font py-10">
             <div className="container px-5 py-24 mx-auto ">
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap gap-y-5">
                     {
                         isLoading ? (
-                            [1, 2, 3, 4, 5, 6].map((item, index) => (
-                                <motion.div
-                                    variants={variants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    transition={{
-                                        delay: index * stagger,
-                                        ease: "easeInOut",
-                                        duration: 0.5,
-                                    }}
-                                    key={item}
-                                    viewport={{ amount: 0 }}
-                                    className="md:w-1/3 sm:w-1/2 p-4"
-                                >
-                                    <GamesCardSkeleton />
-                                </motion.div>
+                            [1, 2, 3, 4, 5, 6].map((item) => (
+                                <GamesCardSkeleton key={item} />
                             ))
                         ) : (
                             allGames?.slice(0, 15).map((game: Game, index: number) => (

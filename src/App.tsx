@@ -12,11 +12,9 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/pc-games" element={<Games />} />
-            <Route path="/browser-games" element={<Games />} />
+            <Route path="/games" element={<Games />} />
             <Route path="/recently-added-games" element={<Games />} />
             <Route path="/popular-games" element={<Games />} />
-            <Route path="/games" element={<Games />} />
             <Route path="/game/:id" element={<SingleGame />} />
           </Routes>
           <Footer />

@@ -34,7 +34,10 @@
 .nav-link:hover{
     background: #101418!important;
     color: #fff!important;
+}
 
+.shadow-inset-1 {
+    box-shadow:  rgba(255, 255, 255, 0.2) 0px -1px 6px 0px inset;
 }
 
 @media only screen and (max-width: 768px) {

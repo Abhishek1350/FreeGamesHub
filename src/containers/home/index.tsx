@@ -71,7 +71,7 @@ export const Home = () => {
                 size="lg"
                 startContent={<FaWindows size={18} />}
                 as={Link}
-                to="/pc-games"
+                to="/games?platform=pc"
               >
                 Windows
               </Button>
@@ -82,7 +82,7 @@ export const Home = () => {
                 size="lg"
                 startContent={<FaFirefoxBrowser size={18} />}
                 as={Link}
-                to="/browser-games"
+                to="/games?platform=browser"
               >
                 Browser
               </Button>
@@ -232,7 +232,7 @@ export const Home = () => {
       </section>
 
       <section
-        className="bg-top bg-cover bg-no-repeat py-4 sm:py-14"
+        className="bg-top bg-cover bg-no-repeat py-4 sm:py-14 mt-10"
         style={{
           backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/bg.webp)"
         }}

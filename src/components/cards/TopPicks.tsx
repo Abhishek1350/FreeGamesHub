@@ -10,9 +10,9 @@ export const TopPicksCard = (props: Props) => {
     const game = props.game
 
     return (
-        <Link 
-        className="mb-10 pb-5 sm:w-full md:w-[450px] cursor-pointer overflow-hidden hover:scale-105  transition-400 dark-bg-1 rounded-xl"
-        to={`/game/${game?.id}`}
+        <Link
+            className="shadow-inset-1 pb-5 sm:w-full md:w-[450px] cursor-pointer overflow-hidden hover:scale-105  transition-400 dark-bg-3 rounded-xl"
+            to={`/game/${game?.id}`}
         >
             <Image
                 removeWrapper

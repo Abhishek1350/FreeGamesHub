@@ -13,7 +13,7 @@ export const NewGamesAddedCard = (props: Props) => {
     return (
         <Card
             isPressable
-            className="py-4 cursor-pointer hover:scale-105 transition-400 w-full dark-bg-1"
+            className="py-4 shadow-inset-1 cursor-pointer hover:scale-105 transition-400 w-full dark-bg-1"
             as={Link}
             to={`/game/${game?.id}`}
         >

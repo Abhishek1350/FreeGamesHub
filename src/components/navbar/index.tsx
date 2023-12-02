@@ -15,107 +15,50 @@ import {
     Input
 } from "@nextui-org/react";
 import { Link as ReactRouterLink, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
+import { useGetAllGamesQuery } from "../../services"
 
 export const Navbar = () => {
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
     const completeUrl = location.pathname + location.search;
+    const { data: allGames } = useGetAllGamesQuery();
 
     const handleNavigate = (link: string) => {
         navigate(link);
         setIsMenuOpen(false);
     };
 
-    const menuItems = [
-        {
-            name: "Home",
-            link: "/",
-            categories: []
-        },
-        {
-            name: "PC Games",
-            categories: [
-                {
-                    name: "All",
-                    slug: "/pc-games",
+    const categories = useMemo(() => {
+        return Array.from(new Set(allGames?.map((game) => game?.genre)))
+    }, [allGames]);
 
-                },
-                {
-                    name: "MMORPG",
-                    slug: "/pc-games?category=MMORPG",
-                },
-                {
-                    name: "Racing",
-                    slug: "/pc-games?category=Racing",
-                },
-                {
-                    name: "Shooter",
-                    slug: "/pc-games?category=Shooter",
-                },
+    const menuItems = useMemo(() => {
+        return [
+            {
+                name: "Home",
+                link: "/",
+                categories: []
+            },
+            {
+                name: "PC Games",
+                categories: categories.map((category) => ({
+                    name: category,
+                    slug: `/games?platform=pc&category=${category}`,
+                }))
 
-                {
-                    name: "Strategy",
-                    slug: "/pc-games?category=Strategy",
-                },
-                {
-                    name: "Fantasy",
-                    slug: "/pc-games?category=Fantasy",
-                },
-                {
-                    name: "Sports",
-                    slug: "/pc-games?category=Sports",
-                },
-                {
-                    name: "Social",
-                    slug: "/pc-games?category=Social",
-                },
-            ]
+            },
+            {
+                name: "Browser Games",
+                categories: categories.map((category) => ({
+                    name: category,
+                    slug: `/games?platform=browser&category=${category}`,
+                }))
+            }]
+    }, [categories]);
 
-        },
-        {
-            name: "Browser Games",
-            categories: [
-                {
-                    name: "All",
-                    slug: "/browser-games",
-
-                },
-                {
-                    name: "MMORPG",
-                    slug: "/browser-games?category=MMORPG",
-                },
-                {
-                    name: "Racing",
-                    slug: "/browser-games?category=Racing",
-                },
-                {
-                    name: "Shooter",
-                    slug: "/browser-games?category=Shooter",
-                },
-
-                {
-                    name: "Strategy",
-                    slug: "/browser-games?category=Strategy",
-                },
-                {
-                    name: "Fantasy",
-                    slug: "/browser-games?category=Fantasy",
-                },
-                {
-                    name: "Sports",
-                    slug: "/browser-games?category=Sports",
-                },
-                {
-                    name: "Social",
-                    slug: "/browser-games?category=Social",
-                },
-            ]
-
-        }
-    ]
 
     return (
         <NextUINavbar
@@ -142,8 +85,8 @@ export const Navbar = () => {
                             </Link>
                         </NavbarItem>
                     ) : (
-                        <Dropdown className="dark-bg-1" key={item.name}>
-                            <NavbarItem className="">
+                        <Dropdown className="dark-bg-1 shadow-inset-1" key={item.name}>
+                            <NavbarItem >
                                 <DropdownTrigger>
                                     <Button
                                         disableRipple
@@ -152,8 +95,8 @@ export const Navbar = () => {
                                         radius="sm"
                                         variant="light"
                                         style={{
-                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#0070f0' : 'white',
-                                            fontWeight: item?.categories?.some((category) => category.slug === completeUrl) ? 'bold' : 'normal',
+                                            color: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? '#0070f0' : 'white',
+                                            fontWeight: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? 'bold' : 'normal',
                                         }}
                                     >
                                         {item.name}
@@ -162,7 +105,7 @@ export const Navbar = () => {
                             </NavbarItem>
                             <DropdownMenu
                                 itemClasses={{
-                                    base: "gap-",
+                                    base: "gap-2",
                                 }}
                             >
                                 {
@@ -172,7 +115,7 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === completeUrl ? '#0070f0' : 'white',
+                                                color: category.slug === decodeURIComponent(completeUrl) ? '#0070f0' : 'white',
                                             }}
                                             className="nav-link"
                                         >
@@ -211,9 +154,9 @@ export const Navbar = () => {
                             onClick={() => handleNavigate(item.link)}
                             as={Link}
                             style={{
-                                color: completeUrl === item.link ? '#0070f0' : 'white',
+                                color: decodeURIComponent(completeUrl) === item.link ? '#0070f0' : 'white',
                                 fontSize: "18px",
-                                fontWeight: completeUrl === item.link ? 'bold' : 'normal'
+                                fontWeight: decodeURIComponent(completeUrl) === item.link ? 'bold' : 'normal'
                             }}
                         >
                             {item.name}
@@ -230,8 +173,8 @@ export const Navbar = () => {
                                         variant="light"
                                         style={{
                                             fontSize: "18px",
-                                            color: item?.categories?.some((category) => category.slug === completeUrl) ? '#0070f0' : 'white',
-                                            fontWeight: item?.categories?.some((category) => category.slug === completeUrl) ? 'bold' : 'normal',
+                                            color: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? '#0070f0' : 'white',
+                                            fontWeight: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? 'bold' : 'normal',
                                         }}
                                     >
                                         {item.name}
@@ -250,8 +193,8 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === completeUrl ? '#0070f0' : 'white',
-                                                fontWeight: category.slug === completeUrl ? 'bold' : 'normal',
+                                                color: category.slug === decodeURIComponent(completeUrl) ? '#0070f0' : 'white',
+                                                fontWeight: category.slug === decodeURIComponent(completeUrl) ? 'bold' : 'normal',
                                             }}
                                         >
                                             {category.name}
