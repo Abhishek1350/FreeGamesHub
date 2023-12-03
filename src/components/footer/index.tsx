@@ -1,6 +1,7 @@
 import { Image } from "@nextui-org/react";
 import { socialMediaLinks } from "../../utils";
 import { FaGithub, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const getSocialMediaIcon = (url: string) => {
     switch (url) {
@@ -44,7 +45,7 @@ export const Footer = () => {
                         alt="Free Games Hub"
                     />
                     <span className="ml-3 bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent font-bold">
-                        © {new Date().getFullYear()} FreeGamesHub
+                        © {new Date().getFullYear()} <Link to="/sitemap">FreeGamesHub</Link>
                     </span>
                 </div>
                 <div className="flex mt-6 gap-10">

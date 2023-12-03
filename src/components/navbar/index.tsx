@@ -36,12 +36,12 @@ export const Navbar = () => {
     };
 
     const browserCategories = useMemo(() => {
-        return Array.from(new Set(allGames?.filter((game: Game) => game?.platform === PLATFORMS.BROWSER)?.map((game:Game) => game?.genre)))
+        return Array.from(new Set(allGames?.filter((game: Game) => game?.platform === PLATFORMS.BROWSER)?.map((game: Game) => game?.genre)))
     }, [allGames]);
 
 
     const pcCategories = useMemo(() => {
-        return Array.from(new Set(allGames?.filter((game: Game) => game?.platform === PLATFORMS.PC)?.map((game:Game) => game?.genre)))
+        return Array.from(new Set(allGames?.filter((game: Game) => game?.platform === PLATFORMS.PC)?.map((game: Game) => game?.genre)))
     }, [allGames]);
 
     const menuItems = useMemo(() => {
@@ -65,7 +65,8 @@ export const Navbar = () => {
                     name: category,
                     slug: `/games?platform=browser&category=${category}`,
                 }))
-            }]
+            }
+        ]
     }, [pcCategories, browserCategories]);
 
 
@@ -73,21 +74,30 @@ export const Navbar = () => {
         <NextUINavbar
             onMenuOpenChange={setIsMenuOpen}
             isMenuOpen={isMenuOpen}
-            shouldHideOnScroll isBordered
+            shouldHideOnScroll
+            isBordered
             className="dark text-foreground bg-background dark-bg-2"
         >
-            <Link to="/" as={ReactRouterLink} onClick={() => handleNavigate("/")} className="font-bold">
-                <Avatar size="sm" src="/logo.png" />
-            </Link>
+            <NavbarContent>
+                <Link to="/" as={ReactRouterLink} onClick={() => handleNavigate("/")} className="font-bold">
+                    <Avatar size="sm" src="/logo.png" />
+                    <h1 className="text-large sm:text-xl ml-2">
+                        <span className=" bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent  font-extrabold">
+                            FreeGamesHub
+                        </span>
+                    </h1>
+                </Link>
 
-            <NavbarContent className="hidden sm:flex gap-5 ml-0 md:ml-10">
+            </NavbarContent>
+
+            <NavbarContent className="hidden sm:flex gap-5 data-[justify=start]:justify-end">
                 {menuItems.map((item) => (
                     item?.link ? (
                         <NavbarItem key={item.name}>
                             <Link
                                 to={item?.link}
                                 as={ReactRouterLink}
-                                color={completeUrl === item.link ? 'primary' : 'foreground'}
+                                color={completeUrl === item.link ? 'danger' : 'foreground'}
                                 style={{ fontWeight: completeUrl === item.link ? 'bold' : 'normal' }}
                             >
                                 {item.name}
@@ -104,7 +114,7 @@ export const Navbar = () => {
                                         radius="sm"
                                         variant="light"
                                         style={{
-                                            color: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? '#0070f0' : 'white',
+                                            color: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? '#f31260' : 'white',
                                             fontWeight: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? 'bold' : 'normal',
                                         }}
                                     >
@@ -124,7 +134,7 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === decodeURIComponent(completeUrl) ? '#0070f0' : 'white',
+                                                color: category.slug === decodeURIComponent(completeUrl) ? '#f31260' : 'white',
                                             }}
                                             className="nav-link"
                                         >
@@ -138,11 +148,6 @@ export const Navbar = () => {
                 ))}
             </NavbarContent>
 
-            <NavbarContent className="sm:flex gap-5">
-                
-            </NavbarContent>
-
-
             <NavbarMenu className="bg-default-500/20">
                 {menuItems.map((item) => (
                     item?.link ? (
@@ -152,7 +157,7 @@ export const Navbar = () => {
                             onClick={() => handleNavigate(item.link)}
                             as={Link}
                             style={{
-                                color: decodeURIComponent(completeUrl) === item.link ? '#0070f0' : 'white',
+                                color: decodeURIComponent(completeUrl) === item.link ? '#f31260' : 'white',
                                 fontSize: "18px",
                                 fontWeight: decodeURIComponent(completeUrl) === item.link ? 'bold' : 'normal'
                             }}
@@ -171,7 +176,7 @@ export const Navbar = () => {
                                         variant="light"
                                         style={{
                                             fontSize: "18px",
-                                            color: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? '#0070f0' : 'white',
+                                            color: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? '#f31260' : 'white',
                                             fontWeight: item?.categories?.some((category) => category.slug === decodeURIComponent(completeUrl)) ? 'bold' : 'normal',
                                         }}
                                     >
@@ -191,7 +196,7 @@ export const Navbar = () => {
                                             as={Link}
                                             onClick={() => handleNavigate(category.slug)}
                                             style={{
-                                                color: category.slug === decodeURIComponent(completeUrl) ? '#0070f0' : 'white',
+                                                color: category.slug === decodeURIComponent(completeUrl) ? '#f31260' : 'white',
                                                 fontWeight: category.slug === decodeURIComponent(completeUrl) ? 'bold' : 'normal',
                                             }}
                                         >

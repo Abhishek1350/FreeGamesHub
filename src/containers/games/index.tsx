@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { GamesCard, GamesCardSkeleton, Pagination } from "../../components";
+import { GamesCard, GamesCardSkeleton, Pagination, HeadContent } from "../../components";
 import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
 import { motion } from "framer-motion"
 import { useSize } from "../../utils";
@@ -56,54 +56,58 @@ export const Games = () => {
 
     }, [allGames, currentPlatform, currentCategory, sortBy, popularGames]);
 
-
-
     return (
-        <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[66dvh]">
-            <div className="container px-5 py-24 mx-auto ">
-                <div className="flex flex-wrap gap-y-5">
+        <>
+            <HeadContent
+                title="FreeGamesHub: Download and Play Free Games"
+                description="Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!"
+            />
+            <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[66dvh]">
+                <div className="container px-5 py-24 mx-auto ">
+                    <div className="flex flex-wrap gap-y-5">
+                        {
+                            isLoading ? (
+                                [1, 2, 3, 4, 5, 6].map((item) => (
+                                    <GamesCardSkeleton key={item} />
+                                ))
+                            ) : (
+                                games?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((game: Game, index: number) => (
+                                    <motion.div
+                                        key={game?.id}
+                                        variants={variants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        transition={{
+                                            delay: index * stagger,
+                                            ease: "easeIn",
+                                            duration: 0.5,
+                                        }}
+                                        viewport={{ amount: 0 }}
+                                        className="md:w-1/3 sm:w-1/2 p-4"
+                                    >
+                                        <GamesCard game={game} />
+                                    </motion.div>
+                                ))
+                            )
+                        }
+                    </div>
                     {
-                        isLoading ? (
-                            [1, 2, 3, 4, 5, 6].map((item) => (
-                                <GamesCardSkeleton key={item} />
-                            ))
-                        ) : (
-                            games?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((game: Game, index: number) => (
-                                <motion.div
-                                    key={game?.id}
-                                    variants={variants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    transition={{
-                                        delay: index * stagger,
-                                        ease: "easeIn",
-                                        duration: 0.5,
+                        games && games?.length > itemsPerPage && (
+                            <div className="mt-10">
+                                <Pagination
+                                    showControls
+                                    total={Math.ceil(games?.length / itemsPerPage)}
+                                    initialPage={currentPage}
+                                    onChange={(page: number) => {
+                                        searchParams.set("page", page.toString());
+                                        redirect(`?${searchParams.toString()}`)
                                     }}
-                                    viewport={{ amount: 0 }}
-                                    className="md:w-1/3 sm:w-1/2 p-4"
-                                >
-                                    <GamesCard game={game} />
-                                </motion.div>
-                            ))
+                                />
+                            </div>
                         )
                     }
                 </div>
-                {
-                    games && games?.length > itemsPerPage && (
-                        <div className="mt-10">
-                            <Pagination
-                                showControls
-                                total={Math.ceil(games?.length / itemsPerPage)}
-                                initialPage={currentPage}
-                                onChange={(page: number) => {
-                                    searchParams.set("page", page.toString());
-                                    redirect(`?${searchParams.toString()}`)
-                                }}
-                            />
-                        </div>
-                    )
-                }
-            </div>
-        </section >
+            </section >
+        </>
     )
 }
