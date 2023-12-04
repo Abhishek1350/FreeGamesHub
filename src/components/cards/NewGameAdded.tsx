@@ -40,9 +40,11 @@ export const NewGamesAddedCard = (props: Props) => {
             <CardBody className="overflow-visible py-2">
                 <Image
                     alt={game?.title}
-                    className="object-cover rounded-xl"
+                    className="object-cover rounded-xl w-full"
                     src={game?.thumbnail}
-                    loading="lazy"
+                    classNames={{
+                        wrapper: "!max-w-full"
+                    }}
                 />
             </CardBody>
         </Card>

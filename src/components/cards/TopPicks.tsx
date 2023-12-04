@@ -15,11 +15,12 @@ export const TopPicksCard = (props: Props) => {
             to={`/game/${game?.id}`}
         >
             <Image
-                removeWrapper
-                alt="content"
+                alt={game?.title}
                 className="object-cover !w-full md:h-[250px]"
                 src={game?.thumbnail}
-                loading="lazy"
+                classNames={{
+                    wrapper: "!max-w-full"
+                }}
             />
             <h2 className="title-font text-2xl font-medium text-white mt-5 mb-2 px-4 line-clamp-1">
                 {game?.title}

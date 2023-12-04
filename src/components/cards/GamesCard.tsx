@@ -17,7 +17,9 @@ export const GamesCard = (props: Props) => {
                 className=" rounded w-full object-cover object-center mb-6"
                 src={game?.thumbnail}
                 alt={game?.title}
-                loading="lazy"
+                classNames={{
+                    wrapper: "!max-w-full"
+                }}
             />
             {
                 game.platform === "PC (Windows)" ? (

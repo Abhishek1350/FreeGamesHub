@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { GamesCard, GamesCardSkeleton, Pagination, HeadContent } from "../../components";
+import { GamesCard, GamesCardSkeleton, Pagination, HeadContent, MobPagination } from "../../components";
 import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
 import { motion } from "framer-motion"
 import { useSize } from "../../utils";
@@ -25,7 +25,7 @@ export const Games = () => {
     const { width } = useSize();
     const redirect = useNavigate();
 
-    const itemsPerPage = width < 500 ? 6 : 12;
+    const itemsPerPage = 12;
     const currentPage = Number(searchParams.get("page")) || 1;
     const sortBy = searchParams.get("sortby") || null;
     const currentCategory = searchParams.get("category") || null;
@@ -64,7 +64,7 @@ export const Games = () => {
             />
             <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[66dvh]">
                 <div className="container px-5 py-24 mx-auto ">
-                    <div className="flex flex-wrap gap-y-5">
+                    <div className="flex flex-wrap gap-y-5 justify-center">
                         {
                             isLoading ? (
                                 [1, 2, 3, 4, 5, 6].map((item) => (
@@ -93,17 +93,29 @@ export const Games = () => {
                     </div>
                     {
                         games && games?.length > itemsPerPage && (
-                            <div className="mt-10">
-                                <Pagination
-                                    showControls
+                            width > 768 ? (
+                                <div className="mt-10">
+                                    <Pagination
+                                        showControls
+                                        total={Math.ceil(games?.length / itemsPerPage)}
+                                        initialPage={currentPage}
+                                        onChange={(page: number) => {
+                                            searchParams.set("page", page.toString());
+                                            redirect(`?${searchParams.toString()}`)
+                                        }}
+                                    />
+                                </div>
+                            ) : (
+                                <MobPagination
                                     total={Math.ceil(games?.length / itemsPerPage)}
                                     initialPage={currentPage}
-                                    onChange={(page: number) => {
+                                    onClick={(page: number) => {
                                         searchParams.set("page", page.toString());
                                         redirect(`?${searchParams.toString()}`)
                                     }}
                                 />
-                            </div>
+
+                            )
                         )
                     }
                 </div>

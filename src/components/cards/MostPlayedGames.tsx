@@ -31,7 +31,9 @@ export const MostPlayedGamesCard = (props: Props) => {
                 alt={game?.title}
                 className="z-0 w-full h-full object-cover"
                 src={game?.thumbnail}
-                loading="lazy"
+                classNames={{
+                    wrapper: "!max-w-full"
+                }}
             />
             <CardFooter className="absolute gap-5 bg-black/20 bottom-0 z-1">
                 <Chip color="default" >
