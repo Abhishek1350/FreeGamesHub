@@ -19,6 +19,7 @@ export const TopPicksCard = (props: Props) => {
                 alt="content"
                 className="object-cover !w-full md:h-[250px]"
                 src={game?.thumbnail}
+                loading="lazy"
             />
             <h2 className="title-font text-2xl font-medium text-white mt-5 mb-2 px-4 line-clamp-1">
                 {game?.title}

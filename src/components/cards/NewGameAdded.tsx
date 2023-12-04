@@ -39,10 +39,10 @@ export const NewGamesAddedCard = (props: Props) => {
             </CardHeader>
             <CardBody className="overflow-visible py-2">
                 <Image
-                    removeWrapper
                     alt={game?.title}
                     className="object-cover rounded-xl"
                     src={game?.thumbnail}
+                    loading="lazy"
                 />
             </CardBody>
         </Card>

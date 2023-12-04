@@ -5,7 +5,7 @@ interface Screenshots {
     image: string
 }
 
-interface MinimumSystemRequirements {
+export interface MinimumSystemRequirements {
     graphics: string;
     memory: string;
     os: string;

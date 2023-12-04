@@ -16,7 +16,8 @@ export const GamesCard = (props: Props) => {
             <Image
                 className=" rounded w-full object-cover object-center mb-6"
                 src={game?.thumbnail}
-                alt="content"
+                alt={game?.title}
+                loading="lazy"
             />
             {
                 game.platform === "PC (Windows)" ? (
