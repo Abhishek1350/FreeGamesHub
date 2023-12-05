@@ -12,6 +12,7 @@ import {
     NavbarMenuItem,
     NavbarItem,
     Button,
+    NavbarBrand,
 } from "@nextui-org/react";
 import { Link as ReactRouterLink, useLocation, useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
@@ -78,19 +79,18 @@ export const Navbar = () => {
             isBordered
             className="dark text-foreground bg-background dark-bg-2"
         >
-            <NavbarContent>
+            <NavbarBrand>
                 <Link to="/" as={ReactRouterLink} onClick={() => handleNavigate("/")} className="font-bold">
                     <Avatar size="sm" src="/logo.png" />
-                    <h1 className="text-large sm:text-xl ml-2">
+                    <h6 className="text-large sm:text-xl ml-2">
                         <span className=" bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent  font-extrabold">
                             FreeGamesHub
                         </span>
-                    </h1>
+                    </h6>
                 </Link>
+            </NavbarBrand>
 
-            </NavbarContent>
-
-            <NavbarContent className="hidden sm:flex gap-5 data-[justify=start]:justify-end">
+            <NavbarContent className="hidden sm:flex gap-5" justify="end">
                 {menuItems.map((item) => (
                     item?.link ? (
                         <NavbarItem key={item.name}>

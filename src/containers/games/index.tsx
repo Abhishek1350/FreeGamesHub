@@ -64,11 +64,26 @@ export const Games = () => {
             />
             <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[66dvh]">
                 <div className="container px-5 py-24 mx-auto ">
-                    <div className="flex flex-wrap gap-y-5 justify-center">
+                    <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {
                             isLoading ? (
-                                [1, 2, 3, 4, 5, 6].map((item) => (
-                                    <GamesCardSkeleton key={item} />
+                                [1, 2, 3, 4, 5, 6].map((item, index) => (
+
+                                    <motion.div
+                                        key={item}
+                                        variants={variants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        transition={{
+                                            delay: index * stagger,
+                                            ease: "easeIn",
+                                            duration: 0.5,
+                                        }}
+                                        viewport={{ amount: 0 }}
+                                        className="w-full md:w-1/3 sm:w-1/2 p-4"
+                                    >
+                                        <GamesCardSkeleton key={item} />
+                                    </motion.div>
                                 ))
                             ) : (
                                 games?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((game: Game, index: number) => (

@@ -2,7 +2,7 @@ import { Skeleton } from "@nextui-org/react";
 
 export const GamesCardSkeleton = () => {
     return (
-        <div className="md:w-1/3 sm:w-1/2 p-4">
+        <div className="dark-bg-1 shadow-inset-1 p-4 rounded-lg  min-h-[341px] hover:scale-105 transition-400">
             <div className="dark-bg-1 bg-opacity-40 p-4 rounded-lg">
                 <Skeleton className="w-full rounded-xl mb-3">
                     <div className="h-40 w-full rounded-xl bg-default-200"></div>
