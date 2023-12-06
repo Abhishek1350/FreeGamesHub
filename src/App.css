@@ -35,6 +35,18 @@ body {
     color: #b3b6bd;
 }
 
+.text-color-1 {
+    color: #fff;
+}
+
+.text-color-2 {
+    color: #a5acb9;
+}
+
+.text-color-3 {
+    color: #b3b6bd;
+}
+
 .nav-link:hover {
     background: #101418 !important;
     color: #fff !important;

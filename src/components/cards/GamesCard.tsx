@@ -1,18 +1,26 @@
 import { Game } from "../../services"
-import { Link } from "react-router-dom"
 import { Image } from "@nextui-org/react"
 import { FaFirefoxBrowser, FaWindows } from "react-icons/fa"
 
 interface Props {
     game: Game
+    handleNavigate: (path: string) => void
 }
 
 
 export const GamesCard = (props: Props) => {
     const game = props.game
+    const handleNavigate = props.handleNavigate
 
     return (
-        <Link className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[341px] hover:scale-105 transition-400" to={`/game/${game?.id}`}>
+        <a
+            className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[341px] hover:scale-105 transition-400"
+            onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+                e.preventDefault()
+                handleNavigate(`/game/${game?.id}`)
+            }}
+            href="/"
+        >
             <Image
                 className=" rounded w-full object-cover object-center mb-6"
                 src={game?.thumbnail}
@@ -39,6 +47,6 @@ export const GamesCard = (props: Props) => {
             <p className="leading-relaxed text-tiny line-clamp-3">
                 {game?.short_description}
             </p>
-        </Link>
+        </a>
     )
 }

@@ -1,9 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { GamesCard, GamesCardSkeleton, Pagination, HeadContent, MobPagination } from "../../components";
 import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
 import { motion } from "framer-motion"
 import { useSize } from "../../utils";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 
 const stagger = 0.1;
 const variants = {
@@ -24,6 +24,12 @@ export const Games = () => {
     const [searchParams] = useSearchParams();
     const { width } = useSize();
     const redirect = useNavigate();
+    const location = useLocation();
+
+    const handleNavigate = useCallback((path: string) => {
+        const currentLocation = location.pathname + location.search;
+        return redirect(path, { state: { from: currentLocation } })
+    }, [location, redirect]);
 
     const itemsPerPage = 12;
     const currentPage = Number(searchParams.get("page")) || 1;
@@ -100,7 +106,7 @@ export const Games = () => {
                                         viewport={{ amount: 0 }}
                                         className="md:w-1/3 sm:w-1/2 p-4"
                                     >
-                                        <GamesCard game={game} />
+                                        <GamesCard game={game} handleNavigate={handleNavigate} />
                                     </motion.div>
                                 ))
                             )

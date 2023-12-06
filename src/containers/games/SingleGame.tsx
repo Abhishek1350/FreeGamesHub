@@ -1,20 +1,43 @@
 import { HeadContent } from "../../components";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useGetGameDetailsQuery } from "../../services";
-import { Image, Button, Chip } from "@nextui-org/react";
+import { Image, Button, Chip, Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import { FaFirefoxBrowser, FaWindows } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
 import { ImSad, ImHappy } from "react-icons/im";
 import { VscDiffAdded } from "react-icons/vsc";
 
+interface Location {
+  pathname: string
+  search: string
+  state: { from: string } | null
+  hash: string
+  key: string
+}
 
 const getRequirements = (obj: any) => {
   return Object.entries(obj).map(([name, value]) => ({ name, value }));
 };
 
+const getPreviousUrl = (location: Location): string => {
+  const { state } = location
+  let url = "/games"
+  if (state && state.from) {
+    url = state.from
+  }
+  return url
+}
+
+const getPriousPathname = (location: Location): string => {
+  const url = getPreviousUrl(location)
+  return url.split("?")[0].replace("/", "")
+}
+
 export const SingleGame = () => {
   const { id } = useParams<{ id: string }>();
   const { data: game, isLoading } = useGetGameDetailsQuery(Number(id));
+  const location = useLocation();
+  console.log(location)
 
   return (
     <>
@@ -53,6 +76,7 @@ export const SingleGame = () => {
                   variant="ghost"
                   className="w-4/5 gap-1 text-xl font-bold"
                   endContent={<IoMdExit />}
+                  onClick={() => window.open(game?.game_url, "_blank")}
                 >
                   Play Now
                 </Button>
@@ -91,7 +115,7 @@ export const SingleGame = () => {
 
               </div>
 
-              <div className="flex justify-around p-4 mt-5 border border-gray-700 rounded-lg border-opacity-75 ">
+              {/* <div className="flex justify-around p-4 mt-5 border border-gray-700 rounded-lg border-opacity-75 ">
                 <div className="md:w-1/2 flex flex-col items-center justify-center ">
                   <p className="text-default-500">
                     Developer
@@ -109,12 +133,27 @@ export const SingleGame = () => {
                     {game?.release_date?.toString()}
                   </p>
                 </div>
-              </div>
+              </div> */}
 
             </div>
 
             <div className="sm:w-2/3 sm:pl-4 sm:py-2 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0">
-              Details
+              <Breadcrumbs>
+                <BreadcrumbItem href="/">
+                  Home
+                </BreadcrumbItem>
+                <BreadcrumbItem href={getPreviousUrl(location)} className="capitalize">
+                  {getPriousPathname(location)}
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  {id}
+                </BreadcrumbItem>
+              </Breadcrumbs>
+              <h1>
+                <span className="text-xl sm:text-2xl font-bold text-color-2">
+                  {game?.title}
+                </span>
+              </h1>
             </div>
           </div>
         </div>
