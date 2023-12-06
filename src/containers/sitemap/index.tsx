@@ -12,7 +12,7 @@ export const Sitemap = () => {
   ];
 
   return (
-    <div className="container mx-auto mt-8 min-h-[66dvh]">
+    <div className="container mx-auto mt-8 min-h-[80dvh]">
       <h1 className="text-4xl font-bold mb-4">Sitemap</h1>
       <ul className="list-disc pl-4">
         {routes.map((route) => (

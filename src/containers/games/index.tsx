@@ -68,7 +68,7 @@ export const Games = () => {
                 title="Download and Play Free Games | FreeGamesHub"
                 description="Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!"
             />
-            <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[66dvh]">
+            <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[80dvh]">
                 <div className="container px-5 py-24 mx-auto ">
                     <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {
