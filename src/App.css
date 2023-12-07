@@ -1,16 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Baloo Bhai 2', cursive;
+* {
+    scroll-behavior: smooth;
 }
 
-a{
-    text-decoration: none!important;
+body {
+    background-color: #101418;
 }
 
-.lazy-load-image-background {
-    width: 100%;
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
 }
 
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    content: "" !important;
+}
+
+.transition-400 {
+    transition: all 0.4s ease;
+}
+
+.dark-bg-1 {
+    background: #151a1f;
+    color: #fff;
+}
+
+.dark-bg-2 {
+    background: #101418;
+    color: #a5acb9;
+}
+
+.dark-bg-3 {
+    background: #111827;
+    color: #b3b6bd;
+}
+
+.text-color-1 {
+    color: #fff;
+}
+
+.text-color-2 {
+    color: #a5acb9;
+}
+
+.text-color-3 {
+    color: #b3b6bd;
+}
+
+.nav-link:hover {
+    background: #101418 !important;
+    color: #fff !important;
+}
+
+.shadow-inset-1 {
+    box-shadow: rgba(255, 255, 255, 0.2) 0px -1px 6px 0px inset;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 0.8rem;
+    }
+}
