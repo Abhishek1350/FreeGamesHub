@@ -32,5 +32,5 @@ export const MobPagination = (props: PaginationProps) => {
                 <FaArrowCircleRight />
             </Button>
         </div>
-    )
-}
+    );
+};

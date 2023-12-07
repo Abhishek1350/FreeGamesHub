@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet";
 
-export const HeadContent = (props: { title?: string, description?: string }) => {
+export const HeadContent = (props: {
+    title?: string;
+    description?: string;
+}) => {
     return (
         <Helmet>
             <title>{props.title}</title>
@@ -9,5 +12,5 @@ export const HeadContent = (props: { title?: string, description?: string }) => 
             <meta property="og:title" content={props.title} />
             <link rel="canonical" href={window.location.href} />
         </Helmet>
-    )
-}
+    );
+};

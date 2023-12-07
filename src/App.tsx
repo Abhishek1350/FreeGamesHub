@@ -1,8 +1,8 @@
-import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { Home, Games, SingleGame, Sitemap } from "./containers"
-import { Navbar, Footer, ScrollToTop } from './components';
-import { NextUIProvider } from '@nextui-org/react'
+import "./App.css";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { Home, Games, SingleGame, Sitemap } from "./containers";
+import { Navbar, Footer, ScrollToTop } from "./components";
+import { NextUIProvider } from "@nextui-org/react";
 
 function App() {
   const navigate = useNavigate();

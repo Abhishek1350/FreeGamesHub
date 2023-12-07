@@ -21,4 +21,4 @@ export const NewGameAddedSkeleton = () => {
             </CardBody>
         </Card>
     );
-}
+};

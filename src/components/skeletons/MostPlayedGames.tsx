@@ -30,4 +30,4 @@ export const MostPlayedGamesSkeleton = () => {
             </CardFooter>
         </Card>
     );
-}
+};

@@ -1,11 +1,12 @@
 import { useMemo, useCallback } from "react";
 import { GamesCard, GamesCardSkeleton, Pagination, HeadContent, MobPagination } from "../../components";
-import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
+import { useGetAllGamesQuery, useGetPopularGamesQuery } from "../../services"
 import { motion } from "framer-motion"
 import { useSize } from "../../utils";
 import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
+import { Game } from "../../utils";
 
-const stagger = 0.1;
+const stagger = 0.3;
 const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -74,22 +75,9 @@ export const Games = () => {
                         {
                             isLoading ? (
                                 [1, 2, 3, 4, 5, 6].map((item, index) => (
-
-                                    <motion.div
-                                        key={item}
-                                        variants={variants}
-                                        initial="hidden"
-                                        animate="visible"
-                                        transition={{
-                                            delay: index * stagger,
-                                            ease: "easeIn",
-                                            duration: 0.5,
-                                        }}
-                                        viewport={{ amount: 0 }}
-                                        className="w-full md:w-1/3 sm:w-1/2 p-4"
-                                    >
+                                    <div key={item} className="w-full md:w-1/3 sm:w-1/2 p-4">
                                         <GamesCardSkeleton key={item} />
-                                    </motion.div>
+                                    </div>
                                 ))
                             ) : (
                                 games?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((game: Game, index: number) => (

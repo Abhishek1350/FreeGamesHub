@@ -6,8 +6,14 @@ interface PaginationProps {
     onChange: (page: number) => void;
     showControls?: boolean;
     isCompact?: boolean;
-    color?: "primary" | "secondary" | "success" | "warning" | "danger" | "default";
-    variant?: "flat" | "bordered" | "light" | "faded"
+    color?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | "danger"
+    | "default";
+    variant?: "flat" | "bordered" | "light" | "faded";
 }
 
 export const Pagination = (props: PaginationProps) => {
@@ -15,8 +21,8 @@ export const Pagination = (props: PaginationProps) => {
         <NextUIPagination
             {...props}
             classNames={{
-                wrapper: "m-auto"
+                wrapper: "m-auto",
             }}
         />
-    )
-}
+    );
+};

@@ -9,12 +9,13 @@ import {
   TopPicksCard,
   MostPlayedGamesSkeleton,
   NewGameAddedSkeleton,
-  HeadContent
+  HeadContent,
 } from "../../components";
-import { useGetAllGamesQuery, useGetPopularGamesQuery, Game } from "../../services"
+import { useGetAllGamesQuery, useGetPopularGamesQuery } from "../../services";
 import { useMemo } from "react";
-import { SwiperSlide } from 'swiper/react';
-import { motion } from "framer-motion"
+import { SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
+import { Game } from "../../utils";
 
 const stagger = 0.25;
 const variants = {
@@ -27,11 +28,13 @@ export const Home = () => {
   const { data: popularGames, isFetching } = useGetPopularGamesQuery();
 
   const newGames = useMemo(() => {
-    if (!allGames) return
+    if (!allGames) return;
     const gamesCopy = [...allGames];
 
     const sortedGames: Game[] = gamesCopy.sort((a: Game, b: Game) => {
-      return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+      return (
+        new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
+      );
     });
 
     return sortedGames.slice(0, 15);
@@ -47,16 +50,27 @@ export const Home = () => {
         <section
           className="bg-center bg-cover bg-no-repeat py-4 sm:py-14"
           style={{
-            backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(/bg-2.webp)"
+            backgroundImage:
+              "linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(/bg-2.webp)",
           }}
         >
           <div className="container mx-auto flex items-center justify-center flex-col">
             <div className="text-center max-w-[700px]">
               <h1 className="sm:text-4xl text-3xl mb-3 sm:mb-5 font-semibold text-white">
-                Hunt Down the Ultimate <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">Free-to-Play</span> Gaming Experiences!
+                Hunt Down the Ultimate{" "}
+                <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
+                  Free-to-Play
+                </span>{" "}
+                Gaming Experiences!
               </h1>
               <p className="mb-5 sm:text-[16px] text-[15px]">
-                Embark on a quest for the best free-to-play thrills! Discover diverse digital realms, each offering exciting adventures. Unleash the <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-semibold">ultimate gaming experiences</span> and let the quest begin!
+                Embark on a quest for the best free-to-play thrills! Discover
+                diverse digital realms, each offering exciting adventures.
+                Unleash the{" "}
+                <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-semibold">
+                  ultimate gaming experiences
+                </span>{" "}
+                and let the quest begin!
               </p>
               <p className="sm:text-3xl text-2xl mb-6 font-bold">
                 <span className="bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent">
@@ -110,48 +124,43 @@ export const Home = () => {
             </Button>
           </div>
           <SwiperSlider effect="coverflow">
-            {
-              isLoading ? (
-                [1, 2, 3, 4, 5, 6].map((item, index) => (
-                  <SwiperSlide key={item}>
-                    <motion.div
-                      variants={variants}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{
-                        delay: index * stagger,
-                        ease: "easeInOut",
-                        duration: 0.5,
-                      }}
-                      viewport={{ amount: 0 }}
-                    >
-                      <NewGameAddedSkeleton />
-                    </motion.div>
-                  </SwiperSlide>
-                ))
-              ) : (
-                newGames?.map((game: Game, index: number) => (
-                  <SwiperSlide key={game.id}>
-                    <motion.div
-                      variants={variants}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{
-                        delay: index * stagger,
-                        ease: "easeInOut",
-                        duration: 0.5,
-                      }}
-                      viewport={{ amount: 0 }}
-                    >
-                      <NewGamesAddedCard game={game} />
-                    </motion.div>
-                  </SwiperSlide>
-                ))
-              )
-            }
-
+            {isLoading
+              ? [1, 2, 3, 4, 5, 6].map((item, index) => (
+                <SwiperSlide key={item}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <NewGameAddedSkeleton />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+              : newGames?.map((game: Game, index: number) => (
+                <SwiperSlide key={game.id}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <NewGamesAddedCard game={game} />
+                  </motion.div>
+                </SwiperSlide>
+              ))}
           </SwiperSlider>
-        </section >
+        </section>
 
         <section className="dark-bg-2">
           <div className="container !py-10 pt-15">
@@ -173,27 +182,27 @@ export const Home = () => {
               </Button>
             </div>
             <SwiperSlider effect="slide">
-              {
-                isFetching ? (
-                  [1, 2, 3, 4, 5, 6].map((item, index) => (
-                    <SwiperSlide key={item}>
-                      <motion.div
-                        variants={variants}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{
-                          delay: index * stagger,
-                          ease: "easeInOut",
-                          duration: 0.5,
-                        }}
-                        viewport={{ amount: 0 }}
-                      >
-                        <MostPlayedGamesSkeleton />
-                      </motion.div>
-                    </SwiperSlide>
-                  ))
-                ) : (
-                  popularGames?.slice(0, 15)?.map((game: Game, index: number) => (
+              {isFetching
+                ? [1, 2, 3, 4, 5, 6].map((item, index) => (
+                  <SwiperSlide key={item}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <MostPlayedGamesSkeleton />
+                    </motion.div>
+                  </SwiperSlide>
+                ))
+                : popularGames
+                  ?.slice(0, 15)
+                  ?.map((game: Game, index: number) => (
                     <SwiperSlide key={game.id}>
                       <motion.div
                         variants={variants}
@@ -209,10 +218,7 @@ export const Home = () => {
                         <MostPlayedGamesCard game={game} />
                       </motion.div>
                     </SwiperSlide>
-                  ))
-                )
-              }
-
+                  ))}
             </SwiperSlider>
           </div>
         </section>
@@ -234,15 +240,18 @@ export const Home = () => {
         <section
           className="bg-top bg-cover bg-no-repeat py-4 sm:py-14 mt-10"
           style={{
-            backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/bg.webp)"
+            backgroundImage:
+              "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(/bg.webp)",
           }}
         >
           <div className="container mx-auto">
             <div className="py-24 flex flex-col sm:flex-row sm:items-start items-center mx-auto">
-              <h5
-                className="text-large sm:pr-16 mb-6 sm:mb-0 font-medium title-font text-white text-center sm:text-left"
-              >
-                Uncertain about your next gaming adventure? Explore our <br /> <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">exquisite collection of games</span> and discover the ideal match for your gaming desires!
+              <h5 className="text-large sm:pr-16 mb-6 sm:mb-0 font-medium title-font text-white text-center sm:text-left">
+                Uncertain about your next gaming adventure? Explore our <br />{" "}
+                <span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
+                  exquisite collection of games
+                </span>{" "}
+                and discover the ideal match for your gaming desires!
               </h5>
               <Button
                 endContent={<FaGamepad size={22} />}
@@ -258,7 +267,7 @@ export const Home = () => {
             </div>
           </div>
         </section>
-      </div >
+      </div>
     </>
-  )
-}
+  );
+};

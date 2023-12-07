@@ -1,15 +1,14 @@
 import { Card, CardHeader, CardFooter, Image, Chip } from "@nextui-org/react";
 import { FaWindows, FaFirefoxBrowser } from "react-icons/fa";
-import { Game } from "../../services"
-import { Link } from "react-router-dom"
+import { Game } from "../../utils";
+import { Link } from "react-router-dom";
 
 interface Props {
-    game: Game
+    game: Game;
 }
 
-
 export const MostPlayedGamesCard = (props: Props) => {
-    const game = props.game
+    const game = props.game;
 
     return (
         <Card
@@ -18,11 +17,8 @@ export const MostPlayedGamesCard = (props: Props) => {
             as={Link}
             to={`/game/${game?.id}`}
         >
-            <CardHeader
-                className="absolute py-8 px-[14px] flex-col z-10 w-full h-full opacity-0 transition-400 hover:opacity-100 bg-black/80">
-                <h5 className="font-bold text-large line-clamp-2">
-                    {game?.title}
-                </h5>
+            <CardHeader className="absolute py-8 px-[14px] flex-col z-10 w-full h-full opacity-0 transition-400 hover:opacity-100 bg-black/80">
+                <h5 className="font-bold text-large line-clamp-2">{game?.title}</h5>
                 <p className="text-default-500 text-tiny text-center line-clamp-3">
                     {game?.short_description?.slice(0, 100)}
                 </p>
@@ -32,32 +28,27 @@ export const MostPlayedGamesCard = (props: Props) => {
                 className="z-0 w-full h-full object-cover"
                 src={game?.thumbnail}
                 classNames={{
-                    wrapper: "!max-w-full"
+                    wrapper: "!max-w-full",
                 }}
             />
             <CardFooter className="absolute gap-5 bg-black/20 bottom-0 z-1">
-                <Chip color="default" >
-                    <span className="font-semibold">
-                        {game?.genre}
-                    </span>
+                <Chip color="default">
+                    <span className="font-semibold">{game?.genre}</span>
                 </Chip>
-                {
-                    game.platform === "PC (Windows)" ? (
-                        <Chip color="primary">
-                            <div className="flex items-center font-semibold">
-                                <FaWindows className="mr-1" /> Windows
-                            </div>
-                        </Chip>
-                    ) : (
-                        <Chip color="secondary">
-                            <div className="flex items-center font-semibold">
-                                <FaFirefoxBrowser className="mr-1" /> Browser
-                            </div>
-                        </Chip>
-                    )
-                }
-
+                {game.platform === "PC (Windows)" ? (
+                    <Chip color="primary">
+                        <div className="flex items-center font-semibold">
+                            <FaWindows className="mr-1" /> Windows
+                        </div>
+                    </Chip>
+                ) : (
+                    <Chip color="secondary">
+                        <div className="flex items-center font-semibold">
+                            <FaFirefoxBrowser className="mr-1" /> Browser
+                        </div>
+                    </Chip>
+                )}
             </CardFooter>
         </Card>
     );
-}
+};

@@ -1,11 +1,11 @@
-import React from 'react';
-import { hydrateRoot, createRoot } from 'react-dom/client';
-import App from './App'
-import { Provider } from 'react-redux';
-import { store } from './services';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import { hydrateRoot, createRoot } from "react-dom/client";
+import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./services";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const rootElement = document.getElementById('root') as HTMLElement
+const rootElement = document.getElementById("root") as HTMLElement;
 
 if (rootElement.hasChildNodes()) {
   hydrateRoot(
@@ -29,4 +29,3 @@ if (rootElement.hasChildNodes()) {
     </React.StrictMode>
   );
 }
-

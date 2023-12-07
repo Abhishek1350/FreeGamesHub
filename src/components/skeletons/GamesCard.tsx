@@ -24,5 +24,5 @@ export const GamesCardSkeleton = () => {
                 </Skeleton>
             </div>
         </div>
-    )
-}
+    );
+};

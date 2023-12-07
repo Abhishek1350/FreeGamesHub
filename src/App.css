@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #101418;
 }
@@ -12,7 +16,8 @@ body {
     padding: 1rem 1.5rem;
 }
 
-.swiper-button-next:after, .swiper-button-prev:after {
+.swiper-button-next:after,
+.swiper-button-prev:after {
     content: "" !important;
 }
 
@@ -60,5 +65,4 @@ body {
     .container {
         padding: 0.8rem;
     }
-
 }

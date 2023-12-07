@@ -1,13 +1,13 @@
 import { Image } from "@nextui-org/react";
-import { Game } from "../../services"
+import { Game } from "../../utils";
 import { Link } from "react-router-dom";
 
 interface Props {
-    game?: Game
+    game?: Game;
 }
 
 export const TopPicksCard = (props: Props) => {
-    const game = props.game
+    const game = props.game;
 
     return (
         <Link
@@ -19,7 +19,7 @@ export const TopPicksCard = (props: Props) => {
                 className="object-cover !w-full md:h-[250px]"
                 src={game?.thumbnail}
                 classNames={{
-                    wrapper: "!max-w-full"
+                    wrapper: "!max-w-full",
                 }}
             />
             <h2 className="title-font text-2xl font-medium text-white mt-5 mb-2 px-4 line-clamp-1">
@@ -29,5 +29,5 @@ export const TopPicksCard = (props: Props) => {
                 {game?.short_description}
             </p>
         </Link>
-    )
-}
+    );
+};
