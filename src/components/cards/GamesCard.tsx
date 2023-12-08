@@ -38,10 +38,10 @@ export const GamesCard = (props: Props) => {
                 </h3>
             )}
 
-            <h2 className="text-lg text-white font-medium title-font mb-2 line-clamp-1">
+            <h2 className="text-lg text-color-2 font-medium title-font mb-2 line-clamp-1">
                 {game?.title}
             </h2>
-            <p className="leading-relaxed text-tiny line-clamp-3">
+            <p className="leading-relaxed text-tiny text-color-3 line-clamp-3">
                 {game?.short_description}
             </p>
         </a>
