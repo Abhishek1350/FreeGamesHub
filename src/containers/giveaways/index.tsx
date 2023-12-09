@@ -1,4 +1,4 @@
-import { GiveawayCard, GamesCardSkeleton, HeadContent } from "../../components";
+import { GiveawayCard, HeadContent, GiveawayCardSkeleton } from "../../components";
 import { useGetGiveawaysQuery } from "../../services";
 import { motion } from "framer-motion";
 import { Giveaway } from "../../utils";
@@ -22,9 +22,9 @@ export const Giveaways = () => {
                 <div className="container px-5 py-24 mx-auto ">
                     <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {isLoading
-                            ? [1, 2, 3, 4, 5, 6].map((item, index) => (
+                            ? [1, 2, 3, 4, 5, 6].map((item) => (
                                 <div key={item} className="w-full md:w-1/3 sm:w-1/2 p-4">
-                                    <GamesCardSkeleton key={item} />
+                                    <GiveawayCardSkeleton key={item} />
                                 </div>
                             ))
                             : giveaways?.map((giveaway: Giveaway, index: number) => (

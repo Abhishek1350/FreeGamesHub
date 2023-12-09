@@ -10,6 +10,7 @@ import {
   NewGameAddedSkeleton,
   HeadContent,
   GiveawayCard,
+  GiveawayCardSkeleton,
 } from "../../components";
 import {
   useGetAllGamesQuery,
@@ -248,6 +249,7 @@ export const Home = () => {
               View All
             </Button>
           </div>
+
           <SwiperSlider effect="slide">
             {giveawayLoading
               ? [1, 2, 3, 4, 5, 6].map((item, index) => (
@@ -263,7 +265,7 @@ export const Home = () => {
                     }}
                     viewport={{ amount: 0 }}
                   >
-                    <MostPlayedGamesSkeleton />
+                    <GiveawayCardSkeleton />
                   </motion.div>
                 </SwiperSlide>
               ))

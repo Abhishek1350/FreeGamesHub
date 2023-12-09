@@ -24,7 +24,7 @@ const CustomPrevArrow = () => (
             left: "10px",
         }}
     >
-        <Button isIconOnly size="sm" color="default" radius="full">
+        <Button isIconOnly size="sm" color="warning" radius="full">
             <MdNavigateBefore />
         </Button>
     </div>
@@ -41,7 +41,7 @@ const CustomNextArrow = () => (
             right: "10px",
         }}
     >
-        <Button isIconOnly size="sm" color="default" radius="full">
+        <Button isIconOnly size="sm" color="warning" radius="full">
             <MdNavigateNext />
         </Button>
     </div>

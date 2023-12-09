@@ -9,10 +9,10 @@ export const SingleGameSkeleton = () => {
                 </Skeleton>
                 <div className="flex gap-5 items-center mt-5">
                     <Skeleton className="w-2/5 rounded-lg mb-2">
-                        <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                        <div className="h-8 rounded-lg bg-default-200"></div>
                     </Skeleton>
                     <Skeleton className="w-4/5 rounded-lg mb-2">
-                        <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                        <div className="h-8 rounded-lg bg-default-200"></div>
                     </Skeleton>
                 </div>
 
@@ -20,21 +20,10 @@ export const SingleGameSkeleton = () => {
                     <div className="xl:w-1/3 sm:w-1/2 w-full">
                         <div className="flex flex-col items-center justify-center ">
                             <Skeleton className="w-1/2 rounded-lg mb-2">
-                                <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                <div className="h-8 rounded-lg bg-default-200"></div>
                             </Skeleton>
                             <Skeleton className="w-1/2 rounded-lg mb-2">
-                                <div className="h-8 w-full rounded-lg bg-default-200"></div>
-                            </Skeleton>
-                        </div>
-                    </div>
-
-                    <div className="xl:w-1/3 sm:w-1/2 w-full">
-                        <div className="flex flex-col items-center justify-center ">
-                            <Skeleton className="w-1/2 rounded-lg mb-2">
-                                <div className="h-8 w-full rounded-lg bg-default-200"></div>
-                            </Skeleton>
-                            <Skeleton className="w-1/2 rounded-lg mb-2">
-                                <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                <div className="h-8 rounded-lg bg-default-200"></div>
                             </Skeleton>
                         </div>
                     </div>
@@ -42,10 +31,21 @@ export const SingleGameSkeleton = () => {
                     <div className="xl:w-1/3 sm:w-1/2 w-full">
                         <div className="flex flex-col items-center justify-center ">
                             <Skeleton className="w-1/2 rounded-lg mb-2">
-                                <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                <div className="h-8 rounded-lg bg-default-200"></div>
                             </Skeleton>
                             <Skeleton className="w-1/2 rounded-lg mb-2">
-                                <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                <div className="h-8 rounded-lg bg-default-200"></div>
+                            </Skeleton>
+                        </div>
+                    </div>
+
+                    <div className="xl:w-1/3 sm:w-1/2 w-full">
+                        <div className="flex flex-col items-center justify-center ">
+                            <Skeleton className="w-1/2 rounded-lg mb-2">
+                                <div className="h-8 rounded-lg bg-default-200"></div>
+                            </Skeleton>
+                            <Skeleton className="w-1/2 rounded-lg mb-2">
+                                <div className="h-8 rounded-lg bg-default-200"></div>
                             </Skeleton>
                         </div>
                     </div>
@@ -71,11 +71,11 @@ export const SingleGameSkeleton = () => {
                     </Skeleton>
 
                     <div className="border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
-                        <Skeleton className=" rounded-lg mb-2">
-                            <div className="h-4 w-full rounded-lg bg-default-200"></div>
+                        <Skeleton className="rounded-lg mb-2">
+                            <div className="h-4 rounded-lg bg-default-200"></div>
                         </Skeleton>
                         <Skeleton className="w-2/3 rounded-lg mb-2">
-                            <div className="h-4 w-full rounded-lg bg-default-200"></div>
+                            <div className="h-4 rounded-lg bg-default-200"></div>
                         </Skeleton>
                     </div>
                 </div>
@@ -87,17 +87,17 @@ export const SingleGameSkeleton = () => {
 
                     <div className="mb-6">
                         <Skeleton className=" rounded-lg mb-2">
-                            <div className="h-4 w-full rounded-lg bg-default-200"></div>
+                            <div className="h-4 rounded-lg bg-default-200"></div>
                         </Skeleton>
                         <Skeleton className=" rounded-lg mb-2">
-                            <div className="h-4 w-full rounded-lg bg-default-200"></div>
+                            <div className="h-4 rounded-lg bg-default-200"></div>
                         </Skeleton>
                         <Skeleton className=" rounded-lg mb-2">
-                            <div className="h-4 w-full rounded-lg bg-default-200"></div>
+                            <div className="h-4 rounded-lg bg-default-200"></div>
                         </Skeleton>
 
                         <Skeleton className="w-4/5 rounded-lg mb-2">
-                            <div className="h-4 w-full rounded-lg bg-default-200"></div>
+                            <div className="h-4 rounded-lg bg-default-200"></div>
                         </Skeleton>
                     </div>
 
@@ -109,21 +109,10 @@ export const SingleGameSkeleton = () => {
                         <div className="xl:w-1/3  w-full">
                             <div className="flex flex-col items-center justify-center ">
                                 <Skeleton className="w-full rounded-lg mb-2">
-                                    <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                    <div className="h-8 rounded-lg bg-default-200"></div>
                                 </Skeleton>
                                 <Skeleton className="w-full rounded-lg mb-2">
-                                    <div className="h-8 w-full rounded-lg bg-default-200"></div>
-                                </Skeleton>
-                            </div>
-                        </div>
-
-                        <div className="xl:w-1/3  w-full">
-                            <div className="flex flex-col items-center justify-center ">
-                                <Skeleton className="w-full rounded-lg mb-2">
-                                    <div className="h-8 w-full rounded-lg bg-default-200"></div>
-                                </Skeleton>
-                                <Skeleton className="w-full rounded-lg mb-2">
-                                    <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                    <div className="h-8 rounded-lg bg-default-200"></div>
                                 </Skeleton>
                             </div>
                         </div>
@@ -131,10 +120,21 @@ export const SingleGameSkeleton = () => {
                         <div className="xl:w-1/3  w-full">
                             <div className="flex flex-col items-center justify-center ">
                                 <Skeleton className="w-full rounded-lg mb-2">
-                                    <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                    <div className="h-8 rounded-lg bg-default-200"></div>
                                 </Skeleton>
                                 <Skeleton className="w-full rounded-lg mb-2">
-                                    <div className="h-8 w-full rounded-lg bg-default-200"></div>
+                                    <div className="h-8 rounded-lg bg-default-200"></div>
+                                </Skeleton>
+                            </div>
+                        </div>
+
+                        <div className="xl:w-1/3  w-full">
+                            <div className="flex flex-col items-center justify-center ">
+                                <Skeleton className="w-full rounded-lg mb-2">
+                                    <div className="h-8 rounded-lg bg-default-200"></div>
+                                </Skeleton>
+                                <Skeleton className="w-full rounded-lg mb-2">
+                                    <div className="h-8 rounded-lg bg-default-200"></div>
                                 </Skeleton>
                             </div>
                         </div>
