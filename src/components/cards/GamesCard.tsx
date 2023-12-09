@@ -21,7 +21,7 @@ export const GamesCard = (props: Props) => {
             href="/"
         >
             <Image
-                className=" rounded w-full object-cover object-center mb-6"
+                className="rounded w-full object-cover object-center mb-6"
                 src={game?.thumbnail}
                 alt={game?.title}
                 classNames={{
