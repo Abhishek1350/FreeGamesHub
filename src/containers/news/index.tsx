@@ -3,7 +3,7 @@ import { useGetNewsQuery } from "../../services";
 import { motion } from "framer-motion";
 import { News as NewsInterface } from "../../utils";
 
-const stagger = 0.3;
+const stagger = 0.07;
 const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },

@@ -15,7 +15,7 @@ export const MostPlayedGamesCard = (props: Props) => {
             isPressable
             className="relative w-full aspect-[16/9]  overflow-hidden hover:scale-105"
             as={Link}
-            to={`/game/${game?.id}`}
+            to={`/games/${game?.id}`}
         >
             <CardHeader className="absolute py-8 px-[14px] flex-col z-10 w-full h-full opacity-0 transition-400 hover:opacity-100 bg-black/80">
                 <h5 className="font-bold text-large line-clamp-2 text-color-2">{game?.title}</h5>

@@ -16,7 +16,7 @@ export const GamesCard = (props: Props) => {
             className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[341px] hover:scale-105 transition-400"
             onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                 e.preventDefault();
-                handleNavigate(`/game/${game?.id}`);
+                handleNavigate(`/games/${game?.id}`);
             }}
             href="/"
         >

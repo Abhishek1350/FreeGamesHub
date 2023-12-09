@@ -14,8 +14,8 @@ import {
 } from "../../utils";
 
 export const SingleGame = () => {
-  const { id } = useParams<{ id: string }>();
-  const { data: game, isLoading } = useGetGameDetailsQuery(Number(id));
+  const { gameId } = useParams<{ gameId: string }>();
+  const { data: game, isLoading } = useGetGameDetailsQuery(Number(gameId));
   const location = useLocation();
 
   return (

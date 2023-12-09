@@ -37,7 +37,7 @@ export const Sitemap = () => {
             {popularGames &&
               popularGames.slice(15, 75).map((game) => (
                 <li key={game.id} className="mb-1">
-                  <Link to={`/game/${game.id}`}>{game.title}</Link>
+                  <Link to={`/games/${game.id}`}>{game.title}</Link>
                 </li>
               ))}
           </ul>

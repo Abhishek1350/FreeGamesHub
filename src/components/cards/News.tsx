@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import { News } from "../../utils";
+import { Link } from "react-router-dom";
 
 interface Props {
     news: News;
@@ -9,7 +10,12 @@ export const NewsCard = (props: Props) => {
     const news = props.news;
 
     return (
-        <Card isPressable className="bg-transparent rounded cursor-pointer hover:scale-105 transition-400">
+        <Card
+            isPressable
+            className="bg-transparent rounded cursor-pointer hover:scale-105 transition-400"
+            as={Link}
+            to={`/news/${news?.id}`}
+        >
             <CardHeader className="p-0">
                 <Image
                     className="rounded w-full object-cover"

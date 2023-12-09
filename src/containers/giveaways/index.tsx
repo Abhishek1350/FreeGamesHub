@@ -3,7 +3,7 @@ import { useGetGiveawaysQuery } from "../../services";
 import { motion } from "framer-motion";
 import { Giveaway } from "../../utils";
 
-const stagger = 0.3;
+const stagger = 0.07;
 const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },

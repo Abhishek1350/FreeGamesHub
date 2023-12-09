@@ -15,7 +15,7 @@ export const NewGamesAddedCard = (props: Props) => {
             isPressable
             className="py-4 shadow-inset-1 cursor-pointer hover:scale-105 transition-400 w-full dark-bg-1"
             as={Link}
-            to={`/game/${game?.id}`}
+            to={`/games/${game?.id}`}
         >
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 {game.platform === "PC (Windows)" ? (
