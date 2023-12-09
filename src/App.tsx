@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { Home, Games, SingleGame, Giveaways, Sitemap } from "./containers";
+import { Home, Games, SingleGame, Giveaways, News, Sitemap, PageNotFound } from "./containers";
 import { Navbar, Footer, ScrollToTop } from "./components";
 import { NextUIProvider } from "@nextui-org/react";
 
@@ -17,7 +17,9 @@ export default function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/game/:id" element={<SingleGame />} />
           <Route path="/giveaways" element={<Giveaways />} />
+          <Route path="/news" element={<News />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
       <Footer />
