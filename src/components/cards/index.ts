@@ -1,4 +1,5 @@
 export * from "./NewGameAdded"
 export * from "./MostPlayedGames"
-export * from "./Giveaways"
 export * from "./GamesCard"
+export * from "./Giveaways"
+export * from "./News"
