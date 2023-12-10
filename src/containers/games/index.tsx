@@ -6,7 +6,7 @@ import { useSize } from "../../utils";
 import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { Game } from "../../utils";
 
-const stagger = 0.3;
+const stagger = 0.07;
 const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },

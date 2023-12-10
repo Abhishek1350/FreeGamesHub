@@ -16,12 +16,12 @@ export const GamesCard = (props: Props) => {
             className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[341px] hover:scale-105 transition-400"
             onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
                 e.preventDefault();
-                handleNavigate(`/game/${game?.id}`);
+                handleNavigate(`/games/${game?.id}`);
             }}
             href="/"
         >
             <Image
-                className=" rounded w-full object-cover object-center mb-6"
+                className="rounded w-full object-cover object-center mb-6"
                 src={game?.thumbnail}
                 alt={game?.title}
                 classNames={{
@@ -38,10 +38,10 @@ export const GamesCard = (props: Props) => {
                 </h3>
             )}
 
-            <h2 className="text-lg text-white font-medium title-font mb-2 line-clamp-1">
+            <h2 className="text-lg text-color-2 font-medium title-font mb-2 line-clamp-1">
                 {game?.title}
             </h2>
-            <p className="leading-relaxed text-tiny line-clamp-3">
+            <p className="leading-relaxed text-tiny text-color-3 line-clamp-3">
                 {game?.short_description}
             </p>
         </a>

@@ -73,15 +73,15 @@ export const Footer = () => {
                     </a>{" "}
                     &{" "}
                     <a
-                        href="https://rapidapi.com/digiwalls/api/free-to-play-games-database"
+                        href="https://www.mmobomb.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-500 underline"
                     >
                         {" "}
-                        rapidapi.com
+                        MMOBomb.com
                     </a>{" "}
-                    for providing awesome API
+                    for providing awesome APIs
                 </p>
             </div>
         </footer>

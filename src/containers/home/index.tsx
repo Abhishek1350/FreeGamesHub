@@ -6,16 +6,24 @@ import {
   SwiperSlider,
   NewGamesAddedCard,
   MostPlayedGamesCard,
-  TopPicksCard,
   MostPlayedGamesSkeleton,
   NewGameAddedSkeleton,
   HeadContent,
+  GiveawayCard,
+  GiveawayCardSkeleton,
+  NewsCard,
+  NewsCardSkeleton,
 } from "../../components";
-import { useGetAllGamesQuery, useGetPopularGamesQuery } from "../../services";
+import {
+  useGetAllGamesQuery,
+  useGetPopularGamesQuery,
+  useGetGiveawaysQuery,
+  useGetNewsQuery
+} from "../../services";
 import { useMemo } from "react";
 import { SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
-import { Game } from "../../utils";
+import { Game, Giveaway, News } from "../../utils";
 
 const stagger = 0.25;
 const variants = {
@@ -24,8 +32,10 @@ const variants = {
 };
 
 export const Home = () => {
-  const { data: allGames, isLoading } = useGetAllGamesQuery();
-  const { data: popularGames, isFetching } = useGetPopularGamesQuery();
+  const { data: allGames, isLoading: allGamesLoading } = useGetAllGamesQuery();
+  const { data: popularGames, isLoading: popularGamesLoading } = useGetPopularGamesQuery();
+  const { data: giveaways, isLoading: giveawayLoading } = useGetGiveawaysQuery();
+  const { data: news, isLoading: newsLoading } = useGetNewsQuery();
 
   const newGames = useMemo(() => {
     if (!allGames) return;
@@ -124,7 +134,7 @@ export const Home = () => {
             </Button>
           </div>
           <SwiperSlider effect="coverflow">
-            {isLoading
+            {allGamesLoading
               ? [1, 2, 3, 4, 5, 6].map((item, index) => (
                 <SwiperSlide key={item}>
                   <motion.div
@@ -182,7 +192,7 @@ export const Home = () => {
               </Button>
             </div>
             <SwiperSlider effect="slide">
-              {isFetching
+              {popularGamesLoading
                 ? [1, 2, 3, 4, 5, 6].map((item, index) => (
                   <SwiperSlide key={item}>
                     <motion.div
@@ -227,14 +237,120 @@ export const Home = () => {
           <div className="flex justify-between items-center mb-5">
             <h4 className="sm:text-3xl text-2xl">
               <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
-                Community Recommendations
+                Latest Gaming News
               </span>
             </h4>
+            <Button
+              endContent={<MdNavigateNext size={22} />}
+              color="primary"
+              variant="light"
+              className="font-semibold px-1 gap-0"
+              as={Link}
+              to="/news"
+            >
+              View All
+            </Button>
           </div>
-          <div className="flex justify-center gap-10 flex-wrap sm:flex-nowrap md:justify-between">
-            <TopPicksCard game={newGames && newGames[newGames.length - 1]} />
-            <TopPicksCard game={newGames && newGames[newGames.length - 2]} />
+
+          <SwiperSlider effect="slide">
+            {newsLoading
+              ? [1, 2, 3, 4, 5, 6].map((item, index) => (
+                <SwiperSlide key={item}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <NewsCardSkeleton />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+              : news
+                ?.slice(0, 3)
+                ?.map((news: News, index: number) => (
+                  <SwiperSlide key={news.id}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <NewsCard news={news} />
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+          </SwiperSlider>
+        </section>
+
+        <section className="container !py-10 pt-15">
+          <div className="flex justify-between items-center mb-5">
+            <h4 className="sm:text-3xl text-2xl">
+              <span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
+                Giveaways
+              </span>
+            </h4>
+            <Button
+              endContent={<MdNavigateNext size={22} />}
+              color="primary"
+              variant="light"
+              className="font-semibold px-1 gap-0"
+              as={Link}
+              to="/giveaways"
+            >
+              View All
+            </Button>
           </div>
+
+          <SwiperSlider effect="slide">
+            {giveawayLoading
+              ? [1, 2, 3, 4, 5, 6].map((item, index) => (
+                <SwiperSlide key={item}>
+                  <motion.div
+                    variants={variants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{
+                      delay: index * stagger,
+                      ease: "easeInOut",
+                      duration: 0.5,
+                    }}
+                    viewport={{ amount: 0 }}
+                  >
+                    <GiveawayCardSkeleton />
+                  </motion.div>
+                </SwiperSlide>
+              ))
+              : giveaways
+                ?.slice(0, 3)
+                ?.map((giveaway: Giveaway, index: number) => (
+                  <SwiperSlide key={giveaway.id}>
+                    <motion.div
+                      variants={variants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{
+                        delay: index * stagger,
+                        ease: "easeInOut",
+                        duration: 0.5,
+                      }}
+                      viewport={{ amount: 0 }}
+                    >
+                      <GiveawayCard giveaway={giveaway} />
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+          </SwiperSlider>
         </section>
 
         <section

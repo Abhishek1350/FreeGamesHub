@@ -38,3 +38,27 @@ export interface Game {
 }
 
 export type GamesResponse = Game[]
+
+export interface News {
+    id: number
+    title : string
+    short_description: string
+    thumbnail: string
+    main_image: string
+    article_content: string
+    article_url: string
+}
+
+export type NewsResponse = News[]
+
+export interface Giveaway {
+    id: number
+    title: string
+    keys_left: string
+    thumbnail: string
+    main_image: string
+    short_description: string
+    giveaway_url: string
+}
+
+export type GiveawaysResponse = Giveaway[]

@@ -15,7 +15,7 @@ export const NewGamesAddedCard = (props: Props) => {
             isPressable
             className="py-4 shadow-inset-1 cursor-pointer hover:scale-105 transition-400 w-full dark-bg-1"
             as={Link}
-            to={`/game/${game?.id}`}
+            to={`/games/${game?.id}`}
         >
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 {game.platform === "PC (Windows)" ? (
@@ -27,8 +27,8 @@ export const NewGamesAddedCard = (props: Props) => {
                         Browser <FaFirefoxBrowser className="inline ml-1 " />
                     </p>
                 )}
-                <small className="text-default-500 mb-1">{game?.genre}</small>
-                <h4 className="font-bold text-large text-white text-left line-clamp-1">
+                <small className="text-color-3 mb-1">{game?.genre}</small>
+                <h4 className="font-bold text-large text-color-2 text-left line-clamp-1">
                     {game?.title}
                 </h4>
             </CardHeader>
