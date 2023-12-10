@@ -1,6 +1,6 @@
 import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import { News } from "../../utils";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     news: News;
@@ -8,13 +8,13 @@ interface Props {
 
 export const NewsCard = (props: Props) => {
     const news = props.news;
+    const navigate = useNavigate();
 
     return (
         <Card
             isPressable
             className="bg-transparent rounded cursor-pointer hover:scale-105 transition-400"
-            as={Link}
-            to={`/news/${news?.id}`}
+            onClick={() => navigate(`/news/${news.id}`)}
         >
             <CardHeader className="p-0">
                 <Image
