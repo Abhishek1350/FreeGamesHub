@@ -8,7 +8,6 @@ import {
   News,
   Sitemap,
   PageNotFound,
-  SingleNews,
 } from "./containers";
 import { Navbar, Footer, ScrollToTop } from "./components";
 import { NextUIProvider } from "@nextui-org/react";
@@ -27,7 +26,6 @@ export default function App() {
           <Route path="/games/:gameId" element={<SingleGame />} />
           <Route path="/giveaways" element={<Giveaways />} />
           <Route path="/news" element={<News />} />
-          <Route path="/news/:newsId" element={<SingleNews />} />
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
