@@ -1,7 +1,7 @@
-import { HeadContent, SingleGameSkeleton } from "../../components";
+import { HeadContent, SingleGameSkeleton, ImageSliderModal } from "../../components";
 import { useParams, useLocation } from "react-router-dom";
 import { useGetGameDetailsQuery } from "../../services";
-import { Image, Button, Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
+import { Image, Button, Breadcrumbs, BreadcrumbItem, useDisclosure } from "@nextui-org/react";
 import { IoMdExit } from "react-icons/io";
 import { ImSad, ImHappy } from "react-icons/im";
 import { VscDiffAdded } from "react-icons/vsc";
@@ -12,11 +12,20 @@ import {
   getPriousPathname,
   Screenshot,
 } from "../../utils";
+import { useState } from "react";
 
 export const SingleGame = () => {
   const { gameId } = useParams<{ gameId: string }>();
   const { data: game, isLoading } = useGetGameDetailsQuery(Number(gameId));
   const location = useLocation();
+
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const handleOpenImageSliderModal = (index: number) => {
+    setCurrentImage(index);
+    onOpen();
+  };
 
   return (
     <>
@@ -187,7 +196,7 @@ export const SingleGame = () => {
                     </h4>
 
                     <div className="flex flex-wrap  gap-5">
-                      {game?.screenshots?.map((screenshot: Screenshot) => (
+                      {game?.screenshots?.map((screenshot: Screenshot, index) => (
                         <div
                           key={screenshot?.id}
                           className="md:w-[31%] md:max-h[200px]"
@@ -196,10 +205,11 @@ export const SingleGame = () => {
                             src={screenshot?.image}
                             alt={game?.title}
                             radius="sm"
-                            className="w-full h-full"
+                            className="w-full h-full cursor-pointer"
                             classNames={{
                               wrapper: "!max-w-full h-full",
                             }}
+                            onClick={() => handleOpenImageSliderModal(index)}
                           />
                         </div>
                       ))}
@@ -237,6 +247,13 @@ export const SingleGame = () => {
           </div>
         )}
       </section>
+
+      <ImageSliderModal
+        isOpen={isOpen}
+        onClose={onClose}
+        images={game?.screenshots || []}
+        currentImage={currentImage}
+      />
     </>
   );
 };
