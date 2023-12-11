@@ -52,7 +52,6 @@ const CustomNextArrow = () => (
 
 export const ImageSliderModal = (props: Props) => {
     const { isOpen, onClose, images, currentImage } = props;
-    console.log(props);
 
     return (
         <Modal
