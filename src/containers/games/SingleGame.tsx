@@ -157,41 +157,6 @@ export const SingleGame = () => {
 
                   <div className="mt-6">
                     <h4 className="text-2xl font-semibold text-color-3 mb-4">
-                      More Info
-                    </h4>
-
-                    <div className="flex flex-wrap border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
-                      <div>
-                        <p className="leading-relaxed text-base text-color-3 ">
-                          Developer
-                        </p>
-                        <h6 className="text-lg text-color-2 font-medium title-font">
-                          {game?.developer}
-                        </h6>
-                      </div>
-
-                      <div>
-                        <p className="leading-relaxed text-base text-color-3 ">
-                          Publisher
-                        </p>
-                        <h6 className="text-lg text-color-2 font-medium title-font">
-                          {game?.publisher}
-                        </h6>
-                      </div>
-
-                      <div>
-                        <p className="leading-relaxed text-base text-color-3 ">
-                          Release Date
-                        </p>
-                        <h6 className="text-lg text-color-2 font-medium title-font">
-                          {game?.release_date?.toString()}
-                        </h6>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <h4 className="text-2xl font-semibold text-color-3 mb-4">
                       Screenshots
                     </h4>
 
@@ -241,6 +206,41 @@ export const SingleGame = () => {
                       No System Requirements available for this game.
                     </p>
                   )}
+
+                  <div className="mt-6">
+                    <h4 className="text-2xl font-semibold text-color-3 mb-4">
+                      More Info
+                    </h4>
+
+                    <div className="flex flex-wrap border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
+                      <div>
+                        <p className="leading-relaxed text-base text-color-3 ">
+                          Developer
+                        </p>
+                        <h6 className="text-lg text-color-2 font-medium title-font">
+                          {game?.developer}
+                        </h6>
+                      </div>
+
+                      <div>
+                        <p className="leading-relaxed text-base text-color-3 ">
+                          Publisher
+                        </p>
+                        <h6 className="text-lg text-color-2 font-medium title-font">
+                          {game?.publisher}
+                        </h6>
+                      </div>
+
+                      <div>
+                        <p className="leading-relaxed text-base text-color-3 ">
+                          Release Date
+                        </p>
+                        <h6 className="text-lg text-color-2 font-medium title-font">
+                          {game?.release_date?.toString()}
+                        </h6>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
