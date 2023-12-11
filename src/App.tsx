@@ -17,9 +17,9 @@ export default function App() {
 
   return (
     <NextUIProvider navigate={navigate}>
-      <ScrollToTop />
       <Navbar />
       <main className="dark text-foreground bg-background">
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/games" element={<Games />} />

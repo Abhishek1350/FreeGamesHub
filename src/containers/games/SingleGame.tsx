@@ -1,7 +1,7 @@
-import { HeadContent, SingleGameSkeleton } from "../../components";
+import { HeadContent, SingleGameSkeleton, ImageSliderModal } from "../../components";
 import { useParams, useLocation } from "react-router-dom";
 import { useGetGameDetailsQuery } from "../../services";
-import { Image, Button, Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
+import { Image, Button, Breadcrumbs, BreadcrumbItem, useDisclosure } from "@nextui-org/react";
 import { IoMdExit } from "react-icons/io";
 import { ImSad, ImHappy } from "react-icons/im";
 import { VscDiffAdded } from "react-icons/vsc";
@@ -12,11 +12,20 @@ import {
   getPriousPathname,
   Screenshot,
 } from "../../utils";
+import { useState } from "react";
 
 export const SingleGame = () => {
   const { gameId } = useParams<{ gameId: string }>();
   const { data: game, isLoading } = useGetGameDetailsQuery(Number(gameId));
   const location = useLocation();
+
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const handleOpenImageSliderModal = (index: number) => {
+    setCurrentImage(index);
+    onOpen();
+  };
 
   return (
     <>
@@ -148,6 +157,58 @@ export const SingleGame = () => {
 
                   <div className="mt-6">
                     <h4 className="text-2xl font-semibold text-color-3 mb-4">
+                      Screenshots
+                    </h4>
+
+                    <div className="flex flex-wrap  gap-5">
+                      {game?.screenshots?.map((screenshot: Screenshot, index) => (
+                        <div
+                          key={screenshot?.id}
+                          className="md:w-[31%] md:max-h[200px]"
+                        >
+                          <Image
+                            src={screenshot?.image}
+                            alt={game?.title}
+                            radius="sm"
+                            className="w-full h-full cursor-pointer"
+                            classNames={{
+                              wrapper: "!max-w-full h-full",
+                            }}
+                            onClick={() => handleOpenImageSliderModal(index)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {getRequirements(game?.minimum_system_requirements).length ? (
+                    <div className="mt-6">
+                      <h4 className="text-2xl font-semibold text-color-3 mb-4">
+                        System Requirements
+                      </h4>
+                      <div className="flex flex-wrap border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
+                        {getRequirements(game?.minimum_system_requirements).map(
+                          (requirement, index) => (
+                            <div key={index} className="md:w-[46%] px-3">
+                              <p className="leading-relaxed text-base text-color-3 uppercase">
+                                {requirement?.name}
+                              </p>
+                              <h6 className="text-base text-color-2 font-medium title-font">
+                                {requirement?.value}
+                              </h6>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-color-2 mb-2 mt-6">
+                      No System Requirements available for this game.
+                    </p>
+                  )}
+
+                  <div className="mt-6">
+                    <h4 className="text-2xl font-semibold text-color-3 mb-4">
                       More Info
                     </h4>
 
@@ -180,63 +241,19 @@ export const SingleGame = () => {
                       </div>
                     </div>
                   </div>
-
-                  <div className="mt-6">
-                    <h4 className="text-2xl font-semibold text-color-3 mb-4">
-                      Screenshots
-                    </h4>
-
-                    <div className="flex flex-wrap  gap-5">
-                      {game?.screenshots?.map((screenshot: Screenshot) => (
-                        <div
-                          key={screenshot?.id}
-                          className="md:w-[31%] md:max-h[200px]"
-                        >
-                          <Image
-                            src={screenshot?.image}
-                            alt={game?.title}
-                            radius="sm"
-                            className="w-full h-full"
-                            classNames={{
-                              wrapper: "!max-w-full h-full",
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {getRequirements(game?.minimum_system_requirements).length ? (
-                    <div className="mt-6">
-                      <h4 className="text-2xl font-semibold text-color-3 mb-4">
-                        System Requirements
-                      </h4>
-                      <div className="flex flex-wrap border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
-                        {getRequirements(game?.minimum_system_requirements).map(
-                          (requirement, index) => (
-                            <div key={index} className="md:w-[46%] px-3">
-                              <p className="leading-relaxed text-base text-color-3 uppercase">
-                                {requirement?.name}
-                              </p>
-                              <h6 className="text-base text-color-2 font-medium title-font">
-                                {requirement?.value}
-                              </h6>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-color-2 mb-2 mt-6">
-                      No System Requirements available for this game.
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
           </div>
         )}
       </section>
+
+      <ImageSliderModal
+        isOpen={isOpen}
+        onClose={onClose}
+        images={game?.screenshots || []}
+        currentImage={currentImage}
+      />
     </>
   );
 };
