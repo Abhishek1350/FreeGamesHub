@@ -22,9 +22,9 @@ export const Giveaways = () => {
                 <div className="container px-5 py-24 mx-auto ">
                     <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {isLoading
-                            ? [1, 2, 3, 4, 5, 6].map((item) => (
-                                <div key={item} className="w-full md:w-1/3 sm:w-1/2 p-4">
-                                    <GiveawayCardSkeleton key={item} />
+                            ? [...Array(6)].map((_, index) => (
+                                <div key={index} className="w-full md:w-1/3 sm:w-1/2 p-4">
+                                    <GiveawayCardSkeleton key={index} />
                                 </div>
                             ))
                             : giveaways?.map((giveaway: Giveaway, index: number) => (

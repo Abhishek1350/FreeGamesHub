@@ -5,9 +5,7 @@ interface Props {
     news: News;
 }
 
-export const NewsCard = (props: Props) => {
-    const news = props.news;
-
+export const NewsCard = ({ news }: Props) => {
     return (
         <Card
             isPressable

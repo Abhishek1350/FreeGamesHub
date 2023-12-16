@@ -135,8 +135,8 @@ export const Home = () => {
           </div>
           <SwiperSlider effect="coverflow">
             {allGamesLoading
-              ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
+              ? [...Array(3)].map((_, index) => (
+                <SwiperSlide key={index}>
                   <motion.div
                     variants={variants}
                     initial="hidden"
@@ -193,8 +193,8 @@ export const Home = () => {
             </div>
             <SwiperSlider effect="slide">
               {popularGamesLoading
-                ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                  <SwiperSlide key={item}>
+                ? [...Array(3)].map((_, index) => (
+                  <SwiperSlide key={index}>
                     <motion.div
                       variants={variants}
                       initial="hidden"
@@ -254,8 +254,8 @@ export const Home = () => {
 
           <SwiperSlider effect="slide">
             {newsLoading
-              ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
+              ? [...Array(3)].map((_, index) => (
+                <SwiperSlide key={index}>
                   <motion.div
                     variants={variants}
                     initial="hidden"
@@ -314,8 +314,8 @@ export const Home = () => {
 
           <SwiperSlider effect="slide">
             {giveawayLoading
-              ? [1, 2, 3, 4, 5, 6].map((item, index) => (
-                <SwiperSlide key={item}>
+              ? [...Array(3)].map((_, index) => (
+                <SwiperSlide key={index}>
                   <motion.div
                     variants={variants}
                     initial="hidden"

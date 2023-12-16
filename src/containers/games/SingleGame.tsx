@@ -169,26 +169,34 @@ export const SingleGame = () => {
                       Screenshots
                     </h4>
 
-                    <div className="flex flex-wrap  gap-5">
-                      {game?.screenshots?.map(
-                        (screenshot: Screenshot, index) => (
-                          <div
-                            key={screenshot?.id}
-                            className="md:w-[31%] md:max-h[200px]"
-                          >
-                            <Image
-                              src={screenshot?.image}
-                              alt={game?.title}
-                              radius="sm"
-                              className="w-full h-full cursor-pointer"
-                              classNames={{
-                                wrapper: "!max-w-full h-full",
-                              }}
-                              onClick={() => handleOpenImageSliderModal(index)}
-                            />
-                          </div>
+                    <div className="flex flex-wrap gap-3">
+                      {
+                        !game?.screenshots.length ? (
+                          <p className="text-color-2 mb-2">
+                            No Screenshots available for this game.
+                          </p>
+                        ) : (
+                          game?.screenshots?.map(
+                            (screenshot: Screenshot, index) => (
+                              <div
+                                key={screenshot?.id}
+                                className="md:w-[49%]"
+                              >
+                                <Image
+                                  src={screenshot?.image}
+                                  alt={game?.title}
+                                  radius="sm"
+                                  className="w-full h-full md:max-h-[180px] object-cover cursor-pointer"
+                                  classNames={{
+                                    wrapper: "!max-w-full",
+                                  }}
+                                  onClick={() => handleOpenImageSliderModal(index)}
+                                />
+                              </div>
+                            )
+                          )
                         )
-                      )}
+                      }
                     </div>
                   </div>
 
@@ -197,10 +205,10 @@ export const SingleGame = () => {
                       <h4 className="text-2xl font-semibold text-color-3 mb-4">
                         System Requirements
                       </h4>
-                      <div className="flex flex-wrap border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
+                      <div className="flex flex-wrap border gap-5 sm:gap-8 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
                         {getRequirements(game?.minimum_system_requirements).map(
                           (requirement, index) => (
-                            <div key={index} className="md:w-[46%] px-3">
+                            <div key={index} className="md:w-[46%] flex flex-col justify-center p-3 shadow-inset-1 rounded">
                               <p className="leading-relaxed text-base text-color-3 uppercase">
                                 {requirement?.name}
                               </p>
@@ -213,9 +221,14 @@ export const SingleGame = () => {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-color-2 mb-2 mt-6">
-                      No System Requirements available for this game.
-                    </p>
+                    <div className="mt-6">
+                      <h4 className="text-2xl font-semibold text-color-3 mb-4">
+                        System Requirements
+                      </h4>
+                      <p className="text-color-2">
+                        No System Requirements available for this game.
+                      </p>
+                    </div>
                   )}
 
                   <div className="mt-6">

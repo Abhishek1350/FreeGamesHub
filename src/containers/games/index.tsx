@@ -74,9 +74,9 @@ export const Games = () => {
                     <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {
                             isLoading ? (
-                                [1, 2, 3, 4, 5, 6].map((item, index) => (
-                                    <div key={item} className="w-full md:w-1/3 sm:w-1/2 p-4">
-                                        <GamesCardSkeleton key={item} />
+                                [...Array(6)].map((_, index) => (
+                                    <div key={index} className="w-full md:w-1/3 sm:w-1/2 p-4">
+                                        <GamesCardSkeleton key={index} />
                                     </div>
                                 ))
                             ) : (

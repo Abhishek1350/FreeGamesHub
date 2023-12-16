@@ -10,7 +10,6 @@ export const HeadContent = (props: {
             <meta name="description" content={props.description} />
             <meta property="og:description" content={props.description} />
             <meta property="og:title" content={props.title} />
-            <link rel="canonical" href={window.location.href} />
         </Helmet>
     );
 };
