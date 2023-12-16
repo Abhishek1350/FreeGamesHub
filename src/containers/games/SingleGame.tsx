@@ -1,7 +1,18 @@
-import { HeadContent, SingleGameSkeleton, ImageSliderModal } from "../../components";
+import {
+  HeadContent,
+  SingleGameSkeleton,
+  ImageSliderModal,
+  Recommendations,
+} from "../../components";
 import { useParams, useLocation } from "react-router-dom";
 import { useGetGameDetailsQuery } from "../../services";
-import { Image, Button, Breadcrumbs, BreadcrumbItem, useDisclosure } from "@nextui-org/react";
+import {
+  Image,
+  Button,
+  Breadcrumbs,
+  BreadcrumbItem,
+  useDisclosure,
+} from "@nextui-org/react";
 import { IoMdExit } from "react-icons/io";
 import { ImSad, ImHappy } from "react-icons/im";
 import { VscDiffAdded } from "react-icons/vsc";
@@ -33,15 +44,13 @@ export const SingleGame = () => {
         title={`${game?.title} | FreeGamesHub`}
         description={game?.short_description}
       />
-      <section className="text-gray-400 dark-bg-1 shadow-inset-1 body-font min-h-[80dvh]">
+      <section className="text-gray-400 dark-bg-1 body-font min-h-[80dvh] pb-10 pt-2">
         {isLoading ? (
-          <div className="container py-24 mx-auto flex flex-col">
-            <SingleGameSkeleton />
-          </div>
+          <SingleGameSkeleton />
         ) : (
           <div className="container py-24 mx-auto flex flex-col">
             <div className="flex flex-col sm:flex-row ">
-              <div className="sm:w-1/3 text-center sm:pr-4 sm:py-2 px-2 max-h-full sm:max-h-[60vh] static sm:sticky top-[80px]">
+              <div className="sm:w-1/3 text-center sm:pr-4 sm:py-2 px-2 sm:px-0 max-h-full sm:max-h-[60vh] static sm:sticky top-[80px]">
                 <Image
                   src={game?.thumbnail}
                   alt={game?.title}
@@ -110,7 +119,7 @@ export const SingleGame = () => {
                 </div>
               </div>
 
-              <div className="sm:w-2/3 sm:pl-4 sm:py-2 px-2 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-6 sm:mt-0">
+              <div className="sm:w-2/3 sm:pl-4 sm:py-2 px-2 sm:px-0 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-6 sm:mt-0">
                 <div className="header mb-6">
                   <Breadcrumbs size="sm" className="mb-2">
                     <BreadcrumbItem href="/">Home</BreadcrumbItem>
@@ -161,23 +170,25 @@ export const SingleGame = () => {
                     </h4>
 
                     <div className="flex flex-wrap  gap-5">
-                      {game?.screenshots?.map((screenshot: Screenshot, index) => (
-                        <div
-                          key={screenshot?.id}
-                          className="md:w-[31%] md:max-h[200px]"
-                        >
-                          <Image
-                            src={screenshot?.image}
-                            alt={game?.title}
-                            radius="sm"
-                            className="w-full h-full cursor-pointer"
-                            classNames={{
-                              wrapper: "!max-w-full h-full",
-                            }}
-                            onClick={() => handleOpenImageSliderModal(index)}
-                          />
-                        </div>
-                      ))}
+                      {game?.screenshots?.map(
+                        (screenshot: Screenshot, index) => (
+                          <div
+                            key={screenshot?.id}
+                            className="md:w-[31%] md:max-h[200px]"
+                          >
+                            <Image
+                              src={screenshot?.image}
+                              alt={game?.title}
+                              radius="sm"
+                              className="w-full h-full cursor-pointer"
+                              classNames={{
+                                wrapper: "!max-w-full h-full",
+                              }}
+                              onClick={() => handleOpenImageSliderModal(index)}
+                            />
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
 
@@ -243,6 +254,13 @@ export const SingleGame = () => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className="w-full mt-6 px-2 sm:px-0">
+              <h4 className="text-2xl font-semibold text-color-3 mb-3">
+                You May Also Like
+              </h4>
+              <Recommendations key={gameId} />
             </div>
           </div>
         )}
