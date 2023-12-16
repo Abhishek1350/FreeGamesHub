@@ -22,9 +22,9 @@ export const News = () => {
                 <div className="container px-5 py-24 mx-auto ">
                     <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {isLoading
-                            ? [1, 2, 3, 4, 5, 6].map((item) => (
-                                <div key={item} className="md:w-1/3 sm:w-1/2 w-full p-5">
-                                    <NewsCardSkeleton key={item} />
+                            ? [...Array(6)].map((_, index) => (
+                                <div key={index} className="md:w-1/3 sm:w-1/2 w-full p-5">
+                                    <NewsCardSkeleton key={index} />
                                 </div>
                             ))
                             : data?.map((newsItem: NewsInterface, index: number) => (

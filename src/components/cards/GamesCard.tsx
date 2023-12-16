@@ -7,10 +7,7 @@ interface Props {
     handleNavigate: (path: string) => void;
 }
 
-export const GamesCard = (props: Props) => {
-    const game = props.game;
-    const handleNavigate = props.handleNavigate;
-
+export const GamesCard = ({ game, handleNavigate }: Props) => {
     return (
         <a
             className="dark-bg-1 shadow-inset-1 p-4 rounded-lg block min-h-[341px] hover:scale-105 transition-400"

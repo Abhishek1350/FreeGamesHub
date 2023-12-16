@@ -9,9 +9,7 @@ const getNumberValue = (value: string = "50%") => {
     return Number(value.replace("%", ""));
 };
 
-export const GiveawayCard = (props: Props) => {
-    const giveaway = props.giveaway;
-
+export const GiveawayCard = ({ giveaway }: Props) => {
     return (
         <Card
             isPressable
