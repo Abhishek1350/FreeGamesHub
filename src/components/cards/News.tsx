@@ -17,7 +17,7 @@ export const NewsCard = ({ news }: Props) => {
         >
             <CardHeader className="p-0">
                 <Image
-                    className="rounded w-full object-cover"
+                    className="rounded w-full object-cover min-h-[160px]"
                     src={news?.main_image || news?.thumbnail}
                     alt={news?.title}
                     classNames={{

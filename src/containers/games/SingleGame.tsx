@@ -43,6 +43,7 @@ export const SingleGame = () => {
       <HeadContent
         title={`${game?.title} | FreeGamesHub`}
         description={game?.short_description}
+        link={`https://freegameshub.vercel.app/games/${gameId}`}
       />
       <section className="text-gray-400 dark-bg-1 body-font min-h-[80dvh] pb-10 pt-2">
         {isLoading ? (
@@ -131,10 +132,8 @@ export const SingleGame = () => {
                     </BreadcrumbItem>
                     <BreadcrumbItem>{game?.title}</BreadcrumbItem>
                   </Breadcrumbs>
-                  <h1>
-                    <span className="text-2xl sm:text-3xl font-bold text-color-2">
+                  <h1 className="text-2xl sm:text-3xl font-bold text-color-2">
                       {game?.title}
-                    </span>
                   </h1>
                   <div className="border gap-5 sm:gap-10 border-gray-700 border-opacity-75 p-4 my-5 rounded-lg">
                     <p className="leading-relaxed text-base text-color-2">

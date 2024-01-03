@@ -68,9 +68,24 @@ export const Games = () => {
             <HeadContent
                 title="Download and Play Free Games | FreeGamesHub"
                 description="Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!"
+                link="https://freegameshub.vercel.app/games"
             />
-            <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[80dvh]">
-                <div className="container px-5 py-24 mx-auto ">
+            <section className="text-gray-400 body-font py-4 shadow-inset-1 min-h-[80dvh]">
+                <div className="container px-5 py-20 mx-auto ">
+                    <div className="mb-3 px-3">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-color-3 mb-1">
+                            {
+                                currentCategory ? `${currentCategory} Games` :
+                                    currentPlatform ? `${currentPlatform} Games` :
+                                        "All Games"
+                            }
+                        </h1>
+                        <p className="text-color-2">
+                            {
+                                games?.length && games.length > 1 ? `${games?.length} Games Found` : `${games?.length} Game found`
+                            }
+                        </p>
+                    </div>
                     <div className="flex flex-wrap gap-y-5 justify-center sm:justify-start">
                         {
                             isLoading ? (
