@@ -30,7 +30,7 @@ export const GamesCard = ({ game, handleNavigate }: Props) => {
                     <FaWindows className="inline" /> {game?.genre}
                 </h3>
             ) : (
-                <h3 className="tracking-widest text-secondary text-xs font-medium title-font flex items-center ">
+                <h3 className="tracking-widest text-secondary text-xs font-medium title-font flex items-center gap-1">
                     <FaFirefoxBrowser className="inline" /> {game?.genre}
                 </h3>
             )}

@@ -88,8 +88,11 @@ export const ImageSliderModal = (props: Props) => {
                                         <Image
                                             src={item.image}
                                             alt={`Image ${item.id}`}
-                                            className="aspect-video"
+                                            className="aspect-video w-full"
                                             radius="none"
+                                            classNames={{
+                                                wrapper: "!max-w-full",
+                                            }}
                                         />
                                     </SwiperSlide>
                                 );
