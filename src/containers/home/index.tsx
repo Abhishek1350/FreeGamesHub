@@ -55,6 +55,7 @@ export const Home = () => {
       <HeadContent
         title="FreeGamesHub: Your Gateway to Free PC and Browser Gaming"
         description="Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!"
+        link="https://freegameshub.vercel.app"
       />
       <div className="top-section">
         <section

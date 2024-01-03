@@ -17,6 +17,7 @@ export const News = () => {
             <HeadContent
                 title="Latest Gaming News | FreeGamesHub"
                 description="Get the latest gaming news, reviews, walkthroughs, and more for PC, PS4, Xbox One, Nintendo Switch, and mobile."
+                link="https://freegameshub.vercel.app/news"
             />
             <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[80dvh]">
                 <div className="container px-5 py-24 mx-auto ">

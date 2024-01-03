@@ -17,6 +17,7 @@ export const Giveaways = () => {
             <HeadContent
                 title="Giveaways | FreeGamesHub"
                 description="Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!"
+                link="https://freegameshub.vercel.app/giveaways"
             />
             <section className="text-gray-400 body-font py-10 shadow-inset-1 min-h-[80dvh]">
                 <div className="container px-5 py-24 mx-auto ">
