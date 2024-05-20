@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
@@ -8,13 +7,24 @@ import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 export const metadata: Metadata = {
-	title: {
-		default: siteConfig.name,
-		template: `%s - ${siteConfig.name}`,
+	title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
+	description:
+		"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+	keywords:
+		"Free PC games, Downloadable games, Browser gaming, Free-to-play, Online gaming, Indie games, Gaming community, free download pc games, lifetime free pc games",
+	openGraph: {
+		siteName: "FreeGamesHub",
+		type: "website",
+		locale: "en_US",
+		title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
+		description:
+			"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
 	},
-	description: siteConfig.description,
+	robots:
+		"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
 	icons: {
 		icon: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
 	},
 };
 
@@ -49,11 +59,10 @@ export default function RootLayout({
 							<Link
 								isExternal
 								className="flex items-center gap-1 text-current"
-								href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
+								href="https://nextui.org"
 								title="nextui.org homepage"
 							>
-								<span className="text-default-600">Powered by</span>
-								<p className="text-primary">NextUI</p>
+								Footer
 							</Link>
 						</footer>
 					</div>
