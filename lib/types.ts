@@ -4,28 +4,20 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-export type Location = {
-  pathname: string;
-  search: string;
-  state: { from: string } | null;
-  hash: string;
-  key: string;
-};
-
-export type Screenshot = {
+export interface IScreenshot {
   id: number;
   image: string;
-};
+}
 
-export type MinimumSystemRequirement = {
+export interface IMinimumSystemRequirement {
   graphics: string;
   memory: string;
   os: string;
   processor: string;
   storage: string;
-};
+}
 
-export type Game = {
+export interface IGame {
   id: number;
   developer: string;
   freetogame_profile_url: string;
@@ -37,13 +29,13 @@ export type Game = {
   short_description: string;
   thumbnail: string;
   title: string;
-  minimum_system_requirements?: MinimumSystemRequirement;
+  minimum_system_requirements?: IMinimumSystemRequirement;
   description: string;
-  screenshots: Screenshot[];
+  screenshots: IScreenshot[];
   status: string;
-};
+}
 
-export type News = {
+export interface INews {
   id: number;
   title: string;
   short_description: string;
@@ -51,9 +43,9 @@ export type News = {
   main_image: string;
   article_content: string;
   article_url: string;
-};
+}
 
-export type Giveaway = {
+export interface IGiveaway {
   id: number;
   title: string;
   keys_left: string;
@@ -61,4 +53,4 @@ export type Giveaway = {
   main_image: string;
   short_description: string;
   giveaway_url: string;
-};
+}
