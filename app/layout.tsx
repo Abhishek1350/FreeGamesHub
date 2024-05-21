@@ -6,6 +6,8 @@ import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
+export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
+
 export const metadata: Metadata = {
 	title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
 	description:
