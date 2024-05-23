@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/dropdown";
 import NextLink from "next/link";
 import { ChevronDown } from "@/components/icons";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface NavItemProps {
     item: {
@@ -19,9 +20,55 @@ interface NavItemProps {
     };
 }
 
+function getFullPath(
+    pathname: string,
+    searchParams: Record<string, string | string[] | undefined>
+): string {
+    const params: Record<string, string> = {};
+
+    Object.entries(searchParams).forEach(([key, value]) => {
+        if (typeof value === "string") {
+            params[key] = encodeURIComponent(value);
+        } else if (Array.isArray(value)) {
+            params[key] = value.map((v) => encodeURIComponent(v)).join("&");
+        }
+    });
+
+    const queryString = Object.entries(params)
+        .map(([key, value]) => `${encodeURIComponent(key)}=${value}`)
+        .join("&");
+
+    return `${encodeURIComponent(pathname)}?${queryString}`;
+}
+
+function isActive(platform: string, completeUrl: string): boolean {
+    const query = completeUrl
+        .split("?")[1]
+        ?.split("&")
+        .find((q) => q.includes("platform"))
+        ?.split("=")[1];
+    const platformName = platform
+        .toLowerCase()
+        .replace(" ", "-")
+        .replace("-games", "");
+    return query === platformName;
+}
+
 export const NavItem = ({ item }: NavItemProps) => {
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    const completeUrl = decodeURIComponent(
+        getFullPath(pathname, Object.fromEntries(searchParams.entries()))
+    );
+
     return item?.link ? (
-        <NavbarItem className="h-8 sm:h-full">
+        <NavbarItem
+            className="h-8 sm:h-full"
+            style={{
+                color: pathname === item.link ? "#f31260" : "#fff",
+            }}
+        >
             <NextLink href="/">{item.name}</NextLink>
         </NavbarItem>
     ) : (
@@ -34,6 +81,9 @@ export const NavItem = ({ item }: NavItemProps) => {
                         endContent={<ChevronDown />}
                         radius="sm"
                         variant="light"
+                        style={{
+                            color: isActive(item.name, completeUrl) ? "#f31260" : "#fff",
+                        }}
                     >
                         {item.name}
                     </Button>
@@ -49,7 +99,9 @@ export const NavItem = ({ item }: NavItemProps) => {
                         key={category.slug}
                         as={NextLink}
                         href={category.slug}
-                        className="nav-link"
+                        style={{
+                            color: category.slug === completeUrl ? "#f31260" : "#fff",
+                        }}
                     >
                         {category.name}
                     </DropdownItem>
