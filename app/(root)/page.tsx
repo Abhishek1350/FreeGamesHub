@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/button";
 import NextLink from "next/link";
 import { FaFirefoxBrowser, FaWindows } from "react-icons/fa";
+import { BlurIn } from "@/components";
 
 export default function Home() {
 	return (
@@ -13,7 +14,7 @@ export default function Home() {
 				}}
 			>
 				<div className="container mx-auto flex px-6 items-center justify-center flex-col">
-					<div className="text-center max-w-[700px]">
+					<BlurIn className="text-center max-w-[700px]">
 						<h1 className="sm:text-4xl text-3xl mb-3 sm:mb-5 font-semibold text-white">
 							Hunt Down the Ultimate{" "}
 							<span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
@@ -21,6 +22,7 @@ export default function Home() {
 							</span>{" "}
 							Gaming Experiences!
 						</h1>
+
 						<p className="mb-5 sm:text-[16px] text-[15px]">
 							Embark on a quest for the best free-to-play thrills! Discover
 							diverse digital realms, each offering exciting adventures. Unleash
@@ -61,7 +63,7 @@ export default function Home() {
 								Browser
 							</Button>
 						</div>
-					</div>
+					</BlurIn>
 				</div>
 			</section>
 		</>
