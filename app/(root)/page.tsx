@@ -1,9 +1,25 @@
 import { Button } from "@nextui-org/button";
 import NextLink from "next/link";
 import { FaFirefoxBrowser, FaWindows } from "react-icons/fa";
-import { BlurIn } from "@/components";
+import {
+	BlurIn,
+	MarqueeWrapper,
+	MarqueeItem,
+	PopularGamesCard,
+} from "@/components";
+import { getGames } from "@/lib/action";
+import { IGame, PLATFORMS } from "@/lib/types";
 
-export default function Home() {
+export default async function Home() {
+	const games: IGame[] = await getGames();
+
+	const pcGames = games
+		.filter((game) => game.platform === PLATFORMS.PC)
+		.slice(0, 50);
+	const browserGames = games
+		.filter((game) => game.platform === PLATFORMS.BROWSER)
+		.slice(0, 50);
+
 	return (
 		<>
 			<section
@@ -15,7 +31,7 @@ export default function Home() {
 			>
 				<div className="container mx-auto flex px-6 items-center justify-center flex-col">
 					<BlurIn className="text-center max-w-[700px]">
-						<h1 className="sm:text-4xl text-3xl mb-3 sm:mb-5 font-semibold text-white">
+						<h1 className="sm:text-4xl text-2xl mb-3 sm:mb-5 font-semibold text-white">
 							Hunt Down the Ultimate{" "}
 							<span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
 								Free-to-Play
@@ -65,6 +81,21 @@ export default function Home() {
 						</div>
 					</BlurIn>
 				</div>
+			</section>
+
+			<section className="py-20 md:shadow-xl sm:py-14 ">
+				<MarqueeWrapper>
+					<MarqueeItem pauseOnHover className="[--duration:150s] mb-10">
+						{pcGames.map((game) => (
+							<PopularGamesCard game={game} key={game.id} />
+						))}
+					</MarqueeItem>
+					<MarqueeItem reverse pauseOnHover className="[--duration:150s]">
+						{browserGames.map((game) => (
+							<PopularGamesCard game={game} key={game.id} />
+						))}
+					</MarqueeItem>
+				</MarqueeWrapper>
 			</section>
 		</>
 	);
