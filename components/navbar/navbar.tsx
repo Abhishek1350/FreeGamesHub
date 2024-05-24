@@ -77,7 +77,7 @@ export const Navbar = async () => {
 	];
 
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky">
+		<NextUINavbar maxWidth="xl" shouldHideOnScroll>
 			<NavbarContent justify="center">
 				<NavbarBrand>
 					<NextLink href="/">
