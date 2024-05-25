@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
 
@@ -8,13 +8,17 @@ interface StaggerItemProps {
     children: React.ReactNode;
 }
 
-const stagger = 0.2;
+const stagger = 0.25;
 const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
 };
 
-export function StaggerItem({ once = false, index, children }: StaggerItemProps) {
+export function StaggerItem({
+    once = false,
+    index,
+    children,
+}: StaggerItemProps) {
     return (
         <motion.div
             variants={variants}
@@ -31,4 +35,4 @@ export function StaggerItem({ once = false, index, children }: StaggerItemProps)
             {children}
         </motion.div>
     );
-};
+}

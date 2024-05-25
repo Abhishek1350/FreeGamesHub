@@ -20,7 +20,7 @@ export default function PageNotFound() {
 
     return (
         <section className="dark-bg-2 shadow-inset-1">
-            <div className="container max-w-7xl  flex min-h-[80dvh]">
+            <div className="container max-w-7xl  flex min-h-[80dvh] m-auto">
                 <div className="m-auto text-center">
                     <svg
                         width={"100%"}
