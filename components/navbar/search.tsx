@@ -11,6 +11,10 @@ import {
 import { SearchIcon } from "@/components/icons";
 import { useEffect, useRef, useMemo, useState } from "react";
 import { IGame } from "@/lib/types";
+import { Kbd } from "@nextui-org/kbd";
+import { ScrollShadow } from "@nextui-org/scroll-shadow";
+import { Listbox, ListboxItem } from "@nextui-org/listbox";
+import { Avatar } from "@nextui-org/avatar";
 
 interface SearchProps {
     games: IGame[];
@@ -18,9 +22,9 @@ interface SearchProps {
 
 function handleSearch(games: IGame[], query: string) {
     return games.filter((game) => {
-        let titleMatch = game.title?.toLowerCase().includes(query);
-        let genreMatch = game.genre?.toLowerCase().includes(query);
-        let platformMatch = game.platform?.toLowerCase().includes(query);
+        const titleMatch = game.title?.toLowerCase().includes(query);
+        const genreMatch = game.genre?.toLowerCase().includes(query);
+        const platformMatch = game.platform?.toLowerCase().includes(query);
         return titleMatch || genreMatch || platformMatch;
     });
 }
@@ -33,11 +37,9 @@ export function Search({ games }: SearchProps) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const results = useMemo(() => {
-        if (!isOpen || !(debouncedSearchQuery.trim()?.length > 2)) return [];
+        if (!isOpen || !(debouncedSearchQuery.trim()?.length > 1)) return [];
         return handleSearch(games, debouncedSearchQuery.toLowerCase());
     }, [isOpen, debouncedSearchQuery, games]);
-
-    console.log(results);
 
     useEffect(() => {
         if (isOpen) {
@@ -65,8 +67,7 @@ export function Search({ games }: SearchProps) {
                     inputWrapper: "bg-default-100 hover:bg-default-150",
                     input: "w-full cursor-pointer",
                 }}
-                labelPlacement="inside"
-                placeholder="Search..."
+                placeholder="Search"
                 startContent={
                     <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
                 }
@@ -80,23 +81,67 @@ export function Search({ games }: SearchProps) {
                 placement="top-center"
                 backdrop="opaque"
                 hideCloseButton
+                className="pb-2"
             >
                 <ModalContent>
                     <ModalHeader className="p-0">
                         <Input
                             ref={inputRef}
-                            labelPlacement="inside"
-                            className="bg-content1"
-                            placeholder="Search..."
+                            placeholder="Search by title, genre & platform"
                             startContent={
                                 <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
                             }
                             type="search"
                             onChange={(e) => setSearchQuery(e.target.value)}
                             value={searchQuery}
+                            endContent={<Kbd>ESC</Kbd>}
                         />
                     </ModalHeader>
-                    <ModalBody></ModalBody>
+                    <ModalBody>
+                        <ScrollShadow hideScrollBar className="max-h-[400px]">
+                            {debouncedSearchQuery.trim().length > 1 ? (
+                                results.length ? (
+                                    <Listbox
+                                        items={results}
+                                        variant="faded"
+                                        classNames={{
+                                            list: "gap-2",
+                                        }}
+                                        hideEmptyContent
+                                    >
+                                        {(item) => (
+                                            <ListboxItem
+                                                key={item.id}
+                                                startContent={
+                                                    <Avatar
+                                                        radius="sm"
+                                                        src={item.thumbnail}
+                                                        className="w-20 mr-2"
+                                                    />
+                                                }
+                                                description={
+                                                    <p className="text-sm text-default-500">
+                                                        {item.genre}, {item.platform}
+                                                    </p>
+                                                }
+                                                href={`/games/${item.id}`}
+                                            >
+                                                {item.title}
+                                            </ListboxItem>
+                                        )}
+                                    </Listbox>
+                                ) : (
+                                    <p className="text-center text-default-500 mt-2">
+                                        No results found.
+                                    </p>
+                                )
+                            ) : (
+                                <p className="text-center text-default-500 mt-2">
+                                    Type at least 2 characters to search.
+                                </p>
+                            )}
+                        </ScrollShadow>
+                    </ModalBody>
                 </ModalContent>
             </Modal>
         </>
