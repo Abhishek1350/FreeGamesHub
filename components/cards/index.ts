@@ -1,2 +1,3 @@
 export * from "./popular-games"
-export * from "./new-games"
+export * from "./trending-games"
+export * from "./news"

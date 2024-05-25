@@ -8,12 +8,12 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button } from "@nextui-org/button";
-import { IGame } from "@/lib/types";
-import { NewGamesCard } from "./cards";
+import { IGame, INews, IGiveaway } from "@/lib/types";
+import { NewsCard, TrendingGamesCard } from "./cards";
 
 interface Props {
-    type: "newGames" | "recentGames" | "news" | "giveaways";
-    games: IGame[];
+    type: "games" | "news" | "giveaways";
+    data: IGame[] | INews[] | IGiveaway[];
     effect: "coverflow" | "slide";
 }
 
@@ -51,7 +51,28 @@ const CustomNextArrow = () => (
     </div>
 );
 
-export function Slider({ type, games, effect }: Props) {
+function renderItems(type: string, data: IGame[] | INews[] | IGiveaway[]) {
+    switch (type) {
+        case "games":
+            return data.slice(0, 15).map((game) => (
+                <SwiperSlide key={game.id}>
+                    <TrendingGamesCard game={game as IGame} />
+                </SwiperSlide>
+            ));
+        case "news":
+            return data.slice(0, 3).map((news) => (
+                <SwiperSlide key={news.id}>
+                    <NewsCard news={news as INews} />
+                </SwiperSlide>
+            ));
+        case "giveaways":
+            return null;
+        default:
+            return null;
+    }
+}
+
+export function Slider({ type, data, effect }: Props) {
     return (
         <Swiper
             spaceBetween={50}
@@ -78,11 +99,7 @@ export function Slider({ type, games, effect }: Props) {
         >
             <CustomPrevArrow />
             <CustomNextArrow />
-            {games?.map((game: IGame, index: number) => (
-                <SwiperSlide key={game.id}>
-                    <NewGamesCard game={game} />
-                </SwiperSlide>
-            ))}
+            {renderItems(type, data)}
         </Swiper>
     );
 }

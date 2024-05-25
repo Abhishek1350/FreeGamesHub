@@ -9,12 +9,13 @@ import {
 	PopularGamesCard,
 	Slider,
 } from "@/components";
-import { getGames } from "@/lib/action";
-import { IGame, PLATFORMS } from "@/lib/types";
+import { getGames, getNews } from "@/lib/action";
+import { IGame, PLATFORMS, INews } from "@/lib/types";
 import { MdNavigateNext } from "react-icons/md";
 
 export default async function Home() {
 	const games: IGame[] = await getGames();
+	const news: INews[] = await getNews();
 
 	const pcGames = games
 		.filter((game) => game.platform === PLATFORMS.PC)
@@ -22,13 +23,6 @@ export default async function Home() {
 	const browserGames = games
 		.filter((game) => game.platform === PLATFORMS.BROWSER)
 		.slice(0, 50);
-
-	const newGames = games
-		.sort(
-			(a, b) =>
-				new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
-		)
-		.slice(0, 10);
 
 	return (
 		<>
@@ -52,8 +46,8 @@ export default async function Home() {
 
 							<p className="mb-5 sm:text-[16px] text-[15px]">
 								Embark on a quest for the best free-to-play thrills! Discover
-								diverse digital realms, each offering exciting adventures. Unleash
-								the{" "}
+								diverse digital realms, each offering exciting adventures.
+								Unleash the{" "}
 								<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-semibold">
 									ultimate gaming experiences
 								</span>{" "}
@@ -101,7 +95,7 @@ export default async function Home() {
 						<div className="flex justify-between items-center mb-5 sm:mb-8">
 							<h4 className="sm:text-3xl text-2xl">
 								<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
-									Latest Titles
+									Trending Games
 								</span>
 							</h4>
 							<Button
@@ -110,12 +104,12 @@ export default async function Home() {
 								variant="light"
 								className="font-semibold px-1 gap-0"
 								as={NextLink}
-								href="/games?sortby=recently_added"
+								href="/games"
 							>
 								View All
 							</Button>
 						</div>
-						<Slider type="newGames" games={newGames} effect="coverflow" />
+						<Slider type="games" data={games} effect="coverflow" />
 					</Container>
 				</BlurIn>
 			</section>
@@ -134,6 +128,31 @@ export default async function Home() {
 							))}
 						</MarqueeItem>
 					</MarqueeWrapper>
+				</BlurIn>
+			</section>
+
+			<section>
+				<BlurIn>
+					<Container>
+						<div className="flex justify-between items-center mb-5 sm:mb-8">
+							<h4 className="sm:text-3xl text-2xl">
+								<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
+									Latest Gaming News
+								</span>
+							</h4>
+							<Button
+								endContent={<MdNavigateNext size={22} />}
+								color="primary"
+								variant="light"
+								className="font-semibold px-1 gap-0"
+								as={NextLink}
+								href="/news"
+							>
+								View All
+							</Button>
+						</div>
+						<Slider type="news" data={news} effect="slide" />
+					</Container>
 				</BlurIn>
 			</section>
 		</>

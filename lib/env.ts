@@ -10,13 +10,3 @@ export const apiBaseUrl = assertValue(
     process.env.GAMES_API_URL,
     "Missing environment variable: GAMES_API_URL"
 );
-
-export const apiHost = assertValue(
-    process.env.GAMES_API_HOST,
-    "Missing environment variable: GAMES_API_HOST"
-);
-
-export const apiKey = assertValue(
-    process.env.GAMES_API_KEY,
-    "Missing environment variable: GAMES_API_KEY"
-);

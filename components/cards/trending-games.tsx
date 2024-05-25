@@ -8,7 +8,7 @@ interface Props {
     game: IGame;
 }
 
-export const NewGamesCard = ({ game }: Props) => {
+export const TrendingGamesCard = ({ game }: Props) => {
     return (
         <Card
             isPressable
