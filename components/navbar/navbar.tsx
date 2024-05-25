@@ -14,7 +14,6 @@ import { NavItem } from "./nav-item";
 import { Search } from "./search";
 
 export const Navbar = async () => {
-
 	const games: IGame[] = await getGames();
 
 	const browserCategories = Array.from(
@@ -23,7 +22,7 @@ export const Navbar = async () => {
 				?.filter((game: IGame) => game?.platform === PLATFORMS.BROWSER)
 				?.map((game: IGame) => game?.genre)
 		)
-	);
+	).sort((a, b) => a.localeCompare(b));
 
 	const pcCategories = Array.from(
 		new Set(
@@ -31,7 +30,7 @@ export const Navbar = async () => {
 				?.filter((game: IGame) => game?.platform === PLATFORMS.PC)
 				?.map((game: IGame) => game?.genre)
 		)
-	);
+	).sort((a, b) => a.localeCompare(b));
 
 	const menuItems = [
 		{
@@ -41,17 +40,27 @@ export const Navbar = async () => {
 		},
 		{
 			name: "PC Games",
-			categories: pcCategories.map((category) => ({
-				name: category,
-				slug: `/games?platform=pc&category=${category}`,
-			})),
+			categories: pcCategories
+				.map((category) => ({
+					name: category,
+					slug: `/games?platform=pc&category=${category}`,
+				}))
+				.concat({
+					name: "All PC Games",
+					slug: "/games?platform=pc",
+				}),
 		},
 		{
 			name: "Browser Games",
-			categories: browserCategories.map((category) => ({
-				name: category,
-				slug: `/games?platform=browser&category=${category}`,
-			})),
+			categories: browserCategories
+				.map((category) => ({
+					name: category,
+					slug: `/games?platform=browser&category=${category}`,
+				}))
+				.concat({
+					name: "All Browser Games",
+					slug: "/games?platform=browser",
+				}),
 		},
 		{
 			name: "Latest News",
@@ -82,7 +91,7 @@ export const Navbar = async () => {
 
 			<NavbarContent className="hidden lg:flex" justify="end">
 				<NavbarItem className="hidden lg:flex">
-					<Search games={games}/>
+					<Search games={games} />
 				</NavbarItem>
 			</NavbarContent>
 
@@ -91,7 +100,7 @@ export const Navbar = async () => {
 			</NavbarContent>
 
 			<NavbarMenu>
-				<Search games={games}/>
+				<Search games={games} />
 				<div className="mx-4 mt-5 flex flex-col gap-2">
 					{menuItems.map((item) => (
 						<NavItem key={item.name} item={item} />

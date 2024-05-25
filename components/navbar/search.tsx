@@ -79,7 +79,7 @@ export function Search({ games }: SearchProps) {
                 isOpen={isOpen}
                 onClose={onClose}
                 placement="top-center"
-                backdrop="opaque"
+                backdrop="blur"
                 hideCloseButton
                 className="pb-2"
             >
