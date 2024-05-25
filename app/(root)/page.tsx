@@ -132,28 +132,26 @@ export default async function Home() {
 			</section>
 
 			<section>
-				<BlurIn>
-					<Container>
-						<div className="flex justify-between items-center mb-5 sm:mb-8">
-							<h4 className="sm:text-3xl text-2xl">
-								<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
-									Latest Gaming News
-								</span>
-							</h4>
-							<Button
-								endContent={<MdNavigateNext size={22} />}
-								color="primary"
-								variant="light"
-								className="font-semibold px-1 gap-0"
-								as={NextLink}
-								href="/news"
-							>
-								View All
-							</Button>
-						</div>
-						<Slider type="news" data={news} effect="slide" />
-					</Container>
-				</BlurIn>
+				<Container>
+					<div className="flex justify-between items-center mb-5 sm:mb-8">
+						<h4 className="sm:text-3xl text-2xl">
+							<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
+								Latest Gaming News
+							</span>
+						</h4>
+						<Button
+							endContent={<MdNavigateNext size={22} />}
+							color="primary"
+							variant="light"
+							className="font-semibold px-1 gap-0"
+							as={NextLink}
+							href="/news"
+						>
+							View All
+						</Button>
+					</div>
+					<Slider type="news" data={news} effect="slide" />
+				</Container>
 			</section>
 		</>
 	);

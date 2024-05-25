@@ -10,6 +10,7 @@ import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button } from "@nextui-org/button";
 import { IGame, INews, IGiveaway } from "@/lib/types";
 import { NewsCard, TrendingGamesCard } from "./cards";
+import { StaggerItem } from "./animations";
 
 interface Props {
     type: "games" | "news" | "giveaways";
@@ -60,9 +61,11 @@ function renderItems(type: string, data: IGame[] | INews[] | IGiveaway[]) {
                 </SwiperSlide>
             ));
         case "news":
-            return data.slice(0, 3).map((news) => (
+            return data.slice(0, 3).map((news, index: number) => (
                 <SwiperSlide key={news.id}>
-                    <NewsCard news={news as INews} />
+                    <StaggerItem index={index}>
+                        <NewsCard news={news as INews} />
+                    </StaggerItem>
                 </SwiperSlide>
             ));
         case "giveaways":

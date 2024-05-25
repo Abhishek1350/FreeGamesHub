@@ -26,8 +26,8 @@ export function StaggerItem({
             whileInView="visible"
             transition={{
                 delay: index * stagger,
-                ease: "easeInOut",
-                duration: 0.5,
+                ease: "easeIn",
+                duration: 0.3,
             }}
             viewport={{ once: once }}
             key={index}
