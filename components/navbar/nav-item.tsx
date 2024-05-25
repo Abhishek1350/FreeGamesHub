@@ -69,7 +69,7 @@ export const NavItem = ({ item }: NavItemProps) => {
                 color: pathname === item.link ? "#f31260" : "#fff",
             }}
         >
-            <NextLink href="/">{item.name}</NextLink>
+            <NextLink href={item.link}>{item.name}</NextLink>
         </NavbarItem>
     ) : (
         <Dropdown>
