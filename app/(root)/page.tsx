@@ -114,14 +114,18 @@ export default async function Home() {
 				</BlurIn>
 			</section>
 
-			<section>
-				<BlurIn className="py-20 md:shadow-xl sm:py-14 ">
+			<section className="py-20 md:shadow-xl sm:py-14">
+				<BlurIn>
 					<MarqueeWrapper>
 						<MarqueeItem pauseOnHover className="[--duration:150s] mb-10">
 							{pcGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
 							))}
 						</MarqueeItem>
+					</MarqueeWrapper>
+				</BlurIn>
+				<BlurIn>
+					<MarqueeWrapper>
 						<MarqueeItem reverse pauseOnHover className="[--duration:150s]">
 							{browserGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
@@ -136,7 +140,7 @@ export default async function Home() {
 					<div className="flex justify-between items-center mb-5 sm:mb-8">
 						<h4 className="sm:text-3xl text-2xl">
 							<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
-								Latest Gaming News
+								Latest News
 							</span>
 						</h4>
 						<Button

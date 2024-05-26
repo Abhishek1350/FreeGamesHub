@@ -2,8 +2,9 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
-import { Navbar, Footer } from "@/components";
+import { Navbar, Footer, MainLoader } from "@/components";
 import clsx from "clsx";
+import { Suspense } from "react";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
@@ -51,11 +52,13 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					{/* @ts-ignore @ts-expect-error Async Server Component */}
-					<Navbar />
-					<main className="flex-grow">{children}</main>
-					{/* @ts-ignore @ts-expect-error Async Server Component */}
-					<Footer />
+					<Suspense fallback={<MainLoader />}>
+						{/* @ts-ignore @ts-expect-error Async Server Component */}
+						<Navbar />
+						<main className="flex-grow">{children}</main>
+						{/* @ts-ignore @ts-expect-error Async Server Component */}
+						<Footer />
+					</Suspense>
 				</Providers>
 			</body>
 		</html>

@@ -7,3 +7,4 @@ export * from "./cards";
 export * from "./swiper-slider";
 export * from "./common";
 export * from "./footer";
+export * from "./main-loader";
