@@ -2,8 +2,7 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
-import { Navbar } from "@/components/navbar";
-import { Link } from "@nextui-org/link";
+import { Navbar, Footer } from "@/components";
 import clsx from "clsx";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
@@ -52,23 +51,11 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col h-screen">
-						{/* @ts-ignore @ts-expect-error Async Server Component */}
-						<Navbar />
-						<main className="flex-grow">
-							{children}
-						</main>
-						<footer className="w-full flex items-center justify-center py-3">
-							<Link
-								isExternal
-								className="flex items-center gap-1 text-current"
-								href="https://nextui.org"
-								title="nextui.org homepage"
-							>
-								Footer
-							</Link>
-						</footer>
-					</div>
+					{/* @ts-ignore @ts-expect-error Async Server Component */}
+					<Navbar />
+					<main className="flex-grow">{children}</main>
+					{/* @ts-ignore @ts-expect-error Async Server Component */}
+					<Footer />
 				</Providers>
 			</body>
 		</html>

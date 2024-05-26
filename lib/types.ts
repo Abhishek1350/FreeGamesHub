@@ -60,3 +60,10 @@ export interface IGiveaway {
   short_description: string;
   giveaway_url: string;
 }
+
+export interface ISocialLink {
+  id: string;
+  title: string;
+  url: string;
+  priority: number;
+}

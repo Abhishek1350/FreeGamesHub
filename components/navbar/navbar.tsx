@@ -75,7 +75,12 @@ export const Navbar = async () => {
 	];
 
 	return (
-		<NextUINavbar maxWidth="xl" shouldHideOnScroll>
+		<NextUINavbar
+			maxWidth="xl"
+			shouldHideOnScroll
+			isBordered
+			classNames={{ base: "h-[3.5rem]" }}
+		>
 			<NavbarContent className="gap-0">
 				<NavbarBrand>
 					<NextLink href="/">
@@ -99,7 +104,7 @@ export const Navbar = async () => {
 				<NavbarMenuToggle />
 			</NavbarContent>
 
-			<NavbarMenu>
+			<NavbarMenu className="![--navbar-height:3.5rem]">
 				<Search games={games} />
 				<div className="mx-4 mt-5 flex flex-col gap-2">
 					{menuItems.map((item) => (
