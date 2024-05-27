@@ -15,7 +15,7 @@ export const BlurIn = ({
     children,
     className,
     variant,
-    duration = 1,
+    duration = 0.6,
     once = false,
 }: BlurIntProps) => {
     const defaultVariants = {

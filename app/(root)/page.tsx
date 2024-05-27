@@ -1,6 +1,6 @@
 import { Button } from "@nextui-org/button";
 import NextLink from "next/link";
-import { FaFirefoxBrowser, FaWindows } from "react-icons/fa";
+import { FaFirefoxBrowser, FaGamepad, FaWindows } from "react-icons/fa";
 import {
 	Container,
 	BlurIn,
@@ -135,7 +135,7 @@ export default async function Home() {
 				</BlurIn>
 			</section>
 
-			<section className="py-5 sm:py-8">
+			<section className="pt-5 sm:pt-8">
 				<Container>
 					<div className="flex justify-between items-center mb-5 sm:mb-6">
 						<h4 className="sm:text-3xl text-2xl">
@@ -158,7 +158,7 @@ export default async function Home() {
 				</Container>
 			</section>
 
-			<section className="py-5 sm:py-8">
+			<section className="pb-5 sm:pb-8">
 				<Container>
 					<div className="flex justify-between items-center mb-5 sm:mb-6">
 						<h4 className="sm:text-3xl text-2xl">
@@ -178,6 +178,38 @@ export default async function Home() {
 						</Button>
 					</div>
 					<Slider type="giveaways" data={giveaways} effect="slide" />
+				</Container>
+			</section>
+
+			<section
+				className="bg-top bg-cover bg-no-repeat py-5 sm:py-14"
+				style={{
+					backgroundImage:
+						"linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url(/bg.webp)",
+				}}
+			>
+				<Container>
+					<BlurIn className="py-24 flex flex-col sm:flex-row justify-center items-center mx-auto">
+						<h5 className="text-large sm:pr-16 mb-6 sm:mb-0 font-medium title-font text-white text-center sm:text-left">
+							Uncertain about your next gaming adventure? Explore our <br />{" "}
+							<span className="bg-gradient-to-r from-primary to-success bg-clip-text text-transparent font-bold">
+								exquisite collection of games
+							</span>{" "}
+							and discover the ideal match for your gaming desires!
+						</h5>
+						<Button
+							endContent={<FaGamepad size={22} />}
+							color="success"
+							variant="ghost"
+							className="font-bold gap-2 animate-bounce"
+							as={NextLink}
+							href="/games"
+							radius="sm"
+							size="lg"
+						>
+							View All
+						</Button>
+					</BlurIn>
 				</Container>
 			</section>
 		</>
