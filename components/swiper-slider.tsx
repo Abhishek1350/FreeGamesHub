@@ -9,7 +9,7 @@ import "swiper/css/scrollbar";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button } from "@nextui-org/button";
 import { IGame, INews, IGiveaway } from "@/lib/types";
-import { NewsCard, TrendingGamesCard } from "./cards";
+import { NewsCard, TrendingGamesCard, GiveawayCard } from "./cards";
 import { StaggerItem } from "./animations";
 
 interface Props {
@@ -69,7 +69,13 @@ function renderItems(type: string, data: IGame[] | INews[] | IGiveaway[]) {
                 </SwiperSlide>
             ));
         case "giveaways":
-            return null;
+            return data.slice(0, 3).map((giveaway, index: number) => (
+                <SwiperSlide key={giveaway.id}>
+                    <StaggerItem index={index}>
+                        <GiveawayCard giveaway={giveaway as IGiveaway} />
+                    </StaggerItem>
+                </SwiperSlide>
+            ));
         default:
             return null;
     }
@@ -98,7 +104,7 @@ export function Slider({ type, data, effect }: Props) {
                     slidesPerGroup: 1,
                 },
             }}
-            className={`${effect === "coverflow" ? "!py-3" : "!p-3 flex"}`}
+            className={`${effect === "coverflow" ? "!py-3" : "!p-0 sm:!p-3"}`}
         >
             <CustomPrevArrow />
             <CustomNextArrow />

@@ -1,26 +1,46 @@
 import { apiBaseUrl, portfolioUrl } from "./env";
 
 export async function getGames() {
-    const response = await fetch(`${apiBaseUrl}/games?sort-by=popularity`);
-    return response.json();
+    try {
+        const response = await fetch(`${apiBaseUrl}/games?sort-by=popularity`);
+        return response.json();
+    } catch (error) {
+        return [];
+    }
 }
 
 export async function getGameById(id: string | number) {
-    const response = await fetch(`${apiBaseUrl}/games?${id}`);
-    return response.json();
+    try {
+        const response = await fetch(`${apiBaseUrl}/games?${id}`);
+        return response.json();
+    } catch (error) {
+        return null;
+    }
 }
 
 export async function getNews() {
-    const response = await fetch(`${apiBaseUrl}/latestnews`);
-    return response.json();
+    try {
+        const response = await fetch(`${apiBaseUrl}/latestnews`);
+        return response.json();
+    } catch (error) {
+        return [];
+    }
 }
 
 export async function getGiveaways() {
-    const response = await fetch(`${apiBaseUrl}/giveaways`);
-    return response.json();
+    try {
+        const response = await fetch(`${apiBaseUrl}/giveaways`);
+        return response.json();
+    } catch (error) {
+        return [];
+    }
 }
 
 export async function getSocialLinks() {
-    const response = await fetch(`${portfolioUrl}/api/get-social-links`);
-    return response.json();
+    try {
+        const response = await fetch(`${portfolioUrl}/api/get-social-links`);
+        return response.json();
+    } catch (error) {
+        return [];
+    }
 }

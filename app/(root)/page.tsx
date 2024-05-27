@@ -9,13 +9,13 @@ import {
 	PopularGamesCard,
 	Slider,
 } from "@/components";
-import { getGames, getNews } from "@/lib/action";
+import { getGames, getNews, getGiveaways } from "@/lib/action";
 import { IGame, PLATFORMS, INews } from "@/lib/types";
 import { MdNavigateNext } from "react-icons/md";
 
 export default async function Home() {
-	const games: IGame[] = await getGames();
-	const news: INews[] = await getNews();
+	const [games, news, giveaways]: [IGame[], INews[], IGame[]] =
+		await Promise.all([getGames(), getNews(), getGiveaways()]);
 
 	const pcGames = games
 		.filter((game) => game.platform === PLATFORMS.PC)
@@ -27,7 +27,7 @@ export default async function Home() {
 	return (
 		<>
 			<section
-				className="bg-center bg-cover bg-no-repeat py-4 sm:py-14"
+				className="bg-center bg-cover bg-no-repeat py-5 sm:py-14"
 				style={{
 					backgroundImage:
 						"linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.60)), url(/bg-2.webp)",
@@ -89,10 +89,10 @@ export default async function Home() {
 				</Container>
 			</section>
 
-			<section>
+			<section className="py-5 sm:py-8">
 				<BlurIn>
 					<Container>
-						<div className="flex justify-between items-center mb-5 sm:mb-8">
+						<div className="flex justify-between items-center mb-5 sm:mb-6">
 							<h4 className="sm:text-3xl text-2xl">
 								<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
 									Trending Games
@@ -114,7 +114,7 @@ export default async function Home() {
 				</BlurIn>
 			</section>
 
-			<section className="py-20 md:shadow-xl sm:py-14">
+			<section className="py-5 sm:py-8">
 				<BlurIn>
 					<MarqueeWrapper>
 						<MarqueeItem pauseOnHover className="[--duration:150s] mb-10">
@@ -135,9 +135,9 @@ export default async function Home() {
 				</BlurIn>
 			</section>
 
-			<section>
+			<section className="py-5 sm:py-8">
 				<Container>
-					<div className="flex justify-between items-center mb-5 sm:mb-8">
+					<div className="flex justify-between items-center mb-5 sm:mb-6">
 						<h4 className="sm:text-3xl text-2xl">
 							<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
 								Latest News
@@ -155,6 +155,29 @@ export default async function Home() {
 						</Button>
 					</div>
 					<Slider type="news" data={news} effect="slide" />
+				</Container>
+			</section>
+
+			<section className="py-5 sm:py-8">
+				<Container>
+					<div className="flex justify-between items-center mb-5 sm:mb-6">
+						<h4 className="sm:text-3xl text-2xl">
+							<span className="bg-gradient-to-r from-danger to-warning bg-clip-text text-transparent font-bold">
+								Giveaways
+							</span>
+						</h4>
+						<Button
+							endContent={<MdNavigateNext size={22} />}
+							color="primary"
+							variant="light"
+							className="font-semibold px-1 gap-0"
+							as={NextLink}
+							href="/giveaways"
+						>
+							View All
+						</Button>
+					</div>
+					<Slider type="giveaways" data={giveaways} effect="slide" />
 				</Container>
 			</section>
 		</>
