@@ -30,7 +30,6 @@ export function StaggerItem({
                 duration: 0.3,
             }}
             viewport={{ once: once }}
-            key={index}
         >
             {children}
         </motion.div>
