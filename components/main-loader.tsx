@@ -1,13 +1,10 @@
-import { BlurIn } from "./animations";
+
+import { Logo } from "./icons";
 export function MainLoader() {
     return (
         <div className="loader">
-            <div className="intern">
-                <BlurIn className="loading">
-                    <h3 className="italic">
-                        Almost There!
-                    </h3>
-                </BlurIn>
+            <div className="intern animate-bounce">
+                <Logo/>
             </div>
             <div className="external-shadow">
                 <div className="central"></div>
