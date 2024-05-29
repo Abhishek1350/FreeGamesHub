@@ -15,6 +15,7 @@ import { Kbd } from "@nextui-org/kbd";
 import { ScrollShadow } from "@nextui-org/scroll-shadow";
 import { Listbox, ListboxItem } from "@nextui-org/listbox";
 import { Avatar } from "@nextui-org/avatar";
+import NextLink from "next/link";
 
 interface SearchProps {
     games: IGame[];
@@ -124,6 +125,7 @@ export function Search({ games }: SearchProps) {
                                                         {item.genre}, {item.platform}
                                                     </p>
                                                 }
+                                                as={NextLink}
                                                 href={`/games/${item.id}`}
                                             >
                                                 {item.title}
