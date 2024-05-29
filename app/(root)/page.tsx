@@ -104,7 +104,7 @@ export default async function Home() {
 								variant="light"
 								className="font-semibold px-1 gap-0"
 								as={NextLink}
-								href="/games"
+								href="/games?sortby=popularity"
 							>
 								View All
 							</Button>
@@ -203,7 +203,7 @@ export default async function Home() {
 							variant="ghost"
 							className="font-bold gap-2 animate-bounce"
 							as={NextLink}
-							href="/games"
+							href="/games?sortby=recently_added"
 							radius="sm"
 							size="lg"
 						>

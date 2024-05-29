@@ -12,16 +12,16 @@ export const GamesCard = ({ game }: Props) => {
     return (
         <Card
             isPressable
-            className="p-4 shadow-inset-1 cursor-pointer hover:scale-105 transition-400"
+            className="p-4 shadow-inset-1 cursor-pointer hover:scale-105 transition-400 min-h-full sm:min-h-[300px]"
             as={NextLink}
             href={`/games/${game?.id}`}
         >
             <Image
-                className="rounded w-full object-cover object-center"
+                className="rounded w-full object-cover object-center h-full"
                 src={game?.thumbnail}
                 alt={game?.title}
                 classNames={{
-                    wrapper: "!max-w-full max-h-[200px] mb-3",
+                    wrapper: "!max-w-full md:max-h-[140px] mb-3",
                 }}
             />
             {game.platform === "PC (Windows)" ? (

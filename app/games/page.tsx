@@ -16,7 +16,6 @@ function filterGames(
     },
     games: IGame[]
 ) {
-    if (!params.platform && !params.category && !params.sort) return games;
     if (params.sortby) {
         if (params.sortby === "popularity") return games;
         if (params.sortby === "recently_added") {
@@ -27,6 +26,8 @@ function filterGames(
             );
         }
     }
+
+    if (!params.platform && !params.category) return games;
     return games.filter((game: IGame) => {
         const platformCondition =
             !params.platform ||
@@ -54,17 +55,16 @@ export default async function Games({
     return (
         <section className="text-gray-400 py-5 shadow-inset-1 min-h-[80dvh]">
             <Container>
-                <div className="mb-5">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-color-3 mb-1">
-                        Games
-                    </h1>
-                    <p className="text-color-2">
-                        {filteredGames.length > 1
-                            ? `${filteredGames?.length} Games Found`
-                            : `${filteredGames?.length} Game found`}
-                    </p>
-                </div>
-                <BlurIn className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-10">
+                {currentPage === 1 && (
+                    <div className="mb-5">
+                        <p className="text-color-2">
+                            {filteredGames.length > 1
+                                ? `${filteredGames?.length} Games Found`
+                                : `${filteredGames?.length} Game found`}
+                        </p>
+                    </div>
+                )}
+                <BlurIn className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-10">
                     {filteredGames
                         ?.slice(
                             (currentPage - 1) * ITEMS_PER_PAGE,
@@ -85,7 +85,6 @@ export default async function Games({
                     </div>
                 )}
             </Container>
-
         </section>
     );
 }
