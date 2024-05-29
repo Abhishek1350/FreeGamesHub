@@ -12,7 +12,7 @@ import NextLink from "next/link";
 
 export async function generateStaticParams() {
     const games: IGame[] = await getGames();
-    return games.map((game) => ({
+    return games?.slice(0, 20).map((game) => ({
         id: game.id.toString(),
     }));
 }
