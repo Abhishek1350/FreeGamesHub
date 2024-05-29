@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 .shadow-inset-1 {
   box-shadow: rgba(255, 255, 255, 0.2) 0px -1px 6px 0px inset;
 }
@@ -57,7 +61,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-    font-size: 2em; 
+  font-size: 2em;
 }
 
 @keyframes rotate {
