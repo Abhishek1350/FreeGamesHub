@@ -5,6 +5,8 @@ import { Providers } from "./providers";
 import { Navbar, Footer, MainLoader } from "@/components";
 import clsx from "clsx";
 import { Suspense } from "react";
+import { getGames } from "@/lib/action";
+import { IGame } from "@/lib/types";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
@@ -37,11 +39,13 @@ export const viewport: Viewport = {
 	],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const games: IGame[] = await getGames();
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -53,9 +57,8 @@ export default function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<Suspense fallback={<MainLoader />}>
-						{/* @ts-ignore @ts-expect-error Async Server Component */}
-						<Navbar />
-						<main className="flex-grow">{children}</main>
+						<Navbar games={games}/>
+						<main>{children}</main>
 						{/* @ts-ignore @ts-expect-error Async Server Component */}
 						<Footer />
 					</Suspense>

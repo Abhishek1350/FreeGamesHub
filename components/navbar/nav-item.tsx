@@ -18,6 +18,10 @@ interface NavItemProps {
         link?: string;
         categories: { name: string; slug: string }[];
     };
+    handleRouteChange: (
+        url: string,
+        e: React.MouseEvent<HTMLAnchorElement>
+    ) => void;
 }
 
 function getFullPath(
@@ -54,7 +58,7 @@ function isActive(platform: string, completeUrl: string): boolean {
     return query === platformName;
 }
 
-export const NavItem = ({ item }: NavItemProps) => {
+export const NavItem = ({ item, handleRouteChange }: NavItemProps) => {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
@@ -69,7 +73,9 @@ export const NavItem = ({ item }: NavItemProps) => {
                 color: pathname === item.link ? "#f31260" : "#fff",
             }}
         >
-            <NextLink href={item.link}>{item.name}</NextLink>
+            <NextLink href={item.link} onClick={(e) => handleRouteChange("/", e)}>
+                {item.name}
+            </NextLink>
         </NavbarItem>
     ) : (
         <Dropdown>
@@ -97,8 +103,7 @@ export const NavItem = ({ item }: NavItemProps) => {
                 {item?.categories?.map((category: any) => (
                     <DropdownItem
                         key={category.slug}
-                        as={NextLink}
-                        href={category.slug}
+                        onClick={(e) => handleRouteChange(category.slug, e as any)}
                         style={{
                             color: category.slug === completeUrl ? "#f31260" : "#fff",
                         }}

@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -8,29 +10,54 @@ import {
 } from "@nextui-org/navbar";
 import NextLink from "next/link";
 import { Logo } from "@/components/icons";
-import { getGames } from "@/lib/action";
 import { IGame, PLATFORMS } from "@/lib/types";
 import { NavItem } from "./nav-item";
 import { Search } from "./search";
+import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 
-export const Navbar = async () => {
-	const games: IGame[] = await getGames();
+interface NavbarProps {
+	games: IGame[];
+}
 
-	const browserCategories = Array.from(
-		new Set(
-			games
-				?.filter((game: IGame) => game?.platform === PLATFORMS.BROWSER)
-				?.map((game: IGame) => game?.genre)
-		)
-	).sort((a, b) => a.localeCompare(b));
+export function Navbar({ games }: NavbarProps) {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const router = useRouter();
 
-	const pcCategories = Array.from(
-		new Set(
-			games
-				?.filter((game: IGame) => game?.platform === PLATFORMS.PC)
-				?.map((game: IGame) => game?.genre)
-		)
-	).sort((a, b) => a.localeCompare(b));
+	function handleRouteChange(
+		url: string,
+		e?: React.MouseEvent<HTMLAnchorElement>
+	) {
+		if (e) e.preventDefault();
+		if (isMenuOpen) {
+			setIsMenuOpen(false);
+		}
+		router.push(url);
+	}
+
+	const browserCategories = useMemo(
+		() =>
+			Array.from(
+				new Set(
+					games
+						?.filter((game: IGame) => game?.platform === PLATFORMS.BROWSER)
+						?.map((game: IGame) => game?.genre)
+				)
+			).sort((a, b) => a.localeCompare(b)),
+		[games]
+	);
+
+	const pcCategories = useMemo(
+		() =>
+			Array.from(
+				new Set(
+					games
+						?.filter((game: IGame) => game?.platform === PLATFORMS.PC)
+						?.map((game: IGame) => game?.genre)
+				)
+			).sort((a, b) => a.localeCompare(b)),
+		[games]
+	);
 
 	const menuItems = [
 		{
@@ -80,16 +107,22 @@ export const Navbar = async () => {
 			shouldHideOnScroll
 			isBordered
 			classNames={{ base: "h-[3.5rem]" }}
+			isMenuOpen={isMenuOpen}
+			onMenuOpenChange={setIsMenuOpen}
 		>
 			<NavbarContent className="gap-0">
 				<NavbarBrand>
-					<NextLink href="/">
+					<NextLink href="/" onClick={(e) => handleRouteChange("/", e)}>
 						<Logo />
 					</NextLink>
 				</NavbarBrand>
 				<ul className="hidden lg:flex gap-5 justify-start items-center">
 					{menuItems.map((item) => (
-						<NavItem key={item.name} item={item} />
+						<NavItem
+							key={item.name}
+							item={item}
+							handleRouteChange={handleRouteChange}
+						/>
 					))}
 				</ul>
 			</NavbarContent>
@@ -105,13 +138,17 @@ export const Navbar = async () => {
 			</NavbarContent>
 
 			<NavbarMenu className="![--navbar-height:3.5rem]">
-				<Search games={games} />
-				<div className="mx-4 mt-5 flex flex-col gap-2">
+				<div className="mx-4 flex flex-col gap-2">
 					{menuItems.map((item) => (
-						<NavItem key={item.name} item={item} />
+						<NavItem
+							key={item.name}
+							item={item}
+							handleRouteChange={handleRouteChange}
+						/>
 					))}
 				</div>
+				<Search games={games} />
 			</NavbarMenu>
 		</NextUINavbar>
 	);
-};
+}
