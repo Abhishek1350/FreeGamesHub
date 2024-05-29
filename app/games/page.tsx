@@ -1,6 +1,41 @@
 import { getGames } from "@/lib/action";
-import { IGame } from "@/lib/types";
-import { Container, GamesCard, BlurIn } from "@/components";
+import { IGame, PLATFORMS } from "@/lib/types";
+import { Container, GamesCard, BlurIn, Pagination } from "@/components";
+
+const ITEMS_PER_PAGE = 12;
+
+function getPlatfrom(platform: string) {
+    if (platform === "pc") return PLATFORMS.PC;
+    if (platform === "browser") return PLATFORMS.BROWSER;
+    return platform;
+}
+
+function filterGames(
+    params: {
+        [key: string]: string | string[] | undefined;
+    },
+    games: IGame[]
+) {
+    if (!params.platform && !params.category && !params.sort) return games;
+    if (params.sortby) {
+        if (params.sortby === "popularity") return games;
+        if (params.sortby === "recently_added") {
+            return games.sort(
+                (a: IGame, b: IGame) =>
+                    new Date(b.release_date).getTime() -
+                    new Date(a.release_date).getTime()
+            );
+        }
+    }
+    return games.filter((game: IGame) => {
+        const platformCondition =
+            !params.platform ||
+            game.platform === getPlatfrom(params.platform as string);
+        const categoryCondition =
+            !params.category || game.genre === params.category;
+        return platformCondition && categoryCondition;
+    });
+}
 
 export default async function Games({
     searchParams,
@@ -8,29 +43,49 @@ export default async function Games({
     params: { slug: string };
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
+    const { page } = searchParams;
+
     const games: IGame[] = await getGames();
 
-    // const { page, platform, category, sort } = searchParams; : TODO: Implement search
+    const filteredGames = filterGames(searchParams, games);
+
+    const currentPage = page ? parseInt(page as string) : 1;
 
     return (
-        <section className="text-gray-400 body-font py-4 shadow-inset-1 min-h-[80dvh]">
+        <section className="text-gray-400 py-5 shadow-inset-1 min-h-[80dvh]">
             <Container>
                 <div className="mb-5">
                     <h1 className="text-2xl sm:text-3xl font-bold text-color-3 mb-1">
                         Games
                     </h1>
                     <p className="text-color-2">
-                        {games.length > 1
-                            ? `${games?.length} Games Found`
-                            : `${games?.length} Game found`}
+                        {filteredGames.length > 1
+                            ? `${filteredGames?.length} Games Found`
+                            : `${filteredGames?.length} Game found`}
                     </p>
                 </div>
                 <BlurIn className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-10">
-                    {games.map((game) => (
-                        <GamesCard key={game.id} game={game} />
-                    ))}
+                    {filteredGames
+                        ?.slice(
+                            (currentPage - 1) * ITEMS_PER_PAGE,
+                            currentPage * ITEMS_PER_PAGE
+                        )
+                        .map((game) => (
+                            <GamesCard key={game.id} game={game} />
+                        ))}
                 </BlurIn>
+
+                {filteredGames && filteredGames?.length > ITEMS_PER_PAGE && (
+                    <div className="mt-10">
+                        <Pagination
+                            showControls
+                            total={Math.ceil(filteredGames?.length / ITEMS_PER_PAGE)}
+                            initialPage={currentPage}
+                        />
+                    </div>
+                )}
             </Container>
+
         </section>
     );
 }

@@ -17,11 +17,11 @@ export const GamesCard = ({ game }: Props) => {
             href={`/games/${game?.id}`}
         >
             <Image
-                className="rounded w-full object-cover object-center mb-6"
+                className="rounded w-full object-cover object-center"
                 src={game?.thumbnail}
                 alt={game?.title}
                 classNames={{
-                    wrapper: "!max-w-full",
+                    wrapper: "!max-w-full max-h-[200px] mb-3",
                 }}
             />
             {game.platform === "PC (Windows)" ? (
