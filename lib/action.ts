@@ -11,7 +11,7 @@ export async function getGames() {
 
 export async function getGameById(id: string | number) {
     try {
-        const response = await fetch(`${apiBaseUrl}/games?${id}`);
+        const response = await fetch(`${apiBaseUrl}/game?id=${id}`);
         return response.json();
     } catch (error) {
         return null;

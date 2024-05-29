@@ -9,3 +9,4 @@ export * from "./common";
 export * from "./footer";
 export * from "./main-loader";
 export * from "./pagination";
+export * from "./modal-image-slider";

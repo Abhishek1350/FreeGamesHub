@@ -6,6 +6,7 @@ interface StaggerItemProps {
     once?: boolean;
     index: number;
     children: React.ReactNode;
+    className?: string;
 }
 
 const stagger = 0.25;
@@ -18,6 +19,7 @@ export function StaggerItem({
     once = false,
     index,
     children,
+    className,
 }: StaggerItemProps) {
     return (
         <motion.div
@@ -30,6 +32,7 @@ export function StaggerItem({
                 duration: 0.3,
             }}
             viewport={{ once: once }}
+            className={className}
         >
             {children}
         </motion.div>
