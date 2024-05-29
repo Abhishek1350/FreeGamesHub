@@ -81,6 +81,7 @@ export default async function Games({
                             showControls
                             total={Math.ceil(filteredGames?.length / ITEMS_PER_PAGE)}
                             initialPage={currentPage}
+                            key={currentPage}
                         />
                     </div>
                 )}
