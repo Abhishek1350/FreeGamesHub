@@ -15,6 +15,9 @@ import { NavItem } from "./nav-item";
 import { Search } from "./search";
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { Input } from "@nextui-org/input";
+import { SearchIcon } from "@/components/icons";
+import { useDisclosure } from "@nextui-org/modal";
 
 interface NavbarProps {
 	games: IGame[];
@@ -23,16 +26,21 @@ interface NavbarProps {
 export function Navbar({ games }: NavbarProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const router = useRouter();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	function handleRouteChange(
 		url: string,
 		e?: React.MouseEvent<HTMLAnchorElement>
 	) {
 		if (e) e.preventDefault();
-		if (isMenuOpen) {
-			setIsMenuOpen(false);
-		}
+		if (isMenuOpen) setIsMenuOpen(false);
+		if (isOpen) onClose();
 		router.push(url);
+	}
+
+	function handleOpenSearch() {
+		if (isMenuOpen) setIsMenuOpen(false);
+		onOpen();
 	}
 
 	const browserCategories = useMemo(
@@ -105,8 +113,9 @@ export function Navbar({ games }: NavbarProps) {
 		<NextUINavbar
 			maxWidth="xl"
 			shouldHideOnScroll
+			position="sticky"
 			isBordered
-			// classNames={{ base: "h-[3.5rem]" }}
+			classNames={{ base: "h-[3rem]" }}
 			isMenuOpen={isMenuOpen}
 			onMenuOpenChange={setIsMenuOpen}
 		>
@@ -129,7 +138,26 @@ export function Navbar({ games }: NavbarProps) {
 
 			<NavbarContent className="hidden lg:flex" justify="end">
 				<NavbarItem className="hidden lg:flex">
-					<Search games={games} handleRouteChange={handleRouteChange} />
+					<Input
+						aria-label="Search"
+						classNames={{
+							inputWrapper: "bg-default-100 hover:bg-default-150",
+							input: "w-full cursor-pointer",
+						}}
+						placeholder="Search"
+						startContent={
+							<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
+						}
+						type="search"
+						readOnly
+						onClick={handleOpenSearch}
+					/>
+					<Search
+						games={games}
+						handleRouteChange={handleRouteChange}
+						isOpen={isOpen}
+						onClose={onClose}
+					/>
 				</NavbarItem>
 			</NavbarContent>
 
@@ -137,8 +165,7 @@ export function Navbar({ games }: NavbarProps) {
 				<NavbarMenuToggle />
 			</NavbarContent>
 
-			{/* <NavbarMenu className="![--navbar-height:3.5rem]"> */}
-			<NavbarMenu className="![--navbar-height:3.5rem]">
+			<NavbarMenu className="![--navbar-height:3rem]">
 				<div className="mx-4 flex flex-col gap-2">
 					{menuItems.map((item) => (
 						<NavItem
@@ -148,7 +175,26 @@ export function Navbar({ games }: NavbarProps) {
 						/>
 					))}
 				</div>
-				<Search games={games} handleRouteChange={handleRouteChange} />
+				<Input
+					aria-label="Search"
+					classNames={{
+						inputWrapper: "bg-default-100 hover:bg-default-150",
+						input: "w-full cursor-pointer",
+					}}
+					placeholder="Search"
+					startContent={
+						<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
+					}
+					type="search"
+					readOnly
+					onClick={handleOpenSearch}
+				/>
+				<Search
+					games={games}
+					handleRouteChange={handleRouteChange}
+					isOpen={isOpen}
+					onClose={onClose}
+				/>
 			</NavbarMenu>
 		</NextUINavbar>
 	);
