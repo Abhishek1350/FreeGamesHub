@@ -11,7 +11,7 @@ export const NewsCard = ({ news }: Props) => {
     return (
         <Card
             isPressable
-            className="bg-transparent rounded cursor-pointer hover:scale-105 transition-400"
+            className="bg-transparent rounded cursor-pointer hover:scale-105 transition-400 min-h-[350px]"
             as={NextLink}
             href={news?.article_url}
             target="_blank"
@@ -23,7 +23,7 @@ export const NewsCard = ({ news }: Props) => {
                     src={news?.main_image || news?.thumbnail}
                     alt={news?.title}
                     classNames={{
-                        wrapper: "!max-w-full",
+                        wrapper: "!max-w-full w-full",
                     }}
                 />
             </CardHeader>

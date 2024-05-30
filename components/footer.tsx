@@ -49,7 +49,7 @@ export const Footer = async () => {
                     />
                     <span className="ml-3 bg-gradient-to-r from-orange-500 via-white to-green-500 bg-clip-text text-transparent font-bold">
                         © {new Date().getFullYear()}{" "}
-                        <NextLink href="/sitemap">FreeGamesHub</NextLink>
+                        <NextLink href="/">FreeGamesHub</NextLink>
                     </span>
                 </div>
                 <div className="flex mt-6 gap-10">

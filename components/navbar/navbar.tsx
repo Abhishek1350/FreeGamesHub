@@ -112,8 +112,6 @@ export function Navbar({ games }: NavbarProps) {
 	return (
 		<NextUINavbar
 			maxWidth="xl"
-			shouldHideOnScroll
-			position="sticky"
 			isBordered
 			classNames={{ base: "h-[3rem]" }}
 			isMenuOpen={isMenuOpen}

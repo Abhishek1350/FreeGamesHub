@@ -41,7 +41,6 @@ function filterGames(
 export default async function Games({
     searchParams,
 }: {
-    params: { slug: string };
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
     const { page } = searchParams;
@@ -53,11 +52,11 @@ export default async function Games({
     const currentPage = page ? parseInt(page as string) : 1;
 
     return (
-        <section className="text-gray-400 py-5 shadow-inset-1 min-h-[80dvh]">
+        <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
             <Container>
                 {currentPage === 1 && (
                     <div className="mb-5">
-                        <p className="text-color-2">
+                        <p>
                             {filteredGames.length > 1
                                 ? `${filteredGames?.length} Games Found`
                                 : `${filteredGames?.length} Game found`}

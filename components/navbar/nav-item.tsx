@@ -73,7 +73,7 @@ export const NavItem = ({ item, handleRouteChange }: NavItemProps) => {
                 color: pathname === item.link ? "#f31260" : "#fff",
             }}
         >
-            <NextLink href={item.link} onClick={(e) => handleRouteChange("/", e)}>
+            <NextLink href={item.link} onClick={(e) => handleRouteChange(item.link as string, e)}>
                 {item.name}
             </NextLink>
         </NavbarItem>
