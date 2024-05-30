@@ -106,7 +106,7 @@ export function Navbar({ games }: NavbarProps) {
 			maxWidth="xl"
 			shouldHideOnScroll
 			isBordered
-			classNames={{ base: "h-[3.5rem]" }}
+			// classNames={{ base: "h-[3.5rem]" }}
 			isMenuOpen={isMenuOpen}
 			onMenuOpenChange={setIsMenuOpen}
 		>
@@ -129,7 +129,7 @@ export function Navbar({ games }: NavbarProps) {
 
 			<NavbarContent className="hidden lg:flex" justify="end">
 				<NavbarItem className="hidden lg:flex">
-					<Search games={games} />
+					<Search games={games} handleRouteChange={handleRouteChange} />
 				</NavbarItem>
 			</NavbarContent>
 
@@ -137,6 +137,7 @@ export function Navbar({ games }: NavbarProps) {
 				<NavbarMenuToggle />
 			</NavbarContent>
 
+			{/* <NavbarMenu className="![--navbar-height:3.5rem]"> */}
 			<NavbarMenu className="![--navbar-height:3.5rem]">
 				<div className="mx-4 flex flex-col gap-2">
 					{menuItems.map((item) => (
@@ -147,7 +148,7 @@ export function Navbar({ games }: NavbarProps) {
 						/>
 					))}
 				</div>
-				<Search games={games} />
+				<Search games={games} handleRouteChange={handleRouteChange} />
 			</NavbarMenu>
 		</NextUINavbar>
 	);

@@ -19,6 +19,10 @@ import NextLink from "next/link";
 
 interface SearchProps {
     games: IGame[];
+    handleRouteChange: (
+        url: string,
+        e: React.MouseEvent<HTMLAnchorElement>
+    ) => void;
 }
 
 function handleSearch(games: IGame[], query: string) {
@@ -30,7 +34,7 @@ function handleSearch(games: IGame[], query: string) {
     });
 }
 
-export function Search({ games }: SearchProps) {
+export function Search({ games, handleRouteChange }: SearchProps) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [searchQuery, setSearchQuery] = useState("");
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
@@ -127,6 +131,10 @@ export function Search({ games }: SearchProps) {
                                                 }
                                                 as={NextLink}
                                                 href={`/games/${item.id}`}
+                                                onClick={(e) => {
+                                                    handleRouteChange(`/games/${item.id}`, e as any);
+                                                    onClose();
+                                                }}
                                             >
                                                 {item.title}
                                             </ListboxItem>
