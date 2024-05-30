@@ -4,7 +4,7 @@ import { IGiveaway } from "@/lib/types";
 import NextLink from "next/link";
 
 interface Props {
-    giveaway?: IGiveaway;
+    giveaway: IGiveaway;
 }
 
 const getNumberValue = (value: string = "50%") => {
