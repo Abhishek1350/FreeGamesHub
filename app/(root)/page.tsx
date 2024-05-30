@@ -115,25 +115,23 @@ export default async function Home() {
 			</section>
 
 			<section className="py-5 sm:py-8">
-				<BlurIn>
-					<MarqueeWrapper>
-						<MarqueeItem pauseOnHover className="[--duration:150s] mb-10">
+				<MarqueeWrapper>
+					<BlurIn>
+						<MarqueeItem pauseOnHover className="[--duration:150s]">
 							{pcGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
 							))}
 						</MarqueeItem>
-					</MarqueeWrapper>
-				</BlurIn>
-				<BlurIn>
-					<MarqueeWrapper>
+					</BlurIn>
+					<BlurIn>
 						<MarqueeItem reverse pauseOnHover className="[--duration:150s]">
 							{browserGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
 							))}
 						</MarqueeItem>
-					</MarqueeWrapper>
-				</BlurIn>
-			</section>
+					</BlurIn >
+				</MarqueeWrapper>
+			</section >
 
 			<section className="pt-5 sm:pt-8">
 				<Container>
