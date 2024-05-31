@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/navbar";
 import NextLink from "next/link";
 import { Logo } from "@/components/icons";
-import { IGame, PLATFORMS } from "@/lib/types";
+import { IGame } from "@/lib/types";
 import { NavItem } from "./nav-item";
 import { Search } from "./search";
 import { useState, useMemo } from "react";
@@ -21,9 +21,15 @@ import { useDisclosure } from "@nextui-org/modal";
 
 interface NavbarProps {
 	games: IGame[];
+	pcCategories: string[];
+	browserCategories: string[];
 }
 
-export function Navbar({ games }: NavbarProps) {
+export function Navbar({
+	games,
+	pcCategories,
+	browserCategories,
+}: NavbarProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const router = useRouter();
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,71 +49,49 @@ export function Navbar({ games }: NavbarProps) {
 		onOpen();
 	}
 
-	const browserCategories = useMemo(
-		() =>
-			Array.from(
-				new Set(
-					games
-						?.filter((game: IGame) => game?.platform === PLATFORMS.BROWSER)
-						?.map((game: IGame) => game?.genre)
-				)
-			).sort((a, b) => a.localeCompare(b)),
-		[games]
-	);
-
-	const pcCategories = useMemo(
-		() =>
-			Array.from(
-				new Set(
-					games
-						?.filter((game: IGame) => game?.platform === PLATFORMS.PC)
-						?.map((game: IGame) => game?.genre)
-				)
-			).sort((a, b) => a.localeCompare(b)),
-		[games]
-	);
-
-	const menuItems = [
-		{
-			name: "Home",
-			link: "/",
-			categories: [],
-		},
-		{
-			name: "PC Games",
-			categories: pcCategories
-				.map((category) => ({
-					name: category,
-					slug: `/games?platform=pc&category=${category}`,
-				}))
-				.concat({
-					name: "All PC Games",
-					slug: "/games?platform=pc",
-				}),
-		},
-		{
-			name: "Browser Games",
-			categories: browserCategories
-				.map((category) => ({
-					name: category,
-					slug: `/games?platform=browser&category=${category}`,
-				}))
-				.concat({
-					name: "All Browser Games",
-					slug: "/games?platform=browser",
-				}),
-		},
-		{
-			name: "Latest News",
-			link: "/news",
-			categories: [],
-		},
-		{
-			name: "Giveaways",
-			link: "/giveaways",
-			categories: [],
-		},
-	];
+	const menuItems = useMemo(() => {
+		return [
+			{
+				name: "Home",
+				link: "/",
+				categories: [],
+			},
+			{
+				name: "PC Games",
+				categories: pcCategories
+					.map((category) => ({
+						name: category,
+						slug: `/games?platform=pc&category=${category}`,
+					}))
+					.concat({
+						name: "All PC Games",
+						slug: "/games?platform=pc",
+					}),
+			},
+			{
+				name: "Browser Games",
+				categories: browserCategories
+					.map((category) => ({
+						name: category,
+						slug: `/games?platform=browser&category=${category}`,
+					}))
+					.concat({
+						name: "All Browser Games",
+						slug: "/games?platform=browser",
+					}),
+			},
+			{
+				name: "Latest News",
+				link: "/news",
+				categories: [],
+			},
+			{
+				name: "Giveaways",
+				link: "/giveaways",
+				categories: [],
+			},
+		];
+	}, [pcCategories, browserCategories]);
 
 	return (
 		<NextUINavbar

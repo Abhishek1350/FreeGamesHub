@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { Suspense } from "react";
 import { getGames } from "@/lib/action";
 import { IGame } from "@/lib/types";
+import { getCategories } from "@/lib/utils";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
@@ -46,6 +47,9 @@ export default async function RootLayout({
 }) {
 	const games: IGame[] = await getGames();
 
+	const pcCategories = getCategories(games, "pc");
+	const browserCategories = getCategories(games, "browser");
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
@@ -57,7 +61,11 @@ export default async function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<Suspense fallback={<MainLoader />}>
-						<Navbar games={games}/>
+						<Navbar
+							pcCategories={pcCategories}
+							browserCategories={browserCategories}
+							games={games}
+						/>
 						<main>{children}</main>
 						{/* @ts-ignore @ts-expect-error Async Server Component */}
 						<Footer />

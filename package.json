@@ -26,6 +26,7 @@
 		"@nextui-org/navbar": "^2.0.30",
 		"@nextui-org/pagination": "^2.0.31",
 		"@nextui-org/scroll-shadow": "^2.1.16",
+		"@nextui-org/select": "^2.2.1",
 		"@nextui-org/switch": "^2.0.28",
 		"@nextui-org/system": "2.1.0",
 		"@nextui-org/theme": "2.2.0",
