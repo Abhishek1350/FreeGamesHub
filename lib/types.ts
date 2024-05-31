@@ -67,3 +67,8 @@ export interface ISocialLink {
   url: string;
   priority: number;
 }
+
+export interface IFilter {
+  values: { value: string; label: string }[];
+  label: string;
+}

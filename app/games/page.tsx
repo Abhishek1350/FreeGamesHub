@@ -1,8 +1,49 @@
 import { getGames } from "@/lib/action";
-import { IGame, PLATFORMS } from "@/lib/types";
-import { Container, GamesCard, BlurIn, Pagination } from "@/components";
+import { IGame, PLATFORMS, IFilter } from "@/lib/types";
+import {
+    Container,
+    GamesCard,
+    BlurIn,
+    Pagination,
+    FilterItem,
+} from "@/components";
+import { getCategories } from "@/lib/utils";
 
 const ITEMS_PER_PAGE = 12;
+
+const platformFilterValues = [
+    {
+        value: "pc",
+        label: PLATFORMS.PC,
+    },
+    {
+        value: "browser",
+        label: PLATFORMS.BROWSER,
+    },
+];
+
+const sortFilterValues = [
+    {
+        value: "popularity",
+        label: "Popularity",
+    },
+    {
+        value: "recently_added",
+        label: "Recently Added",
+    },
+    {
+        value: "oldest",
+        label: "Oldest",
+    },
+    {
+        value: "a-z",
+        label: "Alphabetical A-Z",
+    },
+    {
+        value: "z-a",
+        label: "Alphabetical Z-A",
+    },
+];
 
 function getPlatfrom(platform: string) {
     if (platform === "pc") return PLATFORMS.PC;
@@ -47,6 +88,26 @@ export default async function Games({
 
     const games: IGame[] = await getGames();
 
+    const categories = getCategories(games, "all");
+
+    const filters: IFilter[] = [
+        {
+            label: "Platform",
+            values: platformFilterValues,
+        },
+        {
+            label: "Category",
+            values: categories.map((category) => ({
+                value: category,
+                label: category,
+            })),
+        },
+        {
+            label: "Sort By",
+            values: sortFilterValues,
+        },
+    ];
+
     const filteredGames = filterGames(searchParams, games);
 
     const currentPage = page ? parseInt(page as string) : 1;
@@ -54,16 +115,41 @@ export default async function Games({
     return (
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
             <Container>
-                {currentPage === 1 && (
-                    <div className="mb-5">
-                        <p>
+                <BlurIn className="mb-10" once={true}>
+                    <div className="flex flex-wrap justify-center md:justify-start gap-5">
+                        {filters.map((filter) => (
+                            <FilterItem
+                                key={filter.label}
+                                selectedKey={
+                                    filter.values
+                                        .map((value) => value.value)
+                                        .includes(
+                                            searchParams[
+                                            filter.label.toLocaleLowerCase().replace(" ", "")
+                                            ] as string
+                                        )
+                                        ? (searchParams[
+                                            filter.label.toLocaleLowerCase().replace(" ", "")
+                                        ] as string)
+                                        : ""
+                                }
+                                filter={filter}
+                                className="max-w-full md:max-w-[200px]"
+                            />
+                        ))}
+                    </div>
+                    {currentPage === 1 && (
+                        <p className="mt-5">
                             {filteredGames.length > 1
                                 ? `${filteredGames?.length} Games Found`
                                 : `${filteredGames?.length} Game found`}
                         </p>
-                    </div>
-                )}
-                <BlurIn className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-10">
+                    )}
+                </BlurIn>
+                <BlurIn
+                    key={Object.values(searchParams).join("")}
+                    className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-10"
+                >
                     {filteredGames
                         ?.slice(
                             (currentPage - 1) * ITEMS_PER_PAGE,

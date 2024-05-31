@@ -10,3 +10,4 @@ export * from "./footer";
 export * from "./main-loader";
 export * from "./pagination";
 export * from "./modal-image-slider";
+export * from "./filter-item";
