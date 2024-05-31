@@ -72,13 +72,12 @@ export function filterGames(
   },
   games: IGame[]
 ): IGame[] {
-
   if (params.sortby) {
     switch (params.sortby) {
       case "popularity":
         return games;
 
-      case "recently-added":
+      case "newest":
         return games.sort(
           (a: IGame, b: IGame) =>
             new Date(b.release_date).getTime() -

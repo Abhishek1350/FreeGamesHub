@@ -37,6 +37,8 @@ export function QuickFilterItem({ filter, selectedKey, className }: Filters) {
                 );
             }}
             selectedKeys={[selectedKey]}
+            color="warning"
+            variant="flat"
         >
             {filter.values.map((value) => (
                 <SelectItem key={value.value}>{value.label}</SelectItem>

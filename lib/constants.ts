@@ -26,15 +26,15 @@ export const sortFilterValues = [
         label: "Alphabetical Z-A",
     },
     {
+        value: "newest",
+        label: "Newest",
+    },
+    {
         value: "oldest",
         label: "Oldest",
     },
     {
         value: "popularity",
         label: "Popularity",
-    },
-    {
-        value: "recently-added",
-        label: "Recently Added",
     },
 ];

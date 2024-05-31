@@ -6,9 +6,14 @@ import {
     BlurIn,
     Pagination,
     QuickFilterItem,
+    AdvancedFilters,
 } from "@/components";
 import { getCategories, filterGames } from "@/lib/utils";
-import { ITEMS_PER_PAGE, platformFilterValues, sortFilterValues } from "@/lib/constants";
+import {
+    ITEMS_PER_PAGE,
+    platformFilterValues,
+    sortFilterValues,
+} from "@/lib/constants";
 
 export default async function Games({
     searchParams,
@@ -49,7 +54,7 @@ export default async function Games({
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
             <Container>
                 <BlurIn className="mb-10" once={true}>
-                    <div className="flex flex-wrap justify-center md:justify-start gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                         {filters.map((filter) => (
                             <QuickFilterItem
                                 key={filter.label}
@@ -67,9 +72,10 @@ export default async function Games({
                                         : ""
                                 }
                                 filter={filter}
-                                className="max-w-full md:max-w-[200px]"
+                                className="max-w-full"
                             />
                         ))}
+                        <AdvancedFilters />
                     </div>
                     {currentPage === 1 && (
                         <p className="mt-5">
@@ -81,7 +87,7 @@ export default async function Games({
                 </BlurIn>
                 <BlurIn
                     key={Object.values(searchParams).join("")}
-                    className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-10"
+                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10"
                 >
                     {filteredGames
                         ?.slice(

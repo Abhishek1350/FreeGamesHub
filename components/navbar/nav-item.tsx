@@ -68,12 +68,15 @@ export const NavItem = ({ item, handleRouteChange }: NavItemProps) => {
 
     return item?.link ? (
         <NavbarItem
-            className="h-8 sm:h-full"
+            className="h-10 mb-2 sm:mb-0 sm:h-full flex items-center"
             style={{
                 color: pathname === item.link ? "#f31260" : "#fff",
             }}
         >
-            <NextLink href={item.link} onClick={(e) => handleRouteChange(item.link as string, e)}>
+            <NextLink
+                href={item.link}
+                onClick={(e) => handleRouteChange(item.link as string, e)}
+            >
                 {item.name}
             </NextLink>
         </NavbarItem>

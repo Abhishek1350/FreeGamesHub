@@ -1,12 +1,7 @@
 "use client";
 
 import { Input } from "@nextui-org/input";
-import {
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-} from "@nextui-org/modal";
+import { Modal, ModalContent, ModalHeader, ModalBody } from "@nextui-org/modal";
 import { useEffect, useRef, useMemo, useState } from "react";
 import { IGame } from "@/lib/types";
 import { Kbd } from "@nextui-org/kbd";
@@ -35,7 +30,12 @@ function handleSearch(games: IGame[], query: string) {
     });
 }
 
-export function Search({ games, handleRouteChange, isOpen, onClose }: SearchProps) {
+export function Search({
+    games,
+    handleRouteChange,
+    isOpen,
+    onClose,
+}: SearchProps) {
     const [searchQuery, setSearchQuery] = useState("");
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
 
@@ -116,7 +116,9 @@ export function Search({ games, handleRouteChange, isOpen, onClose }: SearchProp
                                             }
                                             as={NextLink}
                                             href={`/games/${item.id}`}
-                                            onClick={(e) => handleRouteChange(`/games/${item.id}`, e as any)}
+                                            onClick={(e) =>
+                                                handleRouteChange(`/games/${item.id}`, e as any)
+                                            }
                                         >
                                             {item.title}
                                         </ListboxItem>

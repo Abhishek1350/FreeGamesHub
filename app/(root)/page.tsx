@@ -130,9 +130,9 @@ export default async function Home() {
 								<PopularGamesCard game={game} key={game.id} />
 							))}
 						</MarqueeItem>
-					</BlurIn >
+					</BlurIn>
 				</MarqueeWrapper>
-			</section >
+			</section>
 
 			<section className="pt-5 sm:pt-8">
 				<Container>
@@ -202,7 +202,7 @@ export default async function Home() {
 							variant="ghost"
 							className="font-bold gap-2 animate-bounce"
 							as={NextLink}
-							href="/games?sortby=recently-added"
+							href="/games?sortby=newest"
 							radius="sm"
 							size="lg"
 						>
