@@ -1,11 +1,5 @@
 import { SVGProps } from "react";
 
-export enum PLATFORMS {
-  PC = "PC (Windows)",
-  BROWSER = "Web Browser",
-}
-
-
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };

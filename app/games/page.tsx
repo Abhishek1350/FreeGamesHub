@@ -1,83 +1,14 @@
 import { getGames } from "@/lib/action";
-import { IGame, PLATFORMS, IFilter } from "@/lib/types";
+import { IGame, IFilter } from "@/lib/types";
 import {
     Container,
     GamesCard,
     BlurIn,
     Pagination,
-    FilterItem,
+    QuickFilterItem,
 } from "@/components";
-import { getCategories } from "@/lib/utils";
-
-const ITEMS_PER_PAGE = 12;
-
-const platformFilterValues = [
-    {
-        value: "pc",
-        label: PLATFORMS.PC,
-    },
-    {
-        value: "browser",
-        label: PLATFORMS.BROWSER,
-    },
-];
-
-const sortFilterValues = [
-    {
-        value: "popularity",
-        label: "Popularity",
-    },
-    {
-        value: "recently_added",
-        label: "Recently Added",
-    },
-    {
-        value: "oldest",
-        label: "Oldest",
-    },
-    {
-        value: "a-z",
-        label: "Alphabetical A-Z",
-    },
-    {
-        value: "z-a",
-        label: "Alphabetical Z-A",
-    },
-];
-
-function getPlatfrom(platform: string) {
-    if (platform === "pc") return PLATFORMS.PC;
-    if (platform === "browser") return PLATFORMS.BROWSER;
-    return platform;
-}
-
-function filterGames(
-    params: {
-        [key: string]: string | string[] | undefined;
-    },
-    games: IGame[]
-) {
-    if (params.sortby) {
-        if (params.sortby === "popularity") return games;
-        if (params.sortby === "recently_added") {
-            return games.sort(
-                (a: IGame, b: IGame) =>
-                    new Date(b.release_date).getTime() -
-                    new Date(a.release_date).getTime()
-            );
-        }
-    }
-
-    if (!params.platform && !params.category) return games;
-    return games.filter((game: IGame) => {
-        const platformCondition =
-            !params.platform ||
-            game.platform === getPlatfrom(params.platform as string);
-        const categoryCondition =
-            !params.category || game.genre === params.category;
-        return platformCondition && categoryCondition;
-    });
-}
+import { getCategories, filterGames } from "@/lib/utils";
+import { ITEMS_PER_PAGE, platformFilterValues, sortFilterValues } from "@/lib/constants";
 
 export default async function Games({
     searchParams,
@@ -112,13 +43,15 @@ export default async function Games({
 
     const currentPage = page ? parseInt(page as string) : 1;
 
+    const showPagination = filteredGames.length > ITEMS_PER_PAGE;
+
     return (
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
             <Container>
                 <BlurIn className="mb-10" once={true}>
                     <div className="flex flex-wrap justify-center md:justify-start gap-5">
                         {filters.map((filter) => (
-                            <FilterItem
+                            <QuickFilterItem
                                 key={filter.label}
                                 selectedKey={
                                     filter.values
@@ -160,7 +93,7 @@ export default async function Games({
                         ))}
                 </BlurIn>
 
-                {filteredGames && filteredGames?.length > ITEMS_PER_PAGE && (
+                {showPagination && (
                     <div className="mt-10">
                         <Pagination
                             showControls

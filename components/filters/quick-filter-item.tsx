@@ -11,7 +11,7 @@ export interface Filters {
     className?: string;
 }
 
-export function FilterItem({ filter, selectedKey, className }: Filters) {
+export function QuickFilterItem({ filter, selectedKey, className }: Filters) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();

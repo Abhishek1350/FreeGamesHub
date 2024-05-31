@@ -10,8 +10,9 @@ import {
 	Slider,
 } from "@/components";
 import { getGames, getNews, getGiveaways } from "@/lib/action";
-import { IGame, PLATFORMS, INews } from "@/lib/types";
+import { IGame, INews } from "@/lib/types";
 import { MdNavigateNext } from "react-icons/md";
+import { PLATFORMS } from "@/lib/constants";
 
 export default async function Home() {
 	const [games, news, giveaways]: [IGame[], INews[], IGame[]] =
@@ -201,7 +202,7 @@ export default async function Home() {
 							variant="ghost"
 							className="font-bold gap-2 animate-bounce"
 							as={NextLink}
-							href="/games?sortby=recently_added"
+							href="/games?sortby=recently-added"
 							radius="sm"
 							size="lg"
 						>
