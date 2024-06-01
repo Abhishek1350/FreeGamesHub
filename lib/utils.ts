@@ -72,48 +72,62 @@ export function filterGames(
   },
   games: IGame[]
 ): IGame[] {
+  let filteredGames = [...games];
+
   if (params.sortby) {
     switch (params.sortby) {
       case "popularity":
-        return games;
+        break;
 
       case "newest":
-        return games.sort(
+        filteredGames.sort(
           (a: IGame, b: IGame) =>
             new Date(b.release_date).getTime() -
             new Date(a.release_date).getTime()
         );
+        break;
 
       case "oldest":
-        return games.sort(
+        filteredGames.sort(
           (a: IGame, b: IGame) =>
             new Date(a.release_date).getTime() -
             new Date(b.release_date).getTime()
         );
+        break;
 
       case "a-z":
-        return games.sort((a: IGame, b: IGame) =>
+        filteredGames.sort((a: IGame, b: IGame) =>
           a.title.localeCompare(b.title)
         );
+        break;
 
       case "z-a":
-        return games.sort((a: IGame, b: IGame) =>
+        filteredGames.sort((a: IGame, b: IGame) =>
           b.title.localeCompare(a.title)
         );
+        break;
 
       default:
-        return games;
+        break;
     }
   }
 
-  if (!params.platform && !params.category) return games;
+  if (params.platform) {
+    const platforms = Array.isArray(params.platform)
+      ? params.platform.map((platform: string) => getPlatfrom(platform))
+      : [getPlatfrom(params.platform as string)];
 
-  return games.filter((game: IGame) => {
-    const platformCondition =
-      !params.platform ||
-      game.platform === getPlatfrom(params.platform as string);
-    const categoryCondition =
-      !params.category || game.genre === params.category;
-    return platformCondition && categoryCondition;
-  });
+    filteredGames = filteredGames.filter((game: IGame) =>
+      platforms.includes(game.platform)
+    );
+  }
+
+  if (params.category) {
+    filteredGames = filteredGames.filter(
+      (game: IGame) => game.genre === params.category
+    );
+  }
+
+  return filteredGames;
 }
+

@@ -18,8 +18,13 @@ export function QuickFilterItem({ filter, selectedKey, className }: Filters) {
 
     const handleRedirect = useCallback(
         (name: string, value: string) => {
-            const params = new URLSearchParams();
-            params.set(name, value);
+            const params = new URLSearchParams(searchParams.toString());
+            if (value) {
+                params.set(name, value);
+            } else {
+                params.delete(name);
+            }
+            params.delete("page");
             router.push(pathname + "?" + params.toString());
         },
         [searchParams]
