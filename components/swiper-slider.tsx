@@ -9,11 +9,11 @@ import "swiper/css/scrollbar";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { Button } from "@nextui-org/button";
 import { IGame, INews, IGiveaway } from "@/lib/types";
-import { NewsCard, TrendingGamesCard, GiveawayCard } from "./cards";
+import { NewsCard, TrendingGamesCard, GiveawayCard, RecommendationCard } from "./cards";
 import { StaggerItem } from "./animations";
 
 interface Props {
-    type: "games" | "news" | "giveaways";
+    type: "games" | "news" | "giveaways" | "recommendations";
     data: IGame[] | INews[] | IGiveaway[];
     effect: "coverflow" | "slide";
 }
@@ -74,6 +74,13 @@ function renderItems(type: string, data: IGame[] | INews[] | IGiveaway[]) {
                     <StaggerItem index={index}>
                         <GiveawayCard giveaway={giveaway as IGiveaway} />
                     </StaggerItem>
+                </SwiperSlide>
+            ));
+
+        case "recommendations":
+            return data.map((game) => (
+                <SwiperSlide key={game.id}>
+                    <RecommendationCard game={game as IGame} />
                 </SwiperSlide>
             ));
         default:
