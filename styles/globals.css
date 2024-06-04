@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+.shadow-inset-1 {
+  box-shadow: rgba(255, 255, 255, 0.2) 0px -1px 6px 0px inset;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  content: "" !important;
+}
+
+/* Main Loader Start */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: not-allowed;
+  scale: 0.7;
+  height: 100vh;
+}
+
+.loader .external-shadow {
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0.5em 0.5em 3em red, -0.5em 0.5em 3em lime,
+    0.5em -0.5em 3em purple, -0.5em -0.5em 3em yellow;
+  z-index: 999;
+  animation: rotate 3s linear infinite;
+  background-color: #212121;
+}
+
+.loader .external-shadow .central {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  box-shadow: 0.5em 1em 1em red, -0.5em 0.5em 1em lime, 0.5em -0.5em 1em purple,
+    -0.5em -0.5em 1em yellow;
+}
+
+.loader .intern {
+  position: absolute;
+  color: white;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
