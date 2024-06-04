@@ -41,6 +41,13 @@ export default async function Games({
             })),
         },
         {
+            label: "Year",
+            values: years.map((year) => ({
+                value: year,
+                label: year,
+            })),
+        },
+        {
             label: "Sort By",
             values: sortFilterValues,
         },
@@ -56,7 +63,7 @@ export default async function Games({
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
             <Container>
                 <BlurIn className="mb-10" once={true}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
                         {filters.map((filter) => (
                             <QuickFilterItem
                                 key={filter.label}

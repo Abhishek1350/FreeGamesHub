@@ -33,7 +33,7 @@ export function QuickFilterItem({ filter, selectedKey, className }: Filters) {
     return (
         <Select
             size="sm"
-            label={filter.label}
+            label={filter.label === "Year" ? "Release Year" : filter.label}
             className={className}
             onChange={(e) => {
                 handleRedirect(

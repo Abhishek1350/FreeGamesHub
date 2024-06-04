@@ -67,9 +67,7 @@ export function getPlatfrom(platform: string): string {
 }
 
 export function filterGames(
-  params: {
-    [key: string]: string | undefined;
-  },
+  params: any,
   games: IGame[]
 ): IGame[] {
   let filteredGames = [...games];
@@ -117,7 +115,7 @@ export function filterGames(
   if (platform) {
     const platforms = platform
       .split(",")
-      .map((platform) => getPlatfrom(platform));
+      .map((platform: string) => getPlatfrom(platform));
     filteredGames = filteredGames.filter((game) =>
       platforms.includes(game.platform)
     );

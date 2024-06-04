@@ -101,7 +101,7 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
                     color="warning"
                     variant="flat"
                     endContent={<FaFilter />}
-                    className="w-full"
+                    className="w-full gap-1"
                     onPress={onOpen}
                 >
                     More
@@ -112,10 +112,10 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
                     color="danger"
                     variant="flat"
                     endContent={<FcClearFilters color="inherit" />}
-                    className="w-full"
+                    className="w-full gap-1"
                     onPress={hangleClearAll}
                 >
-                    Clear All
+                    Clear
                 </Button>
             </ButtonGroup>
 
