@@ -131,3 +131,15 @@ export function filterGames(
   return filteredGames;
 }
 
+export function getYears(games: IGame[]): any[] {
+  return Array.from(
+    new Set(
+      games
+        ?.map((game: IGame) =>
+          new Date(game?.release_date).getFullYear().toString()
+        )
+        .filter((year) => year !== "NaN")
+        .sort((a, b) => b.localeCompare(a))
+    )
+  );
+}

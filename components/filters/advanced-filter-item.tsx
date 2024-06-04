@@ -10,7 +10,7 @@ interface Options {
 }
 
 interface AdvancedFilterItemProps {
-    type: "platform" | "sort" | "categories";
+    type: "platform" | "sort" | "categories" | "years"
     multiple?: boolean;
     options: Options[] | string[];
     label: string;
@@ -91,6 +91,27 @@ export function AdvancedFilterItem({
                     ))}
                 </Select>
             );
+
+        case "years":
+            return (
+                <CheckboxGroup
+                    orientation="horizontal"
+                    value={selected as string[]}
+                    onValueChange={(value) => {
+                        onChange(value);
+                    }}
+                >
+                    {(options as string[]).map((option) => (
+                        <Checkbox
+                            key={option}
+                            value={option}
+                        >
+                            {option}
+                        </Checkbox>
+                    ))}
+                </CheckboxGroup>
+            );
+
 
         default:
             return null;

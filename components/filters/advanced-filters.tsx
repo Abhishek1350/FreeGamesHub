@@ -18,21 +18,24 @@ import { useState } from "react";
 
 interface AdvancedFiltersProps {
     categories: string[];
+    years: string[];
 }
 
 interface SelectedFilters {
     sort: string;
     platform: string[];
     categories: string[];
+    years: string[];
 }
 
 const initialSelectedFilters: SelectedFilters = {
     sort: "",
     platform: [],
     categories: [],
+    years: [],
 };
 
-export function AdvancedFilters({ categories }: AdvancedFiltersProps) {
+export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
     const router = useRouter();
     const pathname = usePathname();
 
@@ -81,10 +84,12 @@ export function AdvancedFilters({ categories }: AdvancedFiltersProps) {
                 backdrop="blur"
                 isDismissable={false}
                 isKeyboardDismissDisabled={false}
+                size="lg"
+                scrollBehavior="inside"
             >
                 <ModalContent>
                     <ModalHeader>More Filters</ModalHeader>
-                    <ModalBody>
+                    <ModalBody className="scrollbar-hide">
                         <div className="mb-2">
                             <h6>Sorted By</h6>
                             <AdvancedFilterItem
@@ -117,8 +122,24 @@ export function AdvancedFilters({ categories }: AdvancedFiltersProps) {
                             />
                         </div>
 
-                        <div>
-                            <h6 className="mb-2">Platforms</h6>
+                        <div className="mb-2">
+                            <h6 className="mb-2">Release Year</h6>
+                            <AdvancedFilterItem
+                                type="years"
+                                options={years}
+                                label="Sort By"
+                                selected={selectedFilters.years}
+                                onChange={(selected) =>
+                                    setSelectedFilters({
+                                        ...selectedFilters,
+                                        years: selected as string[],
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="pb-2"> 
+                            <h6 className="mb-2">Categories</h6>
                             <AdvancedFilterItem
                                 type="categories"
                                 options={categories}
@@ -133,7 +154,7 @@ export function AdvancedFilters({ categories }: AdvancedFiltersProps) {
                             />
                         </div>
                     </ModalBody>
-                    <ModalFooter>
+                    <ModalFooter className="border-t border-gray-500">
                         <Button
                             radius="sm"
                             color="danger"

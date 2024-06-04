@@ -8,7 +8,7 @@ import {
     QuickFilterItem,
     AdvancedFilters,
 } from "@/components";
-import { getCategories, filterGames } from "@/lib/utils";
+import { getCategories, filterGames, getYears } from "@/lib/utils";
 import {
     ITEMS_PER_PAGE,
     platformFilterValues,
@@ -25,6 +25,8 @@ export default async function Games({
     const games: IGame[] = await getGames();
 
     const categories = getCategories(games, "all");
+
+    const years = getYears(games);
 
     const filters: IFilter[] = [
         {
@@ -75,7 +77,7 @@ export default async function Games({
                                 className="max-w-full"
                             />
                         ))}
-                        <AdvancedFilters categories={categories} />
+                        <AdvancedFilters categories={categories} years={years} />
                     </div>
                     {currentPage === 1 && (
                         <p className="mt-5">
