@@ -8,10 +8,12 @@ import { Suspense } from "react";
 import { getGames } from "@/lib/action";
 import { IGame } from "@/lib/types";
 import { getCategories } from "@/lib/utils";
+import { currentSiteUrl, portfolioUrl } from "@/lib/env";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
 export const metadata: Metadata = {
+	metadataBase: new URL(process.env.NEXT_PUBLIC_CURRENT_SITE_URL as string),
 	title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
 	description:
 		"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
@@ -30,6 +32,14 @@ export const metadata: Metadata = {
 	icons: {
 		icon: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
+	},
+	alternates: {
+		canonical: new URL(currentSiteUrl),
+	},
+	applicationName: "FreeGamesHub",
+	authors: {
+		name: "Abhishek Bhardwaj",
+		url: new URL(portfolioUrl),
 	},
 };
 

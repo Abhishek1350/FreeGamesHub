@@ -1,6 +1,22 @@
 import { GiveawayCard, Container, BlurIn } from "@/components";
 import { IGiveaway } from "@/lib/types";
 import { getGiveaways } from "@/lib/action";
+import { Metadata } from "next";
+import { currentSiteUrl } from "@/lib/env";
+
+export const metadata: Metadata = {
+    title: "Giveaways | FreeGamesHub",
+    description:
+        "Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+    openGraph: {
+        title: "Giveaways | FreeGamesHub",
+        description:
+            "Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+    },
+    alternates: {
+        canonical: new URL(`${currentSiteUrl}/giveaways`),
+    },
+};
 
 export default async function Giveaways() {
     const giveaways: IGiveaway[] = await getGiveaways();

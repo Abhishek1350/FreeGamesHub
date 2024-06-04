@@ -9,6 +9,36 @@ import { IoMdExit } from "react-icons/io";
 import { ImSad, ImHappy } from "react-icons/im";
 import { VscDiffAdded } from "react-icons/vsc";
 import NextLink from "next/link";
+import { Metadata } from "next";
+import { currentSiteUrl } from "@/lib/env";
+
+export async function generateMetadata({
+    params,
+}: {
+    params: { id: string };
+}): Promise<Metadata> {
+    const { id } = params;
+
+    const game: IGame = await getGameById(id);
+
+    return {
+        title: `${game?.title} | FreeGamesHub`,
+        description: game?.short_description,
+        openGraph: {
+            title: `${game?.title} | FreeGamesHub`,
+            description: game?.short_description,
+            images: [
+                {
+                    url: game?.thumbnail,
+                    alt: `${game?.title} | FreeGamesHub`,
+                },
+            ],
+        },
+        alternates: {
+            canonical: new URL(`${currentSiteUrl}/${game?.id}`),
+        },
+    };
+}
 
 export async function generateStaticParams() {
     const games: IGame[] = await getGames();

@@ -13,6 +13,24 @@ import { getGames, getNews, getGiveaways } from "@/lib/action";
 import { IGame, INews } from "@/lib/types";
 import { MdNavigateNext } from "react-icons/md";
 import { PLATFORMS } from "@/lib/constants";
+import { Metadata } from "next";
+import { currentSiteUrl } from "@/lib/env";
+
+export const metadata: Metadata = {
+	title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
+	description:
+		"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+	keywords:
+		"Free PC games, Downloadable games, Browser gaming, Free-to-play, Online gaming, Indie games, Gaming community, free download pc games, lifetime free pc games",
+	openGraph: {
+		title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
+		description:
+			"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+	},
+	alternates: {
+		canonical: new URL(currentSiteUrl),
+	},
+};
 
 export default async function Home() {
 	const [games, news, giveaways]: [IGame[], INews[], IGame[]] =

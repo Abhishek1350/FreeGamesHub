@@ -14,6 +14,22 @@ import {
     platformFilterValues,
     sortFilterValues,
 } from "@/lib/constants";
+import { Metadata } from "next";
+import { currentSiteUrl } from "@/lib/env";
+
+export const metadata: Metadata = {
+    title: "Download and Play Free Games | FreeGamesHub",
+    description:
+        "Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+    openGraph: {
+        title: "Download and Play Free Games | FreeGamesHub",
+        description:
+            "Explore the best collection of free PC games and browser-based at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+    },
+    alternates: {
+        canonical: new URL(`${currentSiteUrl}/games`),
+    },
+};
 
 export default async function Games({
     searchParams,

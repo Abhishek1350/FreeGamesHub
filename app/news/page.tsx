@@ -1,6 +1,22 @@
 import { NewsCard, Container, BlurIn } from "@/components";
 import { INews } from "@/lib/types";
 import { getNews } from "@/lib/action";
+import { Metadata } from "next";
+import { currentSiteUrl } from "@/lib/env";
+
+export const metadata: Metadata = {
+    title: "Latest Gaming News | FreeGamesHub",
+    description:
+        "Get the latest gaming news, reviews, walkthroughs, and more for PC, PS4, Xbox One, Nintendo Switch, and mobile.",
+    openGraph: {
+        title: "Latest Gaming News | FreeGamesHub",
+        description:
+            "Get the latest gaming news, reviews, walkthroughs, and more for PC, PS4, Xbox One, Nintendo Switch, and mobile.",
+    },
+    alternates: {
+        canonical: new URL(`${currentSiteUrl}/news`),
+    },
+};
 
 export default async function News() {
     const news: INews[] = await getNews();
