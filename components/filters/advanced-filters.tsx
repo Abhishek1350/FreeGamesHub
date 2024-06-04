@@ -9,16 +9,41 @@ import {
     ModalContent,
     ModalHeader,
     ModalBody,
+    ModalFooter,
     useDisclosure,
 } from "@nextui-org/modal";
+import { AdvancedFilterItem } from "./advanced-filter-item";
+import { platformFilterValues, sortFilterValues } from "@/lib/constants";
+import { useState } from "react";
 
-export function AdvancedFilters() {
+interface AdvancedFiltersProps {
+    categories: string[];
+}
+
+interface SelectedFilters {
+    sort: string;
+    platform: string[];
+    categories: string[];
+}
+
+const initialSelectedFilters: SelectedFilters = {
+    sort: "",
+    platform: [],
+    categories: [],
+};
+
+export function AdvancedFilters({ categories }: AdvancedFiltersProps) {
     const router = useRouter();
     const pathname = usePathname();
+
+    const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
+        initialSelectedFilters
+    );
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const hangleClearAll = () => {
+        setSelectedFilters(initialSelectedFilters);
         router.push(pathname);
     };
 
@@ -54,13 +79,79 @@ export function AdvancedFilters() {
                 onClose={onClose}
                 placement="center"
                 backdrop="blur"
-                className="pb-2"
                 isDismissable={false}
                 isKeyboardDismissDisabled={false}
             >
                 <ModalContent>
                     <ModalHeader>More Filters</ModalHeader>
-                    <ModalBody>Modal</ModalBody>
+                    <ModalBody>
+                        <div className="mb-2">
+                            <h6>Sorted By</h6>
+                            <AdvancedFilterItem
+                                type="sort"
+                                options={sortFilterValues}
+                                label="Sort By"
+                                selected={selectedFilters.sort}
+                                onChange={(selected) =>
+                                    setSelectedFilters({
+                                        ...selectedFilters,
+                                        sort: selected as string,
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div className="mb-2">
+                            <h6 className="mb-2">Platforms</h6>
+                            <AdvancedFilterItem
+                                type="platform"
+                                options={platformFilterValues}
+                                label="Sort By"
+                                selected={selectedFilters.platform}
+                                onChange={(selected) =>
+                                    setSelectedFilters({
+                                        ...selectedFilters,
+                                        platform: selected as string[],
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <div>
+                            <h6 className="mb-2">Platforms</h6>
+                            <AdvancedFilterItem
+                                type="categories"
+                                options={categories}
+                                label="Categories"
+                                selected={selectedFilters.categories}
+                                onChange={(selected) =>
+                                    setSelectedFilters({
+                                        ...selectedFilters,
+                                        categories: selected as string[],
+                                    })
+                                }
+                            />
+                        </div>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+                            radius="sm"
+                            color="danger"
+                            variant="light"
+                            onPress={onClose}
+                        >
+                            Close
+                        </Button>
+                        <Button
+                            radius="sm"
+                            color="primary"
+                            onPress={() => {
+                                console.log(selectedFilters);
+                            }}
+                        >
+                            Action
+                        </Button>
+                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>

@@ -75,7 +75,7 @@ export default async function Games({
                                 className="max-w-full"
                             />
                         ))}
-                        <AdvancedFilters />
+                        <AdvancedFilters categories={categories} />
                     </div>
                     {currentPage === 1 && (
                         <p className="mt-5">
