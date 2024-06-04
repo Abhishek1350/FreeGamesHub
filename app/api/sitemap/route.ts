@@ -68,11 +68,17 @@ export async function GET() {
         const sitemapXml = await streamToPromise(sitemap);
 
         return new Response(sitemapXml, {
+            status: 200,
             headers: {
                 "Content-Type": "application/xml",
             },
         });
     } catch (error) {
-        return Response.json({ error: "Something went wrong!" });
+        return new Response("Internal serve", {
+            status: 500,
+            headers: {
+                "Content-Type": "text/plain",
+            },
+        });
     }
 }
