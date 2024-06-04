@@ -68,14 +68,16 @@ export function getPlatfrom(platform: string): string {
 
 export function filterGames(
   params: {
-    [key: string]: string | string[] | undefined;
+    [key: string]: string | undefined;
   },
   games: IGame[]
 ): IGame[] {
   let filteredGames = [...games];
 
-  if (params.sortby) {
-    switch (params.sortby) {
+  const { sortby, platform, category, year } = params;
+
+  if (sortby) {
+    switch (sortby) {
       case "popularity":
         break;
 
@@ -112,19 +114,26 @@ export function filterGames(
     }
   }
 
-  if (params.platform) {
-    const platforms = Array.isArray(params.platform)
-      ? params.platform.map((platform: string) => getPlatfrom(platform))
-      : [getPlatfrom(params.platform as string)];
-
-    filteredGames = filteredGames.filter((game: IGame) =>
+  if (platform) {
+    const platforms = platform
+      .split(",")
+      .map((platform) => getPlatfrom(platform));
+    filteredGames = filteredGames.filter((game) =>
       platforms.includes(game.platform)
     );
   }
 
-  if (params.category) {
-    filteredGames = filteredGames.filter(
-      (game: IGame) => game.genre === params.category
+  if (category) {
+    const catetories = category.split(",");
+    filteredGames = filteredGames.filter((game) =>
+      catetories.includes(game.genre)
+    );
+  }
+
+  if (year) {
+    const years = year.split(",");
+    filteredGames = filteredGames.filter((game) =>
+      years.includes(new Date(game.release_date).getFullYear().toString())
     );
   }
 

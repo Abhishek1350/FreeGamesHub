@@ -10,7 +10,7 @@ interface Options {
 }
 
 interface AdvancedFilterItemProps {
-    type: "platform" | "sort" | "categories" | "years"
+    type: "platform" | "sort" | "categories" | "years";
     multiple?: boolean;
     options: Options[] | string[];
     label: string;
@@ -60,16 +60,12 @@ export function AdvancedFilterItem({
                     }}
                 >
                     {(options as string[]).map((option) => (
-                        <Checkbox
-                            key={option}
-                            value={option}
-                        >
+                        <Checkbox key={option} value={option}>
                             {option}
                         </Checkbox>
                     ))}
                 </CheckboxGroup>
             );
-
 
         case "sort":
             return (
@@ -80,7 +76,7 @@ export function AdvancedFilterItem({
                     onChange={(e) => {
                         onChange(e.target.value);
                     }}
-                    // selectedKeys={selected}
+                    selectedKeys={[selected as string]}
                     color="default"
                     variant="underlined"
                     multiple={multiple}
@@ -102,16 +98,12 @@ export function AdvancedFilterItem({
                     }}
                 >
                     {(options as string[]).map((option) => (
-                        <Checkbox
-                            key={option}
-                            value={option}
-                        >
+                        <Checkbox key={option} value={option}>
                             {option}
                         </Checkbox>
                     ))}
                 </CheckboxGroup>
             );
-
 
         default:
             return null;

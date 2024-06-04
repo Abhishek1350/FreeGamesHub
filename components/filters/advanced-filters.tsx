@@ -3,7 +3,7 @@
 import { Button, ButtonGroup } from "@nextui-org/button";
 import { FaFilter } from "react-icons/fa";
 import { FcClearFilters } from "react-icons/fc";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
     Modal,
     ModalContent,
@@ -14,7 +14,7 @@ import {
 } from "@nextui-org/modal";
 import { AdvancedFilterItem } from "./advanced-filter-item";
 import { platformFilterValues, sortFilterValues } from "@/lib/constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface AdvancedFiltersProps {
     categories: string[];
@@ -35,9 +35,27 @@ const initialSelectedFilters: SelectedFilters = {
     years: [],
 };
 
+function buildSearchQuery(selectedFilters: SelectedFilters) {
+    const searchQuery = new URLSearchParams();
+    if (selectedFilters.sort.length) {
+        searchQuery.set("sortby", selectedFilters.sort);
+    }
+    if (selectedFilters.platform.length) {
+        searchQuery.set("platform", selectedFilters.platform.join(","));
+    }
+    if (selectedFilters.categories.length) {
+        searchQuery.set("category", selectedFilters.categories.join(","));
+    }
+    if (selectedFilters.years.length) {
+        searchQuery.set("year", selectedFilters.years.join(","));
+    }
+    return searchQuery.toString();
+}
+
 export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
     const router = useRouter();
     const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
         initialSelectedFilters
@@ -49,6 +67,30 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
         setSelectedFilters(initialSelectedFilters);
         router.push(pathname);
     };
+
+    const handleApplyFilters = () => {
+        const searchQuery = buildSearchQuery(selectedFilters);
+        if (searchQuery) {
+            router.push(`${pathname}?${searchQuery}`);
+        } else {
+            router.push(pathname);
+        }
+        onClose();
+    };
+
+    useEffect(() => {
+        const sort = searchParams.get("sortby") || "";
+        const platform = searchParams.get("platform")?.split(",") || [];
+        const categories = searchParams.get("category")?.split(",") || [];
+        const years = searchParams.get("year")?.split(",") || [];
+
+        setSelectedFilters({
+            sort,
+            platform,
+            categories,
+            years,
+        });
+    }, [searchParams]);
 
     return (
         <>
@@ -116,7 +158,9 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
                                 onChange={(selected) =>
                                     setSelectedFilters({
                                         ...selectedFilters,
-                                        platform: selected as string[],
+                                        platform: (selected as string[]).filter(
+                                            (value: string) => value !== ""
+                                        ),
                                     })
                                 }
                             />
@@ -132,13 +176,15 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
                                 onChange={(selected) =>
                                     setSelectedFilters({
                                         ...selectedFilters,
-                                        years: selected as string[],
+                                        years: (selected as string[]).filter(
+                                            (value: string) => value !== ""
+                                        ),
                                     })
                                 }
                             />
                         </div>
 
-                        <div className="pb-2"> 
+                        <div className="pb-2">
                             <h6 className="mb-2">Categories</h6>
                             <AdvancedFilterItem
                                 type="categories"
@@ -148,7 +194,9 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
                                 onChange={(selected) =>
                                     setSelectedFilters({
                                         ...selectedFilters,
-                                        categories: selected as string[],
+                                        categories: (selected as string[]).filter(
+                                            (value: string) => value !== ""
+                                        ),
                                     })
                                 }
                             />
@@ -158,19 +206,18 @@ export function AdvancedFilters({ categories, years }: AdvancedFiltersProps) {
                         <Button
                             radius="sm"
                             color="danger"
-                            variant="light"
-                            onPress={onClose}
+                            variant="flat"
+                            onPress={hangleClearAll}
                         >
-                            Close
+                            Reset
                         </Button>
                         <Button
                             radius="sm"
                             color="primary"
-                            onPress={() => {
-                                console.log(selectedFilters);
-                            }}
+                            variant="ghost"
+                            onPress={handleApplyFilters}
                         >
-                            Action
+                            Apply
                         </Button>
                     </ModalFooter>
                 </ModalContent>
