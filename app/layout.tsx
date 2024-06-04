@@ -8,7 +8,8 @@ import { Suspense } from "react";
 import { getGames } from "@/lib/action";
 import { IGame } from "@/lib/types";
 import { getCategories } from "@/lib/utils";
-import { currentSiteUrl, portfolioUrl } from "@/lib/env";
+import { currentSiteUrl, portfolioUrl, googleAnalyticsId } from "@/lib/env";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
@@ -81,6 +82,7 @@ export default async function RootLayout({
 						<Footer />
 					</Suspense>
 				</Providers>
+				<GoogleAnalytics gaId={googleAnalyticsId} />
 			</body>
 		</html>
 	);

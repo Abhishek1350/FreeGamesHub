@@ -20,3 +20,8 @@ export const currentSiteUrl = assertValue(
     process.env.NEXT_PUBLIC_CURRENT_SITE_URL,
     "Missing environment variable: NEXT_PUBLIC_CURRENT_SITE_URL"
 );
+
+export const googleAnalyticsId = assertValue(
+    process.env.GOOGLE_ANALYTICS_ID,
+    "Missing environment variable: GOOGLE_ANALYTICS_ID"
+);

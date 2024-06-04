@@ -13,6 +13,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@next/third-parties": "^14.2.3",
 		"@nextui-org/avatar": "^2.0.27",
 		"@nextui-org/button": "^2.0.31",
 		"@nextui-org/card": "^2.0.28",
