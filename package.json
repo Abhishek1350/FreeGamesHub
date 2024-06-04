@@ -45,6 +45,7 @@
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-icons": "^5.2.1",
+		"sitemap": "^8.0.0",
 		"swiper": "^11.0.5",
 		"tailwind-merge": "^2.3.0",
 		"tailwind-variants": "^0.1.20",

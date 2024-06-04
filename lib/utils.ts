@@ -66,10 +66,7 @@ export function getPlatfrom(platform: string): string {
   return platform;
 }
 
-export function filterGames(
-  params: any,
-  games: IGame[]
-): IGame[] {
+export function filterGames(params: any, games: IGame[]): IGame[] {
   let filteredGames = [...games];
 
   const { sortby, platform, category, year } = params;
@@ -149,4 +146,8 @@ export function getYears(games: IGame[]): any[] {
         .sort((a, b) => b.localeCompare(a))
     )
   );
+}
+
+export function isValidDate(date: string): boolean {
+  return new Date(date) instanceof Date && !isNaN(new Date(date).getTime());
 }
