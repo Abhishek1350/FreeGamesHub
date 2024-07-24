@@ -133,7 +133,7 @@ export default async function Home() {
 				</BlurIn>
 			</section>
 
-			<section className="py-5 sm:py-8 flex flex-col gap-10">
+			{/* <section className="py-5 sm:py-8 flex flex-col gap-10">
 				<MarqueeWrapper>
 					<BlurIn>
 						<Marquee speed={100} className="py-5" pauseOnHover>
@@ -152,7 +152,7 @@ export default async function Home() {
 						</Marquee>
 					</BlurIn>
 				</MarqueeWrapper>
-			</section>
+			</section> */}
 
 			<section className="pt-5 sm:pt-8">
 				<Container>
