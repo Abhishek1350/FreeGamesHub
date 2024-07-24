@@ -140,7 +140,7 @@ export default async function Home() {
 			</section>
 
 			<section className="py-5 sm:py-8 flex flex-col gap-10">
-				{/* <MarqueeWrapper> */}
+				<MarqueeWrapper>
 					<BlurIn>
 						<Marquee speed={100} className="py-5" pauseOnHover>
 							{pcGames.map((game) => (
@@ -148,8 +148,8 @@ export default async function Home() {
 							))}
 						</Marquee>
 					</BlurIn>
-				{/* </MarqueeWrapper> */}
-				{/* <MarqueeWrapper> */}
+				</MarqueeWrapper>
+				<MarqueeWrapper>
 					<BlurIn>
 						<Marquee direction="right" className="py-5" speed={100} pauseOnHover>
 							{browserGames.map((game) => (
@@ -157,7 +157,7 @@ export default async function Home() {
 							))}
 						</Marquee>
 					</BlurIn>
-				{/* </MarqueeWrapper> */}
+				</MarqueeWrapper>
 			</section>
 
 			<section className="pt-5 sm:pt-8">
