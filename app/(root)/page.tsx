@@ -26,6 +26,12 @@ export const metadata: Metadata = {
 		title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
 		description:
 			"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+		images: [
+			{
+				url: "/og-image.webp",
+				alt: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
+			},
+		],
 	},
 	alternates: {
 		canonical: new URL(currentSiteUrl),
@@ -134,7 +140,7 @@ export default async function Home() {
 			</section>
 
 			<section className="py-5 sm:py-8 flex flex-col gap-10">
-				<MarqueeWrapper>
+				{/* <MarqueeWrapper> */}
 					<BlurIn>
 						<Marquee speed={100} className="py-5" pauseOnHover>
 							{pcGames.map((game) => (
@@ -142,8 +148,8 @@ export default async function Home() {
 							))}
 						</Marquee>
 					</BlurIn>
-				</MarqueeWrapper>
-				<MarqueeWrapper>
+				{/* </MarqueeWrapper> */}
+				{/* <MarqueeWrapper> */}
 					<BlurIn>
 						<Marquee direction="right" className="py-5" speed={100} pauseOnHover>
 							{browserGames.map((game) => (
@@ -151,7 +157,7 @@ export default async function Home() {
 							))}
 						</Marquee>
 					</BlurIn>
-				</MarqueeWrapper>
+				{/* </MarqueeWrapper> */}
 			</section>
 
 			<section className="pt-5 sm:pt-8">
