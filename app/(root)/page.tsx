@@ -5,7 +5,6 @@ import {
 	Container,
 	BlurIn,
 	MarqueeWrapper,
-	MarqueeItem,
 	PopularGamesCard,
 	Slider,
 } from "@/components";
@@ -15,6 +14,7 @@ import { MdNavigateNext } from "react-icons/md";
 import { PLATFORMS } from "@/lib/constants";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
+import Marquee from "react-fast-marquee";
 
 export const metadata: Metadata = {
 	title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
@@ -133,21 +133,23 @@ export default async function Home() {
 				</BlurIn>
 			</section>
 
-			<section className="py-5 sm:py-8">
+			<section className="py-5 sm:py-8 flex flex-col gap-10">
 				<MarqueeWrapper>
 					<BlurIn>
-						<MarqueeItem pauseOnHover className="[--duration:150s]">
+						<Marquee speed={100} className="py-5" pauseOnHover>
 							{pcGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
 							))}
-						</MarqueeItem>
+						</Marquee>
 					</BlurIn>
+				</MarqueeWrapper>
+				<MarqueeWrapper>
 					<BlurIn>
-						<MarqueeItem reverse pauseOnHover className="[--duration:150s]">
+						<Marquee direction="right" className="py-5" speed={100} pauseOnHover>
 							{browserGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
 							))}
-						</MarqueeItem>
+						</Marquee>
 					</BlurIn>
 				</MarqueeWrapper>
 			</section>

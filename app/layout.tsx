@@ -27,6 +27,12 @@ export const metadata: Metadata = {
 		title: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
 		description:
 			"Explore a world of free PC games and browser-based fun at FreeGamesHub. Download exciting titles and play online without any cost. Your go-to destination for endless gaming enjoyment!",
+		images: [
+			{
+				url: "/og-image.webp",
+				alt: "FreeGamesHub: Your Gateway to Free PC and Browser Gaming",
+			},
+		],
 	},
 	robots:
 		"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",

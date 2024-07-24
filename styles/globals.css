@@ -64,6 +64,10 @@
   font-size: 2em;
 }
 
+.rfm-child{
+  @apply ml-10
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
