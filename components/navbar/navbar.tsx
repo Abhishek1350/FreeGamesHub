@@ -102,7 +102,7 @@ export function Navbar({
 			onMenuOpenChange={setIsMenuOpen}
 		>
 			<NavbarContent className="gap-0">
-				<NavbarBrand>
+				<NavbarBrand className="mr-10">
 					<NextLink href="/" onClick={(e) => handleRouteChange("/", e)}>
 						<Logo />
 					</NextLink>
