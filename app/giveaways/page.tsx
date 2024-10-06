@@ -1,7 +1,7 @@
 import { GiveawayCard, Container, BlurIn } from "@/components";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
-import ApiService from "@/lib/api";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Giveaways | FreeGamesHub",
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Giveaways() {
-    const giveaways = await ApiService.getGiveaways();
+    notFound();
 
     return (
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
-            <Container>
+            {/* <Container>
                 <div className="mb-5">
                     <h1 className="text-3xl font-bold">Giveaways</h1>
                     <p>Today's top {giveaways?.length} Giveaways</p>
@@ -32,7 +32,7 @@ export default async function Giveaways() {
                         <GiveawayCard giveaway={giveaway} key={giveaway.id} />
                     ))}
                 </BlurIn>
-            </Container>
+            </Container> */}
         </section>
     );
 }

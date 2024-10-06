@@ -1,8 +1,7 @@
 import { NewsCard, Container, BlurIn } from "@/components";
-import { INews } from "@/lib/types";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
-import ApiService from "@/lib/api";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Latest Gaming News | FreeGamesHub",
@@ -18,12 +17,12 @@ export const metadata: Metadata = {
     },
 };
 
-export default async function News() {
-    const news = await ApiService.getNews();
+export default function News() {
+    notFound();
 
     return (
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">
-            <Container>
+            {/* <Container>
                 <div className="mb-5">
                     <h1 className="text-3xl font-bold">News</h1>
                     <p>Today's top {news?.length} News Articles</p>
@@ -33,7 +32,7 @@ export default async function News() {
                         <NewsCard news={newsItem} key={newsItem.id} />
                     ))}
                 </BlurIn>
-            </Container>
+            </Container> */}
         </section>
     );
 }

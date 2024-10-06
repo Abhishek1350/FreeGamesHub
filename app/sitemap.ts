@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next'
 import { currentSiteUrl } from "@/lib/env";
-import { getGames } from "@/lib/api";
-import { IGame } from "@/lib/types";
+import ApiService from '@/lib/api';
 import { isValidDate } from "@/lib/utils";
 
 interface IRoute {
@@ -19,18 +18,18 @@ const staticRoutes: IRoute[] = [
         path: "/games",
         priority: 1,
     },
-    {
-        path: "/news",
-        priority: 0.8,
-    },
-    {
-        path: "/giveaways",
-        priority: 0.7,
-    },
+    // {
+    //     path: "/news",
+    //     priority: 0.8,
+    // },
+    // {
+    //     path: "/giveaways",
+    //     priority: 0.7,
+    // },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const games: IGame[] = await getGames();
+    const games = await ApiService.getGames();
 
     const dynamicRoutes: IRoute[] = games.map((game) => ({
         path: `/games/${game.id}`,

@@ -25,14 +25,6 @@ class ApiService {
         return this.fetchJson<IGame>(`${gamesApiBaseUrl}/game?id=${id}`);
     }
 
-    public static async getNews(): Promise<INews[]> {
-        return this.fetchJson<INews[]>(`${gamesApiBaseUrl}/latestnews`);
-    }
-
-    public static async getGiveaways(): Promise<IGiveaway[]> {
-        return this.fetchJson<IGiveaway[]>(`${gamesApiBaseUrl}/giveaways`);
-    }
-
     public static async getSocialLinks(): Promise<ISocialLink[]> {
         return this.fetchJson<ISocialLink[]>(`${portfolioUrl}/api/get-social-links`);
     }
