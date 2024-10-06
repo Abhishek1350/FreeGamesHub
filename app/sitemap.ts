@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { currentSiteUrl } from "@/lib/env";
-import { getGames } from "@/lib/action";
+import { getGames } from "@/lib/api";
 import { IGame } from "@/lib/types";
 import { isValidDate } from "@/lib/utils";
 

@@ -6,10 +6,20 @@ function assertValue<T>(v: T | undefined, errorMessage: string): T {
     return v;
 }
 
-export const apiBaseUrl = assertValue(
+export const gamesApiBaseUrl = assertValue(
     process.env.GAMES_API_URL,
     "Missing environment variable: GAMES_API_URL"
 );
+
+export const gamesApiHost = assertValue(
+    process.env.GAMES_API_HOST,
+    "Missing environment variable: GAMES_API_HOST"
+)
+
+export const gamesApiKey = assertValue(
+    process.env.GAMES_API_KEY,
+    "Missing environment variable: GAMES_API_KEY"
+)
 
 export const portfolioUrl = assertValue(
     process.env.PORTFOLIO_URL,

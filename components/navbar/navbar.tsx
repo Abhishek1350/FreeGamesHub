@@ -80,16 +80,16 @@ export function Navbar({
 						slug: "/games?platform=browser",
 					}),
 			},
-			{
-				name: "Latest News",
-				link: "/news",
-				categories: [],
-			},
-			{
-				name: "Giveaways",
-				link: "/giveaways",
-				categories: [],
-			},
+			// {
+			// 	name: "Latest News",
+			// 	link: "/news",
+			// 	categories: [],
+			// },
+			// {
+			// 	name: "Giveaways",
+			// 	link: "/giveaways",
+			// 	categories: [],
+			// },
 		];
 	}, [pcCategories, browserCategories]);
 
@@ -102,7 +102,7 @@ export function Navbar({
 			onMenuOpenChange={setIsMenuOpen}
 		>
 			<NavbarContent className="gap-0">
-				<NavbarBrand className="mr-10">
+				<NavbarBrand className="mr-10 grow-0">
 					<NextLink href="/" onClick={(e) => handleRouteChange("/", e)}>
 						<Logo />
 					</NextLink>

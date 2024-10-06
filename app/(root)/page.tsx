@@ -8,8 +8,7 @@ import {
 	PopularGamesCard,
 	Slider,
 } from "@/components";
-import { getGames, getNews, getGiveaways } from "@/lib/action";
-import { IGame, INews } from "@/lib/types";
+import ApiService from "@/lib/api";
 import { MdNavigateNext } from "react-icons/md";
 import { PLATFORMS } from "@/lib/constants";
 import { Metadata } from "next";
@@ -39,8 +38,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	const [games, news, giveaways]: [IGame[], INews[], IGame[]] =
-		await Promise.all([getGames(), getNews(), getGiveaways()]);
+	const games = await ApiService.getGames("popularity");
 
 	const pcGames = games
 		.filter((game) => game.platform === PLATFORMS.PC)
@@ -151,7 +149,12 @@ export default async function Home() {
 				</MarqueeWrapper>
 				<MarqueeWrapper>
 					<BlurIn>
-						<Marquee direction="right" className="py-5" speed={100} pauseOnHover>
+						<Marquee
+							direction="right"
+							className="py-5"
+							speed={100}
+							pauseOnHover
+						>
 							{browserGames.map((game) => (
 								<PopularGamesCard game={game} key={game.id} />
 							))}
@@ -160,7 +163,7 @@ export default async function Home() {
 				</MarqueeWrapper>
 			</section>
 
-			<section className="pt-5 sm:pt-8">
+			{/* <section className="pt-5 sm:pt-8">
 				<Container>
 					<div className="flex justify-between items-center mb-5 sm:mb-6">
 						<h4 className="sm:text-3xl text-2xl">
@@ -204,7 +207,7 @@ export default async function Home() {
 					</div>
 					<Slider type="giveaways" data={giveaways} effect="slide" />
 				</Container>
-			</section>
+			</section> */}
 
 			<section
 				className="bg-top bg-cover bg-no-repeat py-5 sm:py-14"

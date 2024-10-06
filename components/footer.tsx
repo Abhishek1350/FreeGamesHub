@@ -1,8 +1,7 @@
 import { Image } from "@nextui-org/image";
-import { getSocialLinks } from "@/lib/action";
+import ApiService from "@/lib/api";
 import { FaGithub, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import NextLink from "next/link";
-import { ISocialLink } from "@/lib/types";
 
 const getSocialMediaIcon = (title: string) => {
     switch (title) {
@@ -35,7 +34,7 @@ const getClassNames = (title: string) => {
 };
 
 export const Footer = async () => {
-    const socialMediaLinks: ISocialLink[] = await getSocialLinks();
+    const socialMediaLinks = await ApiService.getSocialLinks();
 
     return (
         <footer className="text-gray-400 py-4 bg-background border-divider border-t">
@@ -68,13 +67,13 @@ export const Footer = async () => {
                 <p className="mt-5 text-center">
                     Thanks to{" "}
                     <NextLink
-                        href="https://www.mmobomb.com"
+                        href="https://www.freetogame.com/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-500 underline"
                     >
                         {" "}
-                        MMOBomb.com
+                        freetogame.com
                     </NextLink>{" "}
                     for providing awesome API.
                 </p>

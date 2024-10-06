@@ -1,8 +1,7 @@
 import { GiveawayCard, Container, BlurIn } from "@/components";
-import { IGiveaway } from "@/lib/types";
-import { getGiveaways } from "@/lib/action";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
+import ApiService from "@/lib/api";
 
 export const metadata: Metadata = {
     title: "Giveaways | FreeGamesHub",
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Giveaways() {
-    const giveaways: IGiveaway[] = await getGiveaways();
+    const giveaways = await ApiService.getGiveaways();
 
     return (
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">

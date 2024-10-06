@@ -1,8 +1,6 @@
-import { getGames, getGameById } from "@/lib/action";
-import { IGame } from "@/lib/types";
 import { Container, ModalImageSlider, BlurIn, Slider } from "@/components";
 import { notFound } from "next/navigation";
-import { getRequirements } from "@/lib/utils";
+import { breakTextIntoPieces, getRequirements } from "@/lib/utils";
 import { Image } from "@nextui-org/image";
 import { Button } from "@nextui-org/button";
 import { IoMdExit } from "react-icons/io";
@@ -11,6 +9,7 @@ import { VscDiffAdded } from "react-icons/vsc";
 import NextLink from "next/link";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
+import ApiService from "@/lib/api";
 
 export async function generateMetadata({
     params,
@@ -19,7 +18,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { id } = params;
 
-    const game: IGame = await getGameById(id);
+    const game = await ApiService.getGameById(id);
 
     return {
         title: `${game?.title} | FreeGamesHub`,
@@ -29,7 +28,7 @@ export async function generateMetadata({
             description: game?.short_description,
             images: [
                 {
-                    url: game?.thumbnail,
+                    url: game?.thumbnail || "/og-image.webp",
                     alt: `${game?.title} | FreeGamesHub`,
                 },
             ],
@@ -41,16 +40,16 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-    const games: IGame[] = await getGames();
+    const games = await ApiService.getGames();
     return games?.slice(0, 20).map((game) => ({
         id: game.id.toString(),
     }));
 }
 
 export default async function Game({ params }: { params: { id: string } }) {
-    const [games, game]: [IGame[], IGame] = await Promise.all([
-        getGames(),
-        getGameById(params.id),
+    const [games, game] = await Promise.all([
+        ApiService.getGames(),
+        ApiService.getGameById(params.id),
     ]);
 
     const recommendedGames = () => {
@@ -153,7 +152,11 @@ export default async function Game({ params }: { params: { id: string } }) {
                                 About This Game
                             </h4>
                             {game?.description ? (
-                                <div dangerouslySetInnerHTML={{ __html: game.description }} />
+                                breakTextIntoPieces(game?.description).map((text, index) => (
+                                    <p key={index} className="text-color-2 mb-2 text-justify">
+                                        {text}
+                                    </p>
+                                ))
                             ) : (
                                 <p className="text-color-2 mb-2">
                                     No description available for this game.

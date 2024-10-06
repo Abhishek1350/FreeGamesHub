@@ -18,7 +18,7 @@ export function breakTextIntoPieces(text: string = ""): string[] {
   let currentPiece = "";
 
   text.split(".").forEach((sentence) => {
-    if ((currentPiece + sentence).length < 500) {
+    if ((currentPiece + sentence).length < 400) {
       currentPiece += sentence + ".";
     } else {
       pieces.push(currentPiece.trim());
@@ -28,6 +28,10 @@ export function breakTextIntoPieces(text: string = ""): string[] {
 
   if (currentPiece.trim() !== "") {
     pieces.push(currentPiece.trim());
+  }
+
+  if (pieces[pieces.length - 1].endsWith("..")) {
+    pieces[pieces.length - 1] = pieces[pieces.length - 1].slice(0, -1);
   }
 
   return pieces;

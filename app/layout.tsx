@@ -4,12 +4,11 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar, Footer, MainLoader } from "@/components";
 import clsx from "clsx";
+import ApiService from "@/lib/api";
 import { Suspense } from "react";
-import { getGames } from "@/lib/action";
-import { IGame } from "@/lib/types";
 import { getCategories } from "@/lib/utils";
 import { currentSiteUrl, portfolioUrl, googleAnalyticsId } from "@/lib/env";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
@@ -62,7 +61,7 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const games: IGame[] = await getGames();
+	const games = await ApiService.getGames();
 
 	const pcCategories = getCategories(games, "pc");
 	const browserCategories = getCategories(games, "browser");

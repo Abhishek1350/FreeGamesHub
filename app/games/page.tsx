@@ -1,5 +1,4 @@
-import { getGames } from "@/lib/action";
-import { IGame, IFilter } from "@/lib/types";
+import { IFilter } from "@/lib/types";
 import {
     Container,
     GamesCard,
@@ -16,6 +15,7 @@ import {
 } from "@/lib/constants";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
+import ApiService from "@/lib/api";
 
 export const metadata: Metadata = {
     title: "Download and Play Free Games | FreeGamesHub",
@@ -37,8 +37,13 @@ export default async function Games({
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
     const { page } = searchParams;
+    let games = [];
 
-    const games: IGame[] = await getGames();
+    if (searchParams?.sortby === "popularity") {
+        games = await ApiService.getGames("popularity");
+    } else {
+        games = await ApiService.getGames();
+    }
 
     const categories = getCategories(games, "all");
 

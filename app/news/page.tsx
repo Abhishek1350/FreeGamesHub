@@ -1,8 +1,8 @@
 import { NewsCard, Container, BlurIn } from "@/components";
 import { INews } from "@/lib/types";
-import { getNews } from "@/lib/action";
 import { Metadata } from "next";
 import { currentSiteUrl } from "@/lib/env";
+import ApiService from "@/lib/api";
 
 export const metadata: Metadata = {
     title: "Latest Gaming News | FreeGamesHub",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default async function News() {
-    const news: INews[] = await getNews();
+    const news = await ApiService.getNews();
 
     return (
         <section className="text-gray-400 pb-10 shadow-inset-1 min-h-[80dvh]">

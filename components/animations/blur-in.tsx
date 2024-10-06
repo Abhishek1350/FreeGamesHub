@@ -16,7 +16,7 @@ export const BlurIn = ({
     className,
     variant,
     duration = 0.6,
-    once = false,
+    once = true,
 }: BlurIntProps) => {
     const defaultVariants = {
         hidden: { filter: "blur(10px)", opacity: 0 },
