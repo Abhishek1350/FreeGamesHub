@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import { getCategories } from "@/lib/utils";
 import { currentSiteUrl, portfolioUrl, googleAnalyticsId } from "@/lib/env";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import GoogleAdsense from "./_google-adsense";
 
 export const revalidate = Number(process.env.REVALIDATE_INTERVAL) || 3600;
 
@@ -88,6 +89,7 @@ export default async function RootLayout({
 					</Suspense>
 				</Providers>
 				<GoogleAnalytics gaId={googleAnalyticsId} />
+				<GoogleAdsense />
 			</body>
 		</html>
 	);
