@@ -89,7 +89,6 @@ export default async function RootLayout({
 					</Suspense>
 				</Providers>
 				<GoogleAnalytics gaId={googleAnalyticsId} />
-				<GoogleAdsense />
 			</body>
 		</html>
 	);
